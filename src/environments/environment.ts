@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_KEY: 'AIzaSyBMEkW7zQd6dUCTv23jpmpxPcOWe4Zf6Eo',
+  endpoints: {
+    signin: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
+    signup: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
+  },
+  db: {
+    names: 'https://herbs-game.firebaseio.com/names.json'
+  }
 };
 
 /*
