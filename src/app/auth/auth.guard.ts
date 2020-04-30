@@ -17,8 +17,6 @@ export class AuthGuard implements CanActivate {
       take(1),
       map(user => {
         const isAuthorized = !!user;
-        console.log("AUTH GUARD HERE -> ");
-        console.log(isAuthorized);
 
         if(isAuthorized) {
           return true;

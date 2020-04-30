@@ -1,17 +1,46 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <app-modal [message]="error" *ngIf="error" (closeEvent)="onHandleError()"></app-modal>
+
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+
+      <p *ngIf="!isInRegisterMode">Don't have an account yet? <a style="cursor: pointer;" (click)="onToggleRegistration()">Click here to register</a></p>
+      <p *ngIf="isInRegisterMode">Already have an account? <a style="cursor: pointer;" (click)="onToggleRegistration()">Log in</a></p>
+
       <div class="form-group">
-        <label for="email">E-mail address:</label>
-        <input type="email" id="email" class="form-control" name="email" required email ngModel>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          placeholder="E-mail"
+          required
+          email
+          ngModel>
+      </div>
+      <div class="form-group" *ngIf="isInRegisterMode">
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          name="name"
+          placeholder="Name"
+          required
+          ngModel>
       </div>
       <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" class="form-control" name="password" required minlength="6" ngModel>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          placeholder="Password"
+          required
+          minlength="6"
+          ngModel>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Log in</button>
-        <p>Don't have an account yet? <a>Click here to register</a></p>
+        <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">{{ isInRegisterMode ? 'Register' : 'Log in'}}</button>
       </div>
     </form>
   </div>

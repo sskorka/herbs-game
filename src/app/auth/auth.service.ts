@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, throwError, Observable } from 'rxjs';
+import { catchError, tap, switchMap, concatMap, mergeMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { User } from './user.model';
 
-interface NameData {
-  email: string,
+export interface NameData {
   name: string
 }
 
@@ -31,13 +30,6 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signup(_email: string, _name: string, _password: string) {
-    // this.http.put<NameData>(
-    //   environment.db.names,
-    //   {
-    //     email: _email,
-    //     name: _name
-    //   }).subscribe();
-
     return this.http.post<AuthResponseData>(
       environment.endpoints.signup + environment.API_KEY,
       {
@@ -48,13 +40,29 @@ export class AuthService {
     ).pipe(
       catchError(this.handleError),
       tap(res => {
-        this.handleAuthentication(res.localId, res.email, _name, res.idToken, +res.expiresIn);
-      })
+        this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
+      }),
+      concatMap((res: AuthResponseData) => {
+        console.log("res in switchMap:", res);
+        return this.registerName(res.localId, _name);
+      }),
+      tap((nameRes: NameData) => this.assignNameToUser(nameRes.name))
+    );
+  }
+
+  registerName(_uid: string, _name: string): Observable<any> {
+    return this.http.put<NameData>(
+      environment.db.names + _uid + '.json',
+      {
+        name: _name
+      }
+    ).pipe(
+      catchError(this.handleError)
     );
   }
 
   login(_email: string, _password: string) {
-    let _name = 'tempName';
+    let returnedName: string = "";
 
     return this.http.post<AuthResponseData>(
       environment.endpoints.signin + environment.API_KEY,
@@ -65,10 +73,28 @@ export class AuthService {
       }
     ).pipe(
       catchError(this.handleError),
-      tap(res => {
-        this.handleAuthentication(res.localId, res.email, _name, res.idToken, +res.expiresIn);
-      })
+      tap((res: AuthResponseData) => {
+        this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
+      }),
+      mergeMap((res: AuthResponseData) => {
+        return this.fetchName(res.localId);
+      }),
+      tap((nameRes: NameData) => this.assignNameToUser(nameRes.name))
     );
+  }
+
+  fetchName(_uid: string): Observable<NameData> {
+    return this.http.get<NameData>(
+      environment.db.names + _uid + '.json'
+    ).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  assignNameToUser(_name: string): void {
+    const userData: User = JSON.parse(localStorage.getItem('userData'));
+    userData.name = _name;
+    localStorage.setItem('userData', JSON.stringify(userData));
   }
 
   logout() {
@@ -86,9 +112,9 @@ export class AuthService {
       expirationTime);
   }
 
-  private handleAuthentication(uid: string, email: string, name: string, token: string, expiresIn: number) {
+  private handleAuthentication(uid: string, email: string, token: string, expiresIn: number) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new User(uid, email, name, token, expirationDate);
+    const user = new User(uid, email, token, expirationDate);
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
