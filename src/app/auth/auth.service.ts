@@ -106,6 +106,35 @@ export class AuthService {
     this.tokenExpirationTimer = null;
   }
 
+  autoLogin() {
+    // If data in localstorage exist, convert to object
+    const userData: {
+      id: string,
+      email: string,
+      _token: string,
+      _tokenExpirationDate: string,
+      name: string
+    } = JSON.parse(localStorage.getItem('userData'));
+
+    if (!userData) return;
+
+    // Create a User object, so that it can validate the token
+    const userObject = new User(
+      userData.id,
+      userData.email,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+
+    // And if the token is still valid, emit this user and calculate the new autoLogout time
+    if(userObject.token) {
+      this.user.next(userObject);
+      const newTokenExpirationTime = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+
+      this.autoLogout(newTokenExpirationTime);
+    }
+  }
+
   autoLogout(expirationTime: number) {
     this.tokenExpirationTimer = setTimeout(
       () => this.logout(),
