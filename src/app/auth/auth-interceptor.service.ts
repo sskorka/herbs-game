@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpParams } from '@angular/common/http';
 import { exhaustMap, take } from 'rxjs/operators';
+import { GameModeComponent } from '../hub/game-mode/game-mode.component';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor{

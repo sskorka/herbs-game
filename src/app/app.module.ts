@@ -13,6 +13,12 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { ModalComponent } from './shared/modal/modal.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { SingleplayerComponent } from './game/singleplayer/singleplayer.component';
+import { CardComponent } from './game/shared/card/card.component';
+import { GardenComponent } from './game/shared/garden/garden.component';
+import { DeckComponent } from './game/shared/deck/deck.component';
+import { PotComponent } from './game/shared/pot/pot.component';
+import { GameManagerService } from './game/singleplayer/game-manager.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +28,11 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     AuthComponent,
     GameModeComponent,
     ModalComponent,
+    SingleplayerComponent,
+    CardComponent,
+    GardenComponent,
+    DeckComponent,
+    PotComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +43,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
   providers: [
     AuthService,
     AuthGuard,
+    GameManagerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

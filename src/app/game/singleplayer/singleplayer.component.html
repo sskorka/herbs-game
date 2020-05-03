@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-xs-12" style="color: black;">
+    <button style="margin-right: 10px;" (click)="onLogGameState()">Log GameState</button>
+    <button style="margin-right: 10px;" (click)="onPot()">Pot</button>
+    <button style="margin-right: 10px;" (click)="onPlant()">Plant</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-7">
+    <h4>Community garden</h4>
+    <app-card
+      *ngFor="let card of gameState.communityGarden"
+      [card]="card"
+    ></app-card>
+  </div>
+
+  <div class="col-xs-5">
+    <h4>Discard pile</h4>
+    <app-card
+      *ngFor="let card of gameState.discardPile"
+      [card]="card"
+    ></app-card>
+    <!-- <app-card [card]="gameState.discardPile[0]"></app-card> -->
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>Pots</p>
+    <app-pot
+      *ngFor="let pot of gameState.pots"
+      [card]="pot"
+    ></app-pot>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12" >
+    <h4>Private garden</h4>
+    <app-card
+      *ngFor="let card of gameState.privateGarden"
+      [card]="card"
+    ></app-card>
+  </div>
+</div>
+
+<!-- [ngStyle]="{background: 'url(' + card.graphicsUrl + ')'}" -->
