@@ -1,4 +1,4 @@
-.card {
+.pot-img {
   height: 180px;
   width: 252px;
   border-radius: 5px;
@@ -6,3 +6,43 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.selected {
+  outline: 3px solid rgb(0, 207, 41);
+  outline-offset: -3px;
+}
+
+.pot-container {
+  display: inline-block;
+}
+
+.herbs {
+  position: absolute;
+  left: 18px;
+  top: 5px;
+  z-index: -10;
+  height: 8em;
+
+  /* padding: 0;
+  margin: 0 0 1.5em 0;
+  margin-bottom: 3.5em;
+  clear: both; */
+}
+
+.herb {
+  position: absolute;
+  /* left: 0%; */
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  /* float: left; */
+}
+
+.herb:nth-child(1) { left: 0;}
+.herb:nth-child(2) { left: 1.5em;}
+.herb:nth-child(3) { left: 3.0em;}
+.herb:nth-child(4) { left: 4.5em;}
+.herb:nth-child(5) { left: 6.0em;}
+.herb:nth-child(6) { left: 7.5em;}
+.herb:nth-child(7) { left: 9.0em;}
+.herb:nth-child(8) { left: 10.5em;}

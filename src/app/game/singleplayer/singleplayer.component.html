@@ -1,21 +1,27 @@
 <div class="row">
   <div class="col-xs-12" style="color: black;">
+    <app-modal [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
+
     <button style="margin-right: 10px;" (click)="onLogGameState()">Log GameState</button>
-    <button style="margin-right: 10px;" (click)="onPot()">Pot</button>
-    <button style="margin-right: 10px;" (click)="onPlant()">Plant</button>
+    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">Pot</button>
+    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPlant()">Plant</button>
+    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">End</button>
+    <span *ngIf="gameState.currentAction == gameActions.NewTurn">Choose action</span>
+    <span *ngIf="gameState.currentAction == gameActions.PotAction">Pick up herbs or end phase</span>
+    <span *ngIf="gameState.currentAction == gameActions.PlantAction">Draw a card</span>
   </div>
 </div>
-
 <div class="row">
   <div class="col-xs-7">
     <h4>Community garden</h4>
     <app-card
       *ngFor="let card of gameState.communityGarden"
       [card]="card"
+      (click)="onCardClick(card)"
     ></app-card>
   </div>
 
-  <div class="col-xs-5">
+  <div class="col-xs-2">
     <h4>Discard pile</h4>
     <app-card
       *ngFor="let card of gameState.discardPile"
@@ -23,14 +29,21 @@
     ></app-card>
     <!-- <app-card [card]="gameState.discardPile[0]"></app-card> -->
   </div>
+  <div class="col-xs-2">
+    <h4>Deck</h4>
+    <app-card
+      [isDeck]="true"
+    ></app-card>
+  </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-top: 30px">
   <div class="col-xs-12">
-    <p>Pots</p>
     <app-pot
+      class="col-xs-3"
       *ngFor="let pot of gameState.pots"
-      [card]="pot"
+      [pot]="pot"
+      (click)="onCardClick(pot)"
     ></app-pot>
   </div>
 </div>
@@ -41,6 +54,7 @@
     <app-card
       *ngFor="let card of gameState.privateGarden"
       [card]="card"
+      (click)="onCardClick(card)"
     ></app-card>
   </div>
 </div>

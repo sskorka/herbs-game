@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Card } from '../card/card.model';
+import { Pot } from './pot.model';
 
 @Component({
   selector: 'app-pot',
@@ -7,7 +8,7 @@ import { Card } from '../card/card.model';
   styleUrls: ['./pot.component.css']
 })
 export class PotComponent implements OnInit {
-  @Input() card: Card;
+  @Input() pot: Pot;
 
   constructor() { }
 

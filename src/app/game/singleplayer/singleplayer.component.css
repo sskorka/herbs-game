@@ -1,0 +1,7 @@
+button:disabled {
+  background-color: gray;
+}
+
+.col-xs-12 span {
+  color: white;
+}

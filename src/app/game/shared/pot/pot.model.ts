@@ -14,6 +14,8 @@ export enum PotName {
 }
 
 export class Pot {
+  public isSelected: boolean = false;
+
   constructor(
     public potName: string,
     public maxHerbs: number,
@@ -31,7 +33,7 @@ export class Pot {
 
   private static _graphicsPath = '/../../../../assets/images/cards/faces/pots/';
 
-  public static genLarge() {
+  public static generateLarge() {
     return new Pot(
       PotName.LargePot,
       7,
@@ -50,7 +52,7 @@ export class Pot {
     )
   }
 
-  public static genWooden() {
+  public static generateWooden() {
     return new Pot(
       PotName.WoodenPlanter,
       7,
@@ -68,7 +70,7 @@ export class Pot {
     )
   }
 
-  public static genSmall() {
+  public static generateSmall() {
     return new Pot(
       PotName.SmallPots,
       6,
@@ -86,7 +88,7 @@ export class Pot {
     )
   }
 
-  public static genGlass() {
+  public static generateGlass() {
     return new Pot(
       PotName.GlassJar,
       3,

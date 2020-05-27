@@ -1,5 +1,6 @@
 <span>
   <img
-    class="card"
-    [style.background-image]="'url(' + card.graphicsUrl + ')'">
+    [style.background-image]="!isDeck ? 'url(' + card.graphicsUrl + ')' : 'url(' + deckPath + ')'"
+    [ngClass]="{'card':!isInPot, 'in-pot': isInPot, 'selected': card.isSelected}"
+  >
 </span>

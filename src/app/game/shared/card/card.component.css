@@ -6,3 +6,17 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.in-pot {
+  width: 100px;
+  height: 140px;
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.selected {
+  outline: 3px solid rgb(0, 207, 41);
+  outline-offset: -3px;
+}

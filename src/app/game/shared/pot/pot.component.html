@@ -1,5 +1,14 @@
-<span>
+<div class="pot-container">
   <img
-    class="card"
-    [style.background-image]="'url(' + card.graphicsUrl + ')'">
-</span>
+    class="pot-img"
+    [style.background-image]="'url(' + pot.graphicsUrl + ')'"
+    [ngClass]="{'selected': pot.isSelected}">
+  <span class="herbs">
+    <app-card
+      class="herb"
+      *ngFor="let herb of pot.herbs"
+      [card]="herb"
+      [isInPot]="true"
+    ></app-card>
+  </span>
+</div>
