@@ -31,6 +31,10 @@ export class SingleplayerComponent implements OnInit, AfterContentInit {
   // only 1 pot can be selected at a time
   // any combination of herbs from community and private gardens can be selected (no check req)
   onCardClick(card: Card | Pot) {
+    if (this.gameState.currentAction != this.gameActions.PotAction) {
+      return; // don't select if not in pot phase
+    }
+
     if (card instanceof Pot) {
       const isSelected = card.isSelected;
       this.gameState.pots.forEach(p => p.isSelected = false);
