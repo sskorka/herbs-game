@@ -5,3 +5,13 @@ button:disabled {
 .col-xs-12 span {
   color: white;
 }
+
+.garden {
+  min-height: 260px;
+  min-width: 180px;
+}
+
+.choosable {
+  outline: thick double rgb(184, 214, 12);
+  outline-offset: -3px;
+}

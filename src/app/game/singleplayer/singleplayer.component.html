@@ -8,35 +8,57 @@
     <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">End</button>
     <span *ngIf="gameState.currentAction == gameActions.NewTurn">Choose action</span>
     <span *ngIf="gameState.currentAction == gameActions.PotAction">Pick up herbs or end phase</span>
-    <span *ngIf="gameState.currentAction == gameActions.PlantAction">Draw a card</span>
+    <span *ngIf="gameState.currentAction == gameActions.PlantAction && !gardensChoosable">Draw a card</span>
+    <span *ngIf="gardensChoosable">Plant the herb!</span>
   </div>
 </div>
 <div class="row">
+  <!-- COMMUNITY GARDEN -->
   <div class="col-xs-7">
     <h4>Community garden</h4>
-    <app-card
-      *ngFor="let card of gameState.communityGarden"
-      [card]="card"
-      (click)="onCardClick(card)"
-    ></app-card>
+    <div
+      class="garden"
+      id="community-garden"
+      [ngClass]="{'choosable': gardensChoosable}"
+      (click)="onGardenClick($event)"
+    >
+      <app-card
+        *ngFor="let card of gameState.communityGarden"
+        [card]="card"
+        (click)="onCardClick(card)"
+      ></app-card>
+    </div>
   </div>
 
+  <!-- DISCARD PILE -->
   <div class="col-xs-2">
     <h4>Discard pile</h4>
-    <app-card
-      *ngFor="let card of gameState.discardPile"
-      [card]="card"
-    ></app-card>
-    <!-- <app-card [card]="gameState.discardPile[0]"></app-card> -->
+    <div
+      class="garden"
+      id="discard-pile"
+      [ngClass]="{'choosable': gardensChoosable}"
+      (click)="onGardenClick($event)"
+    >
+      <!-- <app-card
+        *ngFor="let card of gameState.discardPile"
+        [card]="card"
+      ></app-card> -->
+      <app-card [card]="gameState.discardPile[gameState.discardPile.length - 1]"></app-card>
+    </div>
   </div>
+
+  <!-- DECK -->
   <div class="col-xs-2">
     <h4>Deck</h4>
     <app-card
-      [isDeck]="true"
+      [isDeck]="!gardensChoosable"
+      [card]="gameState.deck[0]"
+      (click)="onDeckClick()"
     ></app-card>
   </div>
 </div>
 
+<!-- POTS -->
 <div class="row" style="margin-top: 30px">
   <div class="col-xs-12">
     <app-pot
@@ -48,14 +70,22 @@
   </div>
 </div>
 
+<!-- PRIVATE GARDEN -->
 <div class="row">
-  <div class="col-xs-12" >
+  <div class="col-xs-12">
     <h4>Private garden</h4>
-    <app-card
-      *ngFor="let card of gameState.privateGarden"
-      [card]="card"
-      (click)="onCardClick(card)"
-    ></app-card>
+    <div
+      class="garden"
+      id="private-garden"
+      [ngClass]="{'choosable': gardensChoosable}"
+      (click)="onGardenClick($event)"
+    >
+      <app-card
+        *ngFor="let card of gameState.privateGarden"
+        [card]="card"
+        (click)="onCardClick(card)"
+      ></app-card>
+      </div>
   </div>
 </div>
 

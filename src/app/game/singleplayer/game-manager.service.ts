@@ -196,22 +196,34 @@ export class GameManagerService {
       // if (arg.comm.length > 0)
       //   if (arg.comm.every(h => this.communityGarden.includes(h)))
 
-      // check if there's not going to be any overflow before planting
-      let pot: Pot = this.pots.find(p => p.potName == arg.pot);
-      if((arg.comm.length + arg.priv.length) > pot.maxHerbs) {
-        return this.getGameState("Overflow will occur!");
+      // check if cards have been selected without a pot (error)
+      if ((arg.comm.length > 0 || arg.priv.length > 0) && !arg.pot) {
+        return this.getGameState("Select the pot to plant your herbs in.");
       }
 
-      // if not, plant from both arrays
-      while (arg.comm.length) {
-        let herbIndex = this.communityGarden.indexOf(arg.comm.pop());
-        if (!this.plant(arg.pot, this.communityGarden.splice(herbIndex, 1))) {
-          return this.getGameState("OVERFLOW");
+      // check if user wants to skip pot action
+      if (arg.comm.length == 0 && arg.priv.length == 0 && !arg.pot) {
+        // skip straight to the plant action
+        // empty block so the if statement is clear on its purpose
+      } else {
+        // if cards and pot are selected,
+        // check if there's not going to be any overflow before planting
+        let pot: Pot = this.pots.find(p => p.potName == arg.pot);
+        if((arg.comm.length + arg.priv.length) > pot.maxHerbs) {
+          return this.getGameState("Overflow will occur!");
         }
-      }
-      while (arg.priv.length) {
-        let herbIndex = this.privateGarden.indexOf(arg.priv.pop());
-        this.plant(arg.pot, this.privateGarden.splice(herbIndex, 1));
+
+        // if not, plant from both arrays
+        while (arg.comm.length) {
+          let herbIndex = this.communityGarden.indexOf(arg.comm.pop());
+          if (!this.plant(arg.pot, this.communityGarden.splice(herbIndex, 1))) {
+            return this.getGameState("OVERFLOW");
+          }
+        }
+        while (arg.priv.length) {
+          let herbIndex = this.privateGarden.indexOf(arg.priv.pop());
+          this.plant(arg.pot, this.privateGarden.splice(herbIndex, 1));
+        }
       }
 
       // switch to the mandatory action
