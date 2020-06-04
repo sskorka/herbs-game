@@ -8,8 +8,8 @@
     <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">End</button>
     <span *ngIf="gameState.currentAction == gameActions.NewTurn">Choose action</span>
     <span *ngIf="gameState.currentAction == gameActions.PotAction">Pick up herbs or end phase</span>
-    <span *ngIf="gameState.currentAction == gameActions.PlantAction && !gardensChoosable">Draw a card</span>
-    <span *ngIf="gardensChoosable">Plant the herb!</span>
+    <span *ngIf="gameState.currentAction == gameActions.PlantAction && !anyGardenChoosable">Draw a card</span>
+    <span *ngIf="anyGardenChoosable">Plant the herb!</span>
   </div>
 </div>
 <div class="row">
@@ -19,7 +19,7 @@
     <div
       class="garden"
       id="community-garden"
-      [ngClass]="{'choosable': gardensChoosable}"
+      [ngClass]="{'choosable': gardensChoosable.community}"
       (click)="onGardenClick($event)"
     >
       <app-card
@@ -36,7 +36,7 @@
     <div
       class="garden"
       id="discard-pile"
-      [ngClass]="{'choosable': gardensChoosable}"
+      [ngClass]="{'choosable': gardensChoosable.discard}"
       (click)="onGardenClick($event)"
     >
       <app-card [card]="gameState.discardPile[gameState.discardPile.length - 1]"></app-card>
@@ -47,9 +47,9 @@
   <div class="col-xs-2">
     <h4>Deck</h4>
     <app-card
-      [isDeck]="!gardensChoosable"
+      [isDeck]="!anyGardenChoosable"
       [card]="gameState.deck[0]"
-      [ngClass]="{'must-draw': gameState.currentAction == gameActions.PlantAction && !gardensChoosable}"
+      [ngClass]="{'must-draw': gameState.currentAction == gameActions.PlantAction && !anyGardenChoosable}"
       (click)="onDeckClick()"
     ></app-card>
   </div>
@@ -74,7 +74,7 @@
     <div
       class="garden"
       id="private-garden"
-      [ngClass]="{'choosable': gardensChoosable}"
+      [ngClass]="{'choosable': gardensChoosable.private}"
       (click)="onGardenClick($event)"
     >
       <app-card

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Card } from '../shared/card/card.model';
 import { GameManagerService, GameState, CurrentAction } from './game-manager.service';
 import { Pot, PotName } from '../shared/pot/pot.model';
@@ -8,12 +8,18 @@ import { Pot, PotName } from '../shared/pot/pot.model';
   templateUrl: './singleplayer.component.html',
   styleUrls: ['./singleplayer.component.css']
 })
-export class SingleplayerComponent implements OnInit, AfterContentInit {
+export class SingleplayerComponent implements OnInit, DoCheck {
 
   gameState: GameState;
   gameActions = CurrentAction;
 
-  gardensChoosable: boolean = false;
+  anyGardenChoosable : boolean = false; // helper property
+  gardensChoosable: { community : boolean, private : boolean, discard : boolean } = {
+    community : false,
+    private : false,
+    discard : false
+  }
+
   plantSequence = new Set();
 
   constructor(private gameMgr: GameManagerService) { }
@@ -23,12 +29,14 @@ export class SingleplayerComponent implements OnInit, AfterContentInit {
     console.log('state looks as follows:', this.gameState);
   }
 
-  ngAfterContentInit(): void {
-    // this.gameMgr.finishAction();
+  ngDoCheck(): void {
+    this.anyGardenChoosable = this.gardensChoosable.community || this.gardensChoosable.private || this.gardensChoosable.discard;
   }
 
   onLogGameState() {
     console.log('GameState:', this.gameState);
+    console.log('anyGardenChoosable:', this.anyGardenChoosable);
+    console.log('gardensChoosable:', this.gardensChoosable);
   }
 
   // POT PHASE:
@@ -56,18 +64,30 @@ export class SingleplayerComponent implements OnInit, AfterContentInit {
   // if plantSequence is empty, show the card and wait for player's choice of garden
   // if plantSequence is 2 characters long, the sequence can autofinish and then endAction()
   onDeckClick() {
+
     // unclickable if not plant action or garden selection
-    if (this.gameState.currentAction != this.gameActions.PlantAction || this.gardensChoosable) {
+    if (this.gameState.currentAction != this.gameActions.PlantAction || this.anyGardenChoosable) {
       return;
     }
 
-    this.gardensChoosable = true;
+    if (!this.plantSequence.size) {
+      // if no choices have been made yet, mark all gardens as choosable
+      this.gardensChoosable.community = true;
+      this.gardensChoosable.private = true;
+      this.gardensChoosable.discard = true;
+    } else {
+      // determine which gardens should be marked as choosable
+      this.gardensChoosable.community = !this.plantSequence.has("c");
+      this.gardensChoosable.private = !this.plantSequence.has("p");
+      this.gardensChoosable.discard = !this.plantSequence.has("d");
+    }
   }
 
   // when player chooses one of the three gardens to plant the herb
   onGardenClick(event: Event) {
+
     // react only if necessary
-    if(!this.gardensChoosable) {
+    if(!this.anyGardenChoosable) {
       return;
     }
 
@@ -75,14 +95,23 @@ export class SingleplayerComponent implements OnInit, AfterContentInit {
 
     switch(id) {
       case "community-garden":
+        if(this.plantSequence.has("c")) {
+          return; // no repeats sir
+        }
         this.plantSequence.add("c");
         this.gameState.communityGarden.push(this.gameState.deck.shift());
         break;
       case "private-garden":
+        if(this.plantSequence.has("p")) {
+          return;
+        }
         this.plantSequence.add("p");
         this.gameState.privateGarden.push(this.gameState.deck.shift());
         break;
       case "discard-pile":
+        if(this.plantSequence.has("d")) {
+          return;
+        }
         this.plantSequence.add("d");
         this.gameState.discardPile.push(this.gameState.deck.shift());
         break;
@@ -101,7 +130,9 @@ export class SingleplayerComponent implements OnInit, AfterContentInit {
       this.plantSequence = new Set();
     }
 
-    this.gardensChoosable = false;
+    this.gardensChoosable.community = false;
+    this.gardensChoosable.private = false;
+    this.gardensChoosable.discard = false;
   }
 
   onPot() {

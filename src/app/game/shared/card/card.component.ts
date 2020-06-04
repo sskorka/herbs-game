@@ -21,6 +21,8 @@ export class CardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    // if deck is empty, a null/undefined will get passed to this.card
+    // so we replace it with a placeholder card to avoid errors when reading the property
     if (!this.card) {
       this.card = this.placeholderCard;
       this.deckPath = this.deckEmptyPath;
