@@ -39,10 +39,6 @@
       [ngClass]="{'choosable': gardensChoosable}"
       (click)="onGardenClick($event)"
     >
-      <!-- <app-card
-        *ngFor="let card of gameState.discardPile"
-        [card]="card"
-      ></app-card> -->
       <app-card [card]="gameState.discardPile[gameState.discardPile.length - 1]"></app-card>
     </div>
   </div>
