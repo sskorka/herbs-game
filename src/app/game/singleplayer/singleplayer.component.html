@@ -53,6 +53,7 @@
     <app-card
       [isDeck]="!gardensChoosable"
       [card]="gameState.deck[0]"
+      [ngClass]="{'must-draw': gameState.currentAction == gameActions.PlantAction && !gardensChoosable}"
       (click)="onDeckClick()"
     ></app-card>
   </div>

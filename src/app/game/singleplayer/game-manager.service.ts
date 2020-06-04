@@ -203,22 +203,20 @@ export class GameManagerService {
 
       // check if user wants to skip pot action
       if (arg.comm.length == 0 && arg.priv.length == 0 && !arg.pot) {
-        // skip straight to the plant action
+        // skip straight to the plant action.
         // empty block so the if statement is clear on its purpose
       } else {
         // if cards and pot are selected,
         // check if there's not going to be any overflow before planting
         let pot: Pot = this.pots.find(p => p.potName == arg.pot);
-        if((arg.comm.length + arg.priv.length) > pot.maxHerbs) {
-          return this.getGameState("Overflow will occur!");
+        if((arg.comm.length + arg.priv.length + pot.herbs.length) > pot.maxHerbs) {
+          return this.getGameState("Maximum number of herbs reached!");
         }
 
         // if not, plant from both arrays
         while (arg.comm.length) {
           let herbIndex = this.communityGarden.indexOf(arg.comm.pop());
-          if (!this.plant(arg.pot, this.communityGarden.splice(herbIndex, 1))) {
-            return this.getGameState("OVERFLOW");
-          }
+          this.plant(arg.pot, this.communityGarden.splice(herbIndex, 1));
         }
         while (arg.priv.length) {
           let herbIndex = this.privateGarden.indexOf(arg.priv.pop());
@@ -226,7 +224,7 @@ export class GameManagerService {
         }
       }
 
-      // switch to the mandatory action
+      // switch to the mandatory plant action
       this.currentAction = CurrentAction.PlantAction;
       return this.getGameState();
     }

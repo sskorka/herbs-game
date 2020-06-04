@@ -73,7 +73,7 @@ export class Pot {
   public static generateSmall() {
     return new Pot(
       PotName.SmallPots,
-      6,
+      12,
       '',
       this._graphicsPath + 'small-pots.png',
       [],
