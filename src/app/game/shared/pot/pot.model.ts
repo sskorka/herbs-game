@@ -13,6 +13,10 @@ export enum PotName {
   GlassJar = "Glass Jar"
 }
 
+// each Pot contains its own function to which you pass user's selection and pot's own herbs
+// this function then returns a boolean informing whether or not the selection is correct
+type HerbVerificationFunction = (selection: Card[], currentlyPlacedHerbs: Card[]) => boolean;
+
 export class Pot {
   public isSelected: boolean = false;
 
@@ -22,7 +26,8 @@ export class Pot {
     public iconUrl: string,
     public graphicsUrl: string,
     public herbs: Card[],
-    public scoreTable: any
+    public scoreTable: any,
+    public herbsValid: HerbVerificationFunction
   ) {}
 
   public getScore(pot: Pot) {
@@ -48,6 +53,13 @@ export class Pot {
         5: 18,
         6: 20,
         7: 22
+      },
+      // this pot may only store herbs of the same kind. Provide selected herbs and currently planted herbs to run checks.
+      (sel: Card[], currHerbs: Card[]): boolean => {
+        if(!currHerbs.length) {
+          return (sel.every(h => h.herbName === sel[0].herbName));
+        }
+        return sel.every(h => h.herbName === sel[0].herbName) && sel[0].herbName === currHerbs[0].herbName
       }
     )
   }
@@ -66,6 +78,25 @@ export class Pot {
         5: 8,
         6: 12,
         7: 14
+      },
+      // this pot may only store herbs that are distinct from each other
+      (sel: Card[], currHerbs: Card[]): boolean => {
+        // create a Set so that only unique herbs are stored
+        // a Set of strings, as seemingly same Card objects might not actually be the same
+        let setFromSelection: Set<string> = new Set<string>(sel.map((h => h.herbName)));
+
+        // if the pot is empty, check if selection is made of unique herbs
+        if(currHerbs.length == 0 && sel.length === setFromSelection.size) {
+          return true;
+        }
+
+        // if the pot isn't empty, check if the pot and the selection combined result in an unchanged Set
+        let combinedSet = new Set<string>([...sel.map(h=>h.herbName), ...currHerbs.map(h=>h.herbName)]);
+        if(currHerbs.length > 0 && sel.length + currHerbs.length === combinedSet.size) {
+          return true;
+        }
+
+        return false;
       }
     )
   }
@@ -84,7 +115,8 @@ export class Pot {
         4: 14,
         5: 16,
         6: 18
-      }
+      },
+      (sel: Card[], currHerbs: Card[]): boolean => { return true;}
     )
   }
 
@@ -99,7 +131,8 @@ export class Pot {
         1: 2,
         2: 4,
         3: 6
-      }
+      },
+      (sel: Card[], currHerbs: Card[]): boolean => { return true;}
     )
   }
 }

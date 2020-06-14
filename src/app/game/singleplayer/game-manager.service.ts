@@ -213,6 +213,11 @@ export class GameManagerService {
           return this.getGameState("Maximum number of herbs reached!");
         }
 
+        // if not, check if the selection matches pot's requirements
+        if(!pot.herbsValid([...arg.comm, ...arg.priv], pot.herbs)) {
+          return this.getGameState("Your selection does not match pot's requirements!");
+        }
+
         // if not, plant from both arrays
         while (arg.comm.length) {
           let herbIndex = this.communityGarden.indexOf(arg.comm.pop());
