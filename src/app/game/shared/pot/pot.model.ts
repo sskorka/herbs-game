@@ -163,7 +163,10 @@ export class Pot {
         2: 4,
         3: 6
       },
-      (sel: Card[], currHerbs: Card[]): boolean => { return true;}
+      // this pot may store any kind of herb, and it is the only one that can store special herbs
+      (sel: Card[], currHerbs: Card[]): boolean => {
+        return true;
+      }
     )
   }
 }
