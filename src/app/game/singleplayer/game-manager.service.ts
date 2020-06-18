@@ -136,6 +136,11 @@ export class GameManagerService {
     return !(this.communityGarden.length >= COMMUNITY_GARDEN_MAX_HERBS);
   }
 
+  // sorts herbs in the provided pot (by name, alphabetically)
+  sortHerbs(pot: Pot): void {
+    pot.herbs.sort((a, b) => a.herbName > b.herbName ? 1 : -1);
+  }
+
   /*
    * Finishing the action might go three ways:
    * 1. If switching from NEW TURN, pass CurrentAction depending which action you want to switch to
@@ -228,8 +233,8 @@ export class GameManagerService {
           this.plant(arg.pot, this.privateGarden.splice(herbIndex, 1));
         }
 
-        // // sort the herbs in the pot alphabetically (especially useful in small pots)
-        // this.sortHerbs(pot);
+        // sort the herbs in the pot (especially useful in case of small pots)
+        this.sortHerbs(pot);
       }
 
       // switch to the mandatory plant action
