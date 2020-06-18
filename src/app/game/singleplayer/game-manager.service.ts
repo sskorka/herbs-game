@@ -227,6 +227,9 @@ export class GameManagerService {
           let herbIndex = this.privateGarden.indexOf(arg.priv.pop());
           this.plant(arg.pot, this.privateGarden.splice(herbIndex, 1));
         }
+
+        // // sort the herbs in the pot alphabetically (especially useful in small pots)
+        // this.sortHerbs(pot);
       }
 
       // switch to the mandatory plant action

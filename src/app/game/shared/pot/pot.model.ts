@@ -116,7 +116,38 @@ export class Pot {
         5: 16,
         6: 18
       },
-      (sel: Card[], currHerbs: Card[]): boolean => { return true;}
+      // this pot may only store unique pairs of herbs
+      (sel: Card[], currHerbs: Card[]): boolean => {
+        // if the selection's length is odd, return false
+        if (sel.length % 2 !== 0) {
+          return false;
+        }
+
+        // combine selection with pot's herbs and check if all pairs are unique
+        const allHerbs: Card[] = [...sel, ...currHerbs];
+        let herbsToDiscard: Card[] = allHerbs.slice();
+
+        allHerbs.forEach(h => {
+          const name: string = h.herbName;
+          // if there's exactly 2 herbs of a given herb, delete them from herbsToDiscard
+          // repeat until herbsToDiscard is empty
+          let occurrences: number = allHerbs.reduce((occurrences, herb) => {
+            if (herb.herbName == name) {
+              return occurrences + 1;
+            } else {
+              return occurrences;
+            }
+          }, 0);
+
+          if (occurrences === 2) {
+            herbsToDiscard = herbsToDiscard.filter(h => { return h.herbName !== name })
+          } else {
+            return false;  // return early as there is no point in further checking
+          }
+        })
+
+        return !herbsToDiscard.length;
+      }
     )
   }
 
