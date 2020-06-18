@@ -163,7 +163,9 @@ export class Pot {
         2: 4,
         3: 6
       },
-      // this pot may store any kind of herb, and it is the only one that can store special herbs
+      // this pot may store any kind of herb, and it's the only one that can store special herbs
+      // since the max herb number check is done in the manager, there's nothing really to check in here
+      // so we can return true for any collection of herbs
       (sel: Card[], currHerbs: Card[]): boolean => {
         return true;
       }

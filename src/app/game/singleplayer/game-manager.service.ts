@@ -194,10 +194,9 @@ export class GameManagerService {
       return this.getGameState();
     } // if POT
     else {
-      // { comm: Card[], priv: Card[], pot: PotName }
-      // check if the collection matches the real game state
+      // TODO check if the collection matches the real game state
       // this will be especially mandatory in the multiplayer version
-      // TO DO
+
       // if (arg.comm.length > 0)
       //   if (arg.comm.every(h => this.communityGarden.includes(h)))
 
