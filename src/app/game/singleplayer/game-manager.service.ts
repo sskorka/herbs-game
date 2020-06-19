@@ -217,6 +217,12 @@ export class GameManagerService {
           return this.getGameState("Maximum number of herbs reached!");
         }
 
+        // if not, check if there are special herbs in the selection
+        // those are only allowed in the Glass Jar
+        if([...arg.comm, ...arg.priv].find(h => h.isSpecial) && !(pot.potName == PotName.GlassJar)) {
+          return this.getGameState("You can't plant special herbs here!");
+        }
+
         // if not, check if the selection matches pot's requirements
         if(!pot.herbsValid([...arg.comm, ...arg.priv], pot.herbs)) {
           return this.getGameState("Your selection does not match pot's requirements!");
