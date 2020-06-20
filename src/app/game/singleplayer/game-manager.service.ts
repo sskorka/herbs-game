@@ -136,9 +136,13 @@ export class GameManagerService {
     return !(this.communityGarden.length >= COMMUNITY_GARDEN_MAX_HERBS);
   }
 
-  // sorts herbs in the provided pot (by name, alphabetically)
+  // sorts herbs in the provided pot (by name, alphabetically; in GlassJar, by points)
   sortHerbs(pot: Pot): void {
-    pot.herbs.sort((a, b) => a.herbName > b.herbName ? 1 : -1);
+    if (pot.potName === PotName.GlassJar) {
+      pot.herbs.sort((a, b) => a.points > b.points ? 1 : -1);
+    } else {
+      pot.herbs.sort((a, b) => a.herbName > b.herbName ? 1 : -1);
+    }
   }
 
   /*
