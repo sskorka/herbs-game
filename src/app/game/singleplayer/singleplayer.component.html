@@ -4,7 +4,7 @@
 
     <button style="margin-right: 10px;" (click)="onLogGameState()">Log GameState</button>
     <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">Pot</button>
-    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPlant()">Plant</button>
+    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn || !gameState.deck.length" (click)="onPlant()">Plant</button>
     <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">End</button>
     <span *ngIf="gameState.currentAction == gameActions.NewTurn">Choose action</span>
     <span *ngIf="gameState.currentAction == gameActions.PotAction">Pick up herbs or end phase</span>

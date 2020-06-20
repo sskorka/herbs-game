@@ -243,13 +243,103 @@ export class GameManagerService {
       }
 
       // switch to the mandatory plant action
-      this.currentAction = CurrentAction.PlantAction;
+      // if deck is empty - NewTurn state until no more actions are possible
+      this.currentAction = (this.deck.length) ? CurrentAction.PlantAction : CurrentAction.NewTurn;
+
+      // if no more actions are possible - END THE GAME
+      if (!this.deck.length && this.noMoreMoves()) {
+        this.endGame();
+      }
+
       return this.getGameState();
     }
   }
 
   getDeck(): Card[] {
     return this.deck.slice();
+  }
+
+  // returns true if there are no more possible actions
+  noMoreMoves(): boolean {
+    /* there are no more possible actions for the player if the following conditions are true:
+     * 1. If there's at least one herb in the Large Pot, there must be no other herbs of the same kind in any garden
+     * 2. If there's no herbs in the Large Pot, there must be NO herbs in any garden
+     * 3. If there's at least one herb in the Wooden Planter, the gardens must be either:
+     *    a) empty
+     *    b) their herbs must be no different than the pot's
+     * 4. If there's no herbs in the Wooden Planter, there must be NO herbs in any garden
+     * 5. There must be no new pairs for the Small Pots
+     * 6. If there's less than 3 plants in the Glass Jar, there must be no herbs in any garden
+    */
+
+    const gardens = [...this.privateGarden, ...this.communityGarden];
+
+    // ---1---
+    const largePot = this.pots.find(p => p.potName === PotName.LargePot);
+
+    if (largePot.herbs.length) {  // don't want no undefined errors >:[
+      if (gardens.find(h => h.herbName === largePot.herbs[0].herbName) !== undefined) {
+        return false;
+      }
+    }
+
+    // ---2---
+    if (!largePot.herbs.length && gardens.length) {
+      return false;
+    }
+
+    // ---3---
+    const woodenPlanter = this.pots.find(p => p.potName === PotName.WoodenPlanter);
+
+    if (woodenPlanter.herbs.length && gardens.length) {
+      // there must be at least one herb in the garden that isn't in the planter
+      gardens.forEach(hGarden => {
+        if (woodenPlanter.herbs.find(hPlanter => hPlanter.herbName === hGarden.herbName) === undefined) {
+          return false;
+        }
+      })
+    }
+
+    // ---4---
+    if (!woodenPlanter.herbs.length && gardens.length) {
+      return false;
+    }
+
+    // ---5---
+    // thanks to Set we won't check duplicates
+    new Set(gardens).forEach(hSet => {
+      // how many occurrences of a given herb in gardens
+      let occurrences: number = gardens.reduce((occurrences, herb) => {
+        if (herb.herbName == name) {
+          return occurrences + 1;
+        } else {
+          return occurrences;
+        }
+      }, 0);
+
+      // if there's at least a pair, check if it's in the pot
+      // if not, return false
+      if (occurrences >= 2) {
+        const herb = this.pots.find(p => p.potName === PotName.SmallPots).herbs.find(h => h.herbName === hSet.herbName);
+        if (herb === undefined) {
+          return false;
+        }
+      }
+    });
+
+    // ---6---
+    const glassJar = this.pots.find(p => p.potName === PotName.GlassJar);
+
+    if (glassJar.herbs.length < 3 && gardens.length) {
+      return false;
+    }
+
+    // if all of the above fail, there's no more moves
+    return true;
+  }
+
+  endGame(): void {
+    console.log("GAME OVER!!! WEEHOOO");
   }
 
   getGameState(error?: string): GameState {
