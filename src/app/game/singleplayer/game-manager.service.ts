@@ -313,10 +313,10 @@ export class GameManagerService {
 
     // ---5---
     // thanks to Set we won't be checking duplicates
-    const gardensSet: Set<Card> = new Set(gardens);
+    const gardensSet: Set<string> = new Set<string>(gardens.map(h => h.herbName));
 
     for(let i = 0; i < gardensSet.size; i++) {
-      const currentName: string = gardensSet[i].herbName;
+      const currentName: string = gardensSet.values().next().value;
       // how many occurrences of a given herb in gardens
       let occurrences: number = gardens.reduce((occurrences, herb) => {
         if (herb.herbName == currentName) {
