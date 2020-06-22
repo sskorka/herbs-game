@@ -19,7 +19,10 @@
     <div
       class="garden"
       id="community-garden"
-      [ngClass]="{'choosable': gardensChoosable.community}"
+      [ngClass]="{
+        'choosable': gardensChoosable.community,
+        'endangered': communityGardenInDanger,
+        'will-die': communityGardenAboutToDie}"
       (click)="onGardenClick($event)"
     >
       <app-card

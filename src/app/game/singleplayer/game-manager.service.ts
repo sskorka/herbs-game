@@ -1,7 +1,9 @@
 import { Card } from '../shared/card/card.model';
 import { Pot, PotName } from '../shared/pot/pot.model';
 
-const COMMUNITY_GARDEN_MAX_HERBS = 5;
+export class GameConstants {
+  public static readonly COMMUNITY_GARDEN_MAX_HERBS = 5;
+}
 
 export enum PlaceIn {
   CommunityGarden,
@@ -133,7 +135,7 @@ export class GameManagerService {
         break;
     }
 
-    return !(this.communityGarden.length >= COMMUNITY_GARDEN_MAX_HERBS);
+    return !(this.communityGarden.length >= GameConstants.COMMUNITY_GARDEN_MAX_HERBS);
   }
 
   // sorts herbs in the provided pot (by name, alphabetically; in GlassJar, by points)
@@ -191,6 +193,14 @@ export class GameManagerService {
           case 'd':
             this.place(PlaceIn.DiscardPile, this.deck.splice(0, 1));
             break;
+        }
+      }
+
+      // if the garden reaches its limit, discard all cards
+      if (this.communityGarden.length == GameConstants.COMMUNITY_GARDEN_MAX_HERBS) {
+        const commLength = this.communityGarden.length; // this assignment is MANDATORY!
+        for (let i = 0; i < commLength; i++) {
+          this.place(PlaceIn.DiscardPile, this.communityGarden.splice(0, 1));
         }
       }
 

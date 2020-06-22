@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Card } from '../shared/card/card.model';
-import { GameManagerService, GameState, CurrentAction } from './game-manager.service';
+import { GameManagerService, GameState, CurrentAction, GameConstants } from './game-manager.service';
 import { Pot, PotName } from '../shared/pot/pot.model';
 
 @Component({
@@ -13,7 +13,11 @@ export class SingleplayerComponent implements OnInit, DoCheck {
   gameState: GameState;
   gameActions = CurrentAction;
 
-  anyGardenChoosable : boolean = false; // helper property
+  // used to show a warning when community garden reaches its limit
+  communityGardenInDanger: boolean = false;
+  communityGardenAboutToDie: boolean = false;
+
+  anyGardenChoosable: boolean = false; // helper property
   gardensChoosable: { community : boolean, private : boolean, discard : boolean } = {
     community : false,
     private : false,
@@ -52,6 +56,7 @@ export class SingleplayerComponent implements OnInit, DoCheck {
       return;
     }
 
+    // if the card is a Pot, make sure that only one pot can be selected
     if (card instanceof Pot) {
       const isSelected = card.isSelected;
       this.gameState.pots.forEach(p => p.isSelected = false);
@@ -91,6 +96,7 @@ export class SingleplayerComponent implements OnInit, DoCheck {
       return;
     }
 
+    // depeneding on the place clicked, the id might come from a different property
     const id = (<HTMLElement>event.target).id || (<HTMLElement>(<HTMLElement>event.target).offsetParent.lastChild).id;
 
     switch(id) {
@@ -133,6 +139,25 @@ export class SingleplayerComponent implements OnInit, DoCheck {
     this.gardensChoosable.community = false;
     this.gardensChoosable.private = false;
     this.gardensChoosable.discard = false;
+
+    // if community garden is available AND it has 4 herbs, show a warning
+    // this gets reverted after pot action
+    if (this.gameState.communityGarden.length == GameConstants.COMMUNITY_GARDEN_MAX_HERBS - 1) {
+      this.communityGardenInDanger = true;
+    }
+
+    // if community garden reaches its limit, it will die when player ends turn
+    if (this.gameState.communityGarden.length == GameConstants.COMMUNITY_GARDEN_MAX_HERBS) {
+      this.communityGardenAboutToDie = true;
+    }
+
+    // if community garden died, revert flags
+    if (this.gameState.communityGarden.length < GameConstants.COMMUNITY_GARDEN_MAX_HERBS) {
+      this.communityGardenAboutToDie = false;
+      if (!this.gameState.communityGarden.length) {
+        this.communityGardenInDanger = false;
+      }
+    }
   }
 
   onPot() {
@@ -160,6 +185,16 @@ export class SingleplayerComponent implements OnInit, DoCheck {
 
     // submit
     this.gameState = this.gameMgr.finishAction( {comm: comm, priv: priv, pot: potName} );
+
+    // if community garden is no longer in danger, revert the flag
+    if (this.gameState.communityGarden.length < GameConstants.COMMUNITY_GARDEN_MAX_HERBS - 1) {
+      this.communityGardenInDanger = false;
+    }
+
+    // if community garden died, revert the flag
+    if (this.gameState.communityGarden.length < GameConstants.COMMUNITY_GARDEN_MAX_HERBS) {
+      this.communityGardenAboutToDie = false;
+    }
   }
 
   onHandleError() {

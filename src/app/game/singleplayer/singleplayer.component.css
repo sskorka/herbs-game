@@ -16,6 +16,16 @@ button:disabled {
   outline-offset: -3px;
 }
 
+.endangered {
+  outline: thick double rgb(212, 117, 8);
+  outline-offset: -3px;
+}
+
+.will-die {
+  outline: thick double rgb(236, 4, 4);
+  outline-offset: -3px;
+}
+
 .must-draw {
   outline: thick double rgb(200, 3, 69);
   outline-offset: -3px;
