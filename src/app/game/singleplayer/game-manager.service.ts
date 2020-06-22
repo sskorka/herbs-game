@@ -276,7 +276,8 @@ export class GameManagerService {
      * 6. If there's less than 3 plants in the Glass Jar, there must be no herbs in any garden
     */
 
-    const gardens = [...this.privateGarden, ...this.communityGarden];
+    const gardensWithSpecials = [...this.privateGarden, ...this.communityGarden];
+    const gardens = gardensWithSpecials.filter(h => !h.isSpecial);
 
     // ---1---
     const largePot = this.pots.find(p => p.potName === PotName.LargePot);
@@ -297,11 +298,12 @@ export class GameManagerService {
 
     if (woodenPlanter.herbs.length && gardens.length) {
       // there must be at least one herb in the garden that isn't in the planter
-      gardens.forEach(hGarden => {
-        if (woodenPlanter.herbs.find(hPlanter => hPlanter.herbName === hGarden.herbName) === undefined) {
+      for(let i = 0; i < gardens.length; i++) {
+        // is gardens[i] in the pot? if not, return false
+        if (woodenPlanter.herbs.find(h => h.herbName === gardens[i].herbName) === undefined) {
           return false;
         }
-      })
+      }
     }
 
     // ---4---
@@ -310,11 +312,14 @@ export class GameManagerService {
     }
 
     // ---5---
-    // thanks to Set we won't check duplicates
-    new Set(gardens).forEach(hSet => {
+    // thanks to Set we won't be checking duplicates
+    const gardensSet: Set<Card> = new Set(gardens);
+
+    for(let i = 0; i < gardensSet.size; i++) {
+      const currentName: string = gardensSet[i].herbName;
       // how many occurrences of a given herb in gardens
       let occurrences: number = gardens.reduce((occurrences, herb) => {
-        if (herb.herbName == name) {
+        if (herb.herbName == currentName) {
           return occurrences + 1;
         } else {
           return occurrences;
@@ -324,17 +329,17 @@ export class GameManagerService {
       // if there's at least a pair, check if it's in the pot
       // if not, return false
       if (occurrences >= 2) {
-        const herb = this.pots.find(p => p.potName === PotName.SmallPots).herbs.find(h => h.herbName === hSet.herbName);
+        const herb = this.pots.find(p => p.potName === PotName.SmallPots).herbs.find(h => h.herbName === currentName);
         if (herb === undefined) {
           return false;
         }
       }
-    });
+    }
 
     // ---6---
     const glassJar = this.pots.find(p => p.potName === PotName.GlassJar);
 
-    if (glassJar.herbs.length < 3 && gardens.length) {
+    if (glassJar.herbs.length < 3 && gardensWithSpecials.length) {
       return false;
     }
 
