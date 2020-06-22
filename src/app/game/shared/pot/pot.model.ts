@@ -30,9 +30,29 @@ export class Pot {
     public herbsValid: HerbVerificationFunction
   ) {}
 
-  public getScore(pot: Pot) {
-    if (pot.herbs.length > pot.maxHerbs) {
-      // throw error of some kind
+  public getScore(): number {
+    let total: number = 0;
+    if (!this.herbs.length) {
+      return 0;
+    }
+
+    switch(this.potName) {
+      case PotName.LargePot:
+        return this.scoreTable[this.herbs.length];
+      case PotName.WoodenPlanter:
+        if (this.herbs.length <= 1) {
+          return 0;
+        } else {
+          return this.scoreTable[this.herbs.length];
+        }
+      case PotName.SmallPots:
+        return this.scoreTable[this.herbs.length / 2];
+      case PotName.GlassJar:
+        total += this.scoreTable[this.herbs.length];
+        this.herbs.forEach(h => {
+          total += h.points;
+        })
+        return total;
     }
   }
 

@@ -342,8 +342,22 @@ export class GameManagerService {
     return true;
   }
 
+  calculatePoints(): number {
+    // first get points from the pots
+    let total = this.pots.reduce((totalPoints, pot) => {
+      return totalPoints + pot.getScore();
+    }, 0)
+
+    // each herb in the private garden is worth 1 point
+    total += this.privateGarden.length;
+
+    return total;
+  }
+
   endGame(): void {
-    console.log("GAME OVER!!! WEEHOOO");
+    // calculate points
+    const points = this.calculatePoints();
+    console.log(`GAME OVER!!! You scored ${points} points!`);
   }
 
   getGameState(error?: string): GameState {
