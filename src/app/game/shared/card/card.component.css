@@ -20,3 +20,12 @@
   outline: 3px solid rgb(0, 207, 41);
   outline-offset: -3px;
 }
+
+.cookie {
+  height: 180px;
+  width: 252px;
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

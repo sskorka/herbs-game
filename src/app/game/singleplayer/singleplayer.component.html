@@ -12,6 +12,7 @@
     <span *ngIf="anyGardenChoosable">Plant the herb!</span>
   </div>
 </div>
+
 <div class="row">
   <!-- COMMUNITY GARDEN -->
   <div class="col-xs-7">
@@ -86,6 +87,21 @@
         (click)="onCardClick(card)"
       ></app-card>
       </div>
+  </div>
+</div>
+
+<!-- COOKIE -->
+<div class="row">
+  <div class="col-xs-3">
+    <h4>Cookie reward</h4>
+    <div
+      class="garden cookie-default"
+      [ngClass]="{'cookie-awarded': gameState.cookieAwarded}"
+      >
+    <app-card
+      [isCookie]="true">
+    </app-card>
+    </div>
   </div>
 </div>
 

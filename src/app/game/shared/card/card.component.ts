@@ -11,8 +11,11 @@ export class CardComponent implements OnInit, OnChanges {
   readonly deckEmptyPath = "/../../../../assets/images/cards/backs/deck-empty.png"
   readonly placeholderCard: Card = new Card("placeholder", "", false, 0);
 
+  readonly cookiePath = "../../../../assets/images/cards/faces/bun.png";
+
   @Input() card: Card = this.placeholderCard;  // if left undefined, will cause errors
   @Input() isDeck = false;
+  @Input() isCookie = false;
   @Input() isInPot = false;
 
   constructor() { }

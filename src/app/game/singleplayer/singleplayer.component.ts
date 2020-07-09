@@ -26,6 +26,7 @@ export class SingleplayerComponent implements OnInit, DoCheck {
 
   plantSequence = new Set();
 
+  // inject the gameManager for communication with the game logic
   constructor(private gameMgr: GameManagerService) { }
 
   ngOnInit(): void {

@@ -1,6 +1,24 @@
-<span>
+<!-- <span>
   <img
     [style.background-image]="!isDeck ? 'url(' + card.graphicsUrl + ')' : 'url(' + deckPath + ')'"
-    [ngClass]="{'card':!isInPot, 'in-pot': isInPot, 'selected': card.isSelected}"
+    [ngClass]="{'card':!isInPot && !isBun, 'in-pot': isInPot, 'selected': card.isSelected}"
+  >
+</span> -->
+
+<span>
+  <img
+    *ngIf="isDeck"
+    class="card"
+    [style.background-image]="'url(' + deckPath + ')'"
+  >
+  <img
+    *ngIf="!isDeck && !isCookie"
+    [style.background-image]="'url(' + card.graphicsUrl + ')'"
+    [ngClass]="{'card': !isInPot, 'in-pot': isInPot, 'selected': card.isSelected}"
+  >
+  <img
+    *ngIf="isCookie"
+    class="cookie"
+    [style.background-image]="'url(' + cookiePath + ')'"
   >
 </span>

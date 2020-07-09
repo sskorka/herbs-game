@@ -30,3 +30,13 @@ button:disabled {
   outline: thick double rgb(200, 3, 69);
   outline-offset: -3px;
 }
+
+.cookie-default {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.cookie-awarded {
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+}

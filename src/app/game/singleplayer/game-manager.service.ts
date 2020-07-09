@@ -24,6 +24,7 @@ export interface GameState {
   discardPile: Card[],
   pots: Pot[],
   currentAction: CurrentAction,
+  cookieAwarded: boolean,
   error: string
 }
 
@@ -37,6 +38,8 @@ export class GameManagerService {
   private discardPile: Card[] = [];
 
   private pots: Pot[] = [];
+
+  private cookieAwarded: boolean = false;
 
   private currentAction: CurrentAction;
 
@@ -252,6 +255,15 @@ export class GameManagerService {
           this.plant(arg.pot, this.privateGarden.splice(herbIndex, 1));
         }
 
+        // if all three special herbs are planted, award the bun
+        // we can search by the name, or better, by their points
+        const glassJar = this.pots.find(p => p.potName === PotName.GlassJar);
+        if ((glassJar.herbs.find(h => h.points === 1) !== undefined)
+          && (glassJar.herbs.find(h => h.points === 2) !== undefined)
+          && (glassJar.herbs.find(h => h.points === 3) !== undefined)) {
+            this.cookieAwarded = true;
+          }
+
         // sort the herbs in the pot (especially useful in case of small pots)
         this.sortHerbs(pot);
       }
@@ -366,6 +378,9 @@ export class GameManagerService {
     // each herb in the private garden is worth 1 point
     total += this.privateGarden.length;
 
+    // add 5 points if the cookie has been awarded
+    total += (this.cookieAwarded) ? 5 : 0;
+
     return total;
   }
 
@@ -383,6 +398,7 @@ export class GameManagerService {
       discardPile: this.discardPile.slice(),
       pots: this.pots.slice(),
       currentAction: this.currentAction,
+      cookieAwarded: this.cookieAwarded,
       error: error
     };
   }
