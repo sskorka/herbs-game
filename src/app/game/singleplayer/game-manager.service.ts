@@ -17,6 +17,21 @@ export enum CurrentAction {
   PlantAction
 }
 
+export enum Ranks {
+  Rank6 = "Fledgling Grower", // worst
+  Rank5 = "Beginning Planter",
+  Rank4 = "Clever Cultivator",
+  Rank3 = "Talented Gardener",
+  Rank2 = "Professional Herbalist",
+  Rank1 = "True Green Thumb Harvester" // best
+}
+
+export interface GameScore {
+  points: number,
+  rank: Ranks,
+  message: string
+}
+
 export interface GameState {
   deck: Card[],
   communityGarden: Card[],
@@ -25,6 +40,7 @@ export interface GameState {
   pots: Pot[],
   currentAction: CurrentAction,
   cookieAwarded: boolean,
+  score: GameScore,
   error: string
 }
 
@@ -273,8 +289,9 @@ export class GameManagerService {
       this.currentAction = (this.deck.length) ? CurrentAction.PlantAction : CurrentAction.NewTurn;
 
       // if no more actions are possible - END THE GAME
+      // we return the GameState from the endGame() so that the component has access to the score object
       if (!this.deck.length && this.noMoreMoves()) {
-        this.endGame();
+        return this.endGame();
       }
 
       return this.getGameState();
@@ -384,13 +401,38 @@ export class GameManagerService {
     return total;
   }
 
-  endGame(): void {
-    // calculate points
-    const points = this.calculatePoints();
-    console.log(`GAME OVER!!! You scored ${points} points!`);
+  endGame(): GameState {
+    // calculate points, assign the rank and return the gameState object
+    const score: number = this.calculatePoints();
+    let rank: Ranks;
+    let msg: string;
+
+    console.log(`game over, score: ${score}`);
+
+    if (score < 37) {
+      rank = Ranks.Rank6;
+      msg = `Better luck next time! Gather ${37-score} points more to earn the next rank!`;
+    } else if (score >= 37 && score <= 41) {
+      rank = Ranks.Rank5;
+      msg = `Every herbalist starts somewhere, right? Gather ${42-score} points more to earn the next rank!`;
+    } else if (score >= 42 && score <= 46) {
+      rank = Ranks.Rank4;
+      msg = `You've made some real progress! But your journey is just beginning. You need ${47-score} more points to earn the next rank!`;
+    } else if (score >= 47 && score <= 51) {
+      rank = Ranks.Rank3;
+      msg = `That wasn't so bad! You will make a decent herbalist if you make an extra effort! Get ${52-score} more points to earn the next rank.`;
+    } else if (score >= 52 && score <= 56) {
+      rank = Ranks.Rank2;
+      msg = `Good job! You're almost at the top of the ladder! Earn ${57-score} more points to earn the final rank.`;
+    } else if (score >= 57) {
+      rank = Ranks.Rank1;
+      msg = `Astonishing! You have mastered the arts of herbalism and shown great patience. Next step: alchemy.`;
+    }
+
+    return this.getGameState(null, { points: score, rank: rank, message: msg } );
   }
 
-  getGameState(error?: string): GameState {
+  getGameState(error?: string, score: GameScore = {points: 0, rank: null, message: null}): GameState {
     return {
       deck: this.deck.slice(),
       communityGarden: this.communityGarden.slice(),
@@ -399,6 +441,7 @@ export class GameManagerService {
       pots: this.pots.slice(),
       currentAction: this.currentAction,
       cookieAwarded: this.cookieAwarded,
+      score: score,
       error: error
     };
   }

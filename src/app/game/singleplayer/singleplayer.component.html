@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-xs-12" style="color: black;">
     <app-modal [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
+    <app-modal [message]="generateGameOverMsg()" *ngIf="!!gameState.score.points" (closeEvent)="onConfirmGameOver()"></app-modal>
 
     <button style="margin-right: 10px;" (click)="onLogGameState()">Log GameState</button>
     <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">Pot</button>

@@ -202,4 +202,12 @@ export class SingleplayerComponent implements OnInit, DoCheck {
     this.gameState.error = null;
   }
 
+  onConfirmGameOver() {
+    this.gameState.score = null;
+  }
+
+  generateGameOverMsg(): string {
+    return `You scored ${this.gameState.score.points} points!\n${this.gameState.score.message}\n\nYour rank: ${this.gameState.score.rank}`;
+  }
+
 }
