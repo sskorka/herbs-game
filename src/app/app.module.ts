@@ -20,6 +20,7 @@ import { DeckComponent } from './game/shared/deck/deck.component';
 import { PotComponent } from './game/shared/pot/pot.component';
 import { GameManagerService } from './game/singleplayer/game-manager.service';
 import { GameOverModalComponent } from './game/shared/game-over-modal/game-over-modal.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { GameOverModalComponent } from './game/shared/game-over-modal/game-over-
     FormsModule,
     HttpClientModule,
     AppRoutingModule
+    FontAwesomeModule
   ],
   providers: [
     AuthService,
