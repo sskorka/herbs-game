@@ -19,6 +19,7 @@ import { GardenComponent } from './game/shared/garden/garden.component';
 import { DeckComponent } from './game/shared/deck/deck.component';
 import { PotComponent } from './game/shared/pot/pot.component';
 import { GameManagerService } from './game/singleplayer/game-manager.service';
+import { GameOverModalComponent } from './game/shared/game-over-modal/game-over-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { GameManagerService } from './game/singleplayer/game-manager.service';
     GardenComponent,
     DeckComponent,
     PotComponent,
+    GameOverModalComponent,
   ],
   imports: [
     BrowserModule,
