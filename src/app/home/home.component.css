@@ -1,0 +1,72 @@
+.home-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+}
+
+.jumbo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+  color: #FFFFFF;
+}
+
+.screenshot {
+  width: 100vw;
+
+  mix-blend-mode: normal;
+}
+
+.jumbo-left {
+  transform: translate(-30%);
+}
+
+.plant {
+  position: absolute;
+  width: 903px;
+  height: 620px;
+  background-image: url('../../assets/images/white-pot-plant.png');
+  background-size: contain;
+  transform: translate(17%, -9%);
+}
+
+h1 {
+  font-size: 48px;
+}
+
+.description {
+  width: 585px;
+  height: 230px;
+  font-size: 27px;
+  text-align: justify;
+
+  mix-blend-mode: normal;
+}
+
+.play-btn {
+  display: flex;
+  width: 325px;
+  height: 85px;
+  font-size: 36px;
+  background: radial-gradient(112.77% 487.58% at 86.62% 50%, #7BC579 0%, #DBE987 46.88%, #5DA700 100%);
+}
+
+.play-btn .arrow {
+  width: 20%;
+  height: 100%;
+  background-image: url('../../assets/icons/arrow.svg');
+  background-repeat: no-repeat;
+}
+
+.play-btn p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  color: #000000;
+}

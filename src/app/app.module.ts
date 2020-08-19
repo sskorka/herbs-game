@@ -22,6 +22,7 @@ import { GameManagerService } from './game/singleplayer/game-manager.service';
 import { GameOverModalComponent } from './game/shared/game-over-modal/game-over-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PotComponent,
     GameOverModalComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
