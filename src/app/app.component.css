@@ -5,3 +5,9 @@ h1 {
 .home {
   padding-top: 200px;
 }
+
+.footer {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+}

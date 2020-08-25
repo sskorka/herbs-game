@@ -1,0 +1,60 @@
+<div class="footer">
+  <div class="box">
+    <div class="title">
+      <div class="strip"></div>
+      <p>QUICK LINKS:</p>
+    </div>
+    <div class="content">
+      <ul>
+        <li><a>Home</a></li>
+        <li><a>Sign In / Sign Up</a></li>
+        <li>
+          <div class="github">
+            <a href="https://github.com/sskorka/herbs-game" target="_blank" class="github-btn"></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="box">
+    <div class="title">
+      <span class="strip"></span>
+      <p>FOLLOW ME:</p>
+    </div>
+    <div class="content">
+      <ul>
+        <li><a>Facebook</a></li>
+        <li><a>LinkedIn</a></li>
+        <li><a>Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="box">
+    <div class="title">
+      <span class="strip"></span>
+      <p>CONTACT:</p>
+    </div>
+    <div class="content">
+      <ul>
+        <li class="mail-line">
+          <a href="mailto:szymonskorka@outlook.com">
+            <fa-icon [icon]="faEnvelope" class="mail-icon"></fa-icon>
+            <p class="mail-text">szymonskorka@outlook.com</p>
+          </a>
+        </li>
+        <li>
+          <div class="contact-form-container">
+            <p>...or use this form:</p>
+            <form (ngSubmit)="onContactFormSubmit(f)" #f="ngForm">
+              <input type="email" name="email" placeholder="E-mail" autocomplete="off" ngModel required email>
+              <br>
+              <textarea name="message" placeholder="Message" rows="5" cols="25" autocomplete="off" ngModel required maxlength="800"></textarea>
+              <br>
+              <button type="submit" class="send-btn hover-anim">Send!</button>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
