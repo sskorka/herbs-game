@@ -15,23 +15,8 @@
   color: #FFFFFF;
 }
 
-.screenshot {
-  width: 100vw;
-
-  mix-blend-mode: normal;
-}
-
 .jumbo-left {
   transform: translate(-30%);
-}
-
-.plant {
-  position: absolute;
-  width: 903px;
-  height: 620px;
-  background-image: url('../../assets/images/white-pot-plant.png');
-  background-size: contain;
-  transform: translate(17%, -9%);
 }
 
 h1 {
@@ -49,14 +34,14 @@ h1 {
 
 .play-btn {
   display: flex;
-  width: 325px;
-  height: 85px;
-  font-size: 36px;
+  width: 282px;
+  height: 81px;
+  font-size: 32px;
   background: radial-gradient(112.77% 487.58% at 86.62% 50%, #7BC579 0%, #DBE987 46.88%, #5DA700 100%);
 }
 
 .play-btn .arrow {
-  width: 20%;
+  width: 24%;
   height: 100%;
   background-image: url('../../assets/icons/arrow.svg');
   background-repeat: no-repeat;
@@ -69,4 +54,28 @@ h1 {
   width: 100%;
   margin: 0;
   color: #000000;
+}
+
+.plant {
+  position: absolute;
+  width: 903px;
+  height: 620px;
+  background-image: url('../../assets/images/white-pot-plant.png');
+  background-size: contain;
+  transform: translate(17%, -9%);
+}
+
+.jumbo-below {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin-top: 200px;
+
+  mix-blend-mode: normal;
+}
+
+.screenshot {
+  width: 918px;
+  height: 574px;
+  background-image: url('../../assets/images/home-screenshot-board.png');
 }
