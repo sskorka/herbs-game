@@ -1,5 +1,6 @@
 .header {
   position: fixed;
+  z-index: 20;
   width: 100vw;
   height: 60px;
   color: #FFFFFF;
