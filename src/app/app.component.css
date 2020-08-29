@@ -9,5 +9,7 @@ h1 {
 .footer {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+
+/* min-height: 100vh; */
+  margin-top: 550px;
 }
