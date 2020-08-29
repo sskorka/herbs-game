@@ -50,7 +50,7 @@
               <br>
               <textarea name="message" placeholder="Message" rows="5" cols="25" autocomplete="off" ngModel required maxlength="800"></textarea>
               <br>
-              <button type="submit" class="send-btn hover-anim">Send!</button>
+              <button type="submit" class="send-btn hover-anim" [disabled]="!f.valid">Send!</button>
             </form>
           </div>
         </li>
