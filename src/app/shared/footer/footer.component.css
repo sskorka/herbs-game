@@ -100,6 +100,7 @@
   margin-bottom: 8px;
   margin-left: -2px;
   line-height: 32px;
+  border: none;
   border-radius: 8px;
 }
 
@@ -134,6 +135,7 @@ input:focus {
   color: #5C5C5C;
   font-size: 22px;
   line-height: 32px;
+  border: none;
 
 /* background: radial-gradient(112.77% 487.58% at 86.62% 50%, #7BC579 0%, #DBE987 46.88%, #5DA700 100%); */
   border-radius: 8px;
@@ -159,7 +161,7 @@ input:focus {
   transition-property: color;
 }
 
-.hover-anim:before {
+.ng-valid .hover-anim:before {
   position: absolute;
   top: 0;
   right: 0;
@@ -188,9 +190,9 @@ input:focus {
   color: #000000;
 }
 
-.hover-anim:hover:before,
-.hover-anim:focus:before,
-.hover-anim:active:before {
+.ng-valid .hover-anim:hover:before,
+.ng-valid .hover-anim:focus:before,
+.ng-valid .hover-anim:active:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
