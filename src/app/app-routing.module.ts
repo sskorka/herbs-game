@@ -3,14 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './auth/auth.guard';
 import { HubComponent } from './hub/hub.component';
-import { AuthComponent } from './auth/auth.component';
 import { SingleplayerComponent } from './game/singleplayer/singleplayer.component';
+import { AppComponent } from './app.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/hub', pathMatch: 'full'},
-  { path: 'auth', component: AuthComponent },
+  { path: '', pathMatch: 'full', component: AppComponent},
   { path: 'hub', canActivate: [ AuthGuard ], component: HubComponent },
-  { path: 'solitaire', canActivate: [ AuthGuard ], component: SingleplayerComponent }
+  { path: 'solitaire', canActivate: [ AuthGuard ], component: SingleplayerComponent },
+  { path: 'recovery', component: ForgotPasswordComponent}
 ]
 
 @NgModule({

@@ -24,6 +24,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { LoadingDotsComponent } from './shared/loading-dots/loading-dots.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    LoadingDotsComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
