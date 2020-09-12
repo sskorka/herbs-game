@@ -44,11 +44,21 @@ li {
   align-items: center;
   height: 100%;
   padding: 0 10px;
+  border: none;
+  outline: none;
+}
+
+li:not(.no-hover) {
+  margin-right: 13px;
 }
 
 li:hover:not(.no-hover) {
   background: rgba(255, 255, 255, 0.267);
   cursor: pointer;
+}
+
+li:active:not(.no-hover) {
+  background: rgba(255, 255, 255, 0.397);
 }
 
 .lang-selector {
@@ -76,7 +86,7 @@ li:hover:not(.no-hover) {
   border-radius: 8px;
 }
 
-.auth-icon {
+.icon {
   margin-left: 10px;
   font-size: 25px;
 }

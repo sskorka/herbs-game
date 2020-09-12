@@ -9,9 +9,17 @@
             <fa-icon [icon]="faCaretDown"></fa-icon>
           </div>
         </li>
-        <li (click)="openLogin()">
+        <li *ngIf="!isAuthenticated" (click)="openLogin()">
           <a>Sign in / Sign up</a>
-          <fa-icon [icon]="faSignInAlt" class="auth-icon"></fa-icon>
+          <fa-icon [icon]="faSignInAlt" class="icon"></fa-icon>
+        </li>
+        <li *ngIf="isAuthenticated" routerLink="/hub" routerLinkActive="hidden">
+          <a>Go to HUB</a>
+          <fa-icon [icon]="faGamepad" class="icon"></fa-icon>
+        </li>
+        <li *ngIf="isAuthenticated" (click)="onLogout()">
+          <a>Logout</a>
+          <fa-icon [icon]="faSignOutAlt" class="icon"></fa-icon>
         </li>
       </ul>
     </nav>
