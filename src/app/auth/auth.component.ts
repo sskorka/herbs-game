@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,6 +16,12 @@ export class AuthComponent implements OnInit {
   error: string = null;
 
   @Output() onCloseEvent = new EventEmitter<void>();
+
+  // prevent body scroll when modal is open
+  @HostListener('wheel', ['$event'])
+  handleWheelEvent(event) {
+    event.preventDefault();
+  }
 
   constructor(private authService: AuthService, private router: Router) { }
 
