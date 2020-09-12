@@ -1,4 +1,18 @@
 @font-face {
   font-family: Montserrat;
-  src: url("assets/fonts/Montserrat/Montserrat-Regular.ttf") format('truetype');
+
+  src: url('assets/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Montserrat-Light';
+
+  src: url('assets/fonts/Montserrat/Montserrat-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraLight';
+
+  src: url('assets/fonts/Montserrat/Montserrat-ExtraLight.ttf') format('truetype');
+}
+
