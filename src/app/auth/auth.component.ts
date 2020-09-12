@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,6 +14,8 @@ export class AuthComponent implements OnInit {
   isInRegisterMode: boolean = false;
   isLoading: boolean = false;
   error: string = null;
+
+  @Output() onCloseEvent = new EventEmitter<void>();
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -51,8 +53,6 @@ export class AuthComponent implements OnInit {
           this.isLoading = false;
         }
       );
-
-    form.reset();
   }
 
   onToggleRegistration() {
@@ -61,5 +61,9 @@ export class AuthComponent implements OnInit {
 
   onHandleError() {
     this.error = null;
+  }
+
+  onClose() {
+    this.onCloseEvent.emit();
   }
 }

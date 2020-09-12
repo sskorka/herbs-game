@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faSignInAlt, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -10,9 +10,15 @@ export class HeaderComponent implements OnInit {
   faSignInAlt = faSignInAlt;
   faCaretDown = faCaretDown;
 
+  @Output() loginEvent = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openLogin() {
+    this.loginEvent.emit();
   }
 
 }

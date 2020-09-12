@@ -1,47 +1,68 @@
-<div class="row">
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <app-modal [message]="error" *ngIf="error" (closeEvent)="onHandleError()"></app-modal>
+<div class="content">
+  <div class="backdrop" (click)="onClose()"></div>
+  <div class="login-box">
+    <div class="plant-img"></div>
+    <div class="gradient-svg">
+      <div class="login-form">
+        <h1 class="login-form-header">{{ isInRegisterMode ? "Register" : "Sign in" }}</h1>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
 
-    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+          <!-- <p *ngIf="!isInRegisterMode">Don't have an account yet? <a style="cursor: pointer;" (click)="onToggleRegistration()">Click here to register</a></p>
+          <p *ngIf="isInRegisterMode">Already have an account? <a style="cursor: pointer;" (click)="onToggleRegistration()">Log in</a></p> -->
 
-      <p *ngIf="!isInRegisterMode">Don't have an account yet? <a style="cursor: pointer;" (click)="onToggleRegistration()">Click here to register</a></p>
-      <p *ngIf="isInRegisterMode">Already have an account? <a style="cursor: pointer;" (click)="onToggleRegistration()">Log in</a></p>
-
-      <div class="form-group">
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          name="email"
-          placeholder="E-mail"
-          required
-          email
-          ngModel>
-      </div>
-      <div class="form-group" *ngIf="isInRegisterMode">
-        <input
-          type="text"
-          id="name"
-          class="form-control"
-          name="name"
-          placeholder="Name"
-          required
-          ngModel>
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          name="password"
-          placeholder="Password"
-          required
-          minlength="6"
-          ngModel>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">{{ isInRegisterMode ? 'Register' : 'Log in'}}</button>
-      </div>
-    </form>
+          <div class="login-input-container">
+            <label for="email">Email address:</label>
+            <br>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+              email
+              ngModel
+              [disabled]="isLoading">
+          </div>
+          <div class="login-input-container" *ngIf="isInRegisterMode">
+            <label for="name">Name:</label>
+            <br>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+              ngModel
+              [disabled]="isLoading">
+          </div>
+          <div class="login-input-container">
+            <label for="password">Password:</label>
+            <br>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              minlength="6"
+              ngModel
+              [disabled]="isLoading">
+              <br>
+              <div class="login-link-right">
+                <a class="login-link login-link-right" target="_blank" [routerLink]="['/recovery']">Forgot password?</a>
+              </div>
+          </div>
+          <div>
+            <button *ngIf="!isLoading" type="submit" [disabled]="!authForm.valid">{{ isInRegisterMode ? 'Register' : 'Login'}}</button>
+            <app-loading-dots *ngIf="isLoading"></app-loading-dots>
+          </div>
+          <div class="login-link-center">
+            <a class="login-link" *ngIf="!isInRegisterMode" (click)="onToggleRegistration()">...or create a new account now!</a>
+            <a class="login-link" *ngIf="isInRegisterMode" (click)="onToggleRegistration()">Sign in instead</a>
+          </div>
+        </form>
+          </div>
+    </div>
+    <p class="credit">Photo by Lisa Fotios from Pexels</p>
   </div>
 </div>
