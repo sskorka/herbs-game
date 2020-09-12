@@ -1,10 +1,5 @@
 <app-auth *ngIf="isAuthOn" (onCloseEvent)="closeLogin()"></app-auth>
-
 <app-header (loginEvent)="openLogin()"></app-header>
-<div class="home">
-  <app-home></app-home>
-</div>
-<div class="footer">
-  <app-footer></app-footer>
-</div>
+
+<router-outlet></router-outlet>
 

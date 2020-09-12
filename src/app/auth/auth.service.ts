@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
-import { catchError, tap, switchMap, concatMap, mergeMap } from 'rxjs/operators';
+import { catchError, tap, concatMap, mergeMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 export interface NameData {
   name: string
@@ -27,7 +28,7 @@ export class AuthService {
   // to store the timeout object
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(_email: string, _name: string, _password: string) {
     return this.http.post<AuthResponseData>(
@@ -99,6 +100,7 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
+    this.router.navigate(['/home']);
     localStorage.removeItem('userData');
     if(this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);

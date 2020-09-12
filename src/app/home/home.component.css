@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100vw;
+  padding-top: 200px;
 }
 
 .jumbo {
@@ -75,7 +76,14 @@ h1 {
 }
 
 .screenshot {
-  width: 918px;
-  height: 574px;
+  width: 1000px;
+  height: 523px;
   background-image: url('../../assets/images/home-screenshot-board.png');
+  border-radius: 8px;
+}
+
+.footer {
+  position: relative;
+  width: 100vw;
+  margin-top: 550px;
 }
