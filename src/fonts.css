@@ -16,3 +16,20 @@
   src: url('assets/fonts/Montserrat/Montserrat-ExtraLight.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Montserrat-Bold';
+
+  src: url('assets/fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+
+  src: url('assets/fonts/Montserrat/Montserrat-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+
+  src: url('assets/fonts/Montserrat/Montserrat-ExtraBold.ttf') format('truetype');
+}
