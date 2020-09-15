@@ -1,21 +1,27 @@
-<h3>Start playing:</h3>
-<a class="list-group-item clearfix" style="cursor: pointer;" routerLink="/solitaire">
-  <div class="pull-left">
-    <h3 class="list-group-item-heading">Singleplayer</h3>
-    <p class="list-group-item-text">Put your gardening skills to the test in the solo variant of the game.</p>
+<div class="frame">
+  <div class="header"><p>Game mode:</p></div>
+  <div class="modes">
+    <app-mode
+      [title]="'Singleplayer'"
+      [description]="'Put your gardening skills to the test in the solo variant of the game.'"
+      [isSelected]="true"
+      [isSingleplayer]="true"
+      [estimatedGameTime]="20">
+    </app-mode>
+    <app-mode
+      [title]="'Multiplayer'"
+      [description]="'Standard variant of the game. (Coming soon!)'"
+      [isSelected]="false"
+      [isSingleplayer]="false"
+      [estimatedGameTime]="30">
+    </app-mode>
   </div>
-  <span class="pull-right">
-    <img src="./../../../assets/icons/singleplayer-icon.png" alt="singleplayer" class="img-responsive">
-  </span>
-</a>
-
-<a class="list-group-item clearfix disabled" style="cursor: not-allowed;">
-  <div class="pull-left">
-    <h3 class="list-group-item-heading">Multiplayer</h3>
-    <p class="list-group-item-text">Standard variant of the game. (Coming soon!)</p>
+  <div class="header"><p>Theme:</p></div>
+  <div class="theme-dropdown">
+    <input list="themes" name="theme" id="theme" disabled placeholder="Herbaceous (Default)">
+    <!-- <datalist id="themes">
+      <option value="Herbaceous (Default)">
+    </datalist> -->
   </div>
-  <span class="pull-right">
-    <img src="./../../../assets/icons/multiplayer-icon.png" alt="multiplayer" class="img-responsive">
-  </span>
-</a>
-<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+  <div class="start"><button class="hover-anim">Start!</button></div>
+</div>

@@ -26,6 +26,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoadingDotsComponent } from './shared/loading-dots/loading-dots.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ModeComponent } from './hub/game-mode/mode/mode.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     FooterComponent,
     LoadingDotsComponent,
     ForgotPasswordComponent,
+    ModeComponent,
   ],
   imports: [
     BrowserModule,

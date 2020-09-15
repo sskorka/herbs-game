@@ -1,0 +1,22 @@
+<div class="mode" [ngClass]="{'selected':isSelected}">
+  <p class="title">{{ title }}</p>
+  <div class="description">
+    <p>{{ description }}</p>
+  </div>
+  <div class="additional">
+    <div class="additional-selected">
+      <fa-icon [icon]="faCheck" class="tick"></fa-icon>
+      <p>SELECTED</p>
+    </div>
+    <div class="additional-bullets">
+      <span class="bullet">
+        <p class="bullet-time-number">{{ estimatedGameTime }}</p>
+        <p class="bullet-time-string">min</p>
+      </span>
+      <span class="bullet">
+        <fa-icon *ngIf="isSingleplayer" [icon]="faUser"></fa-icon>
+        <fa-icon *ngIf="!isSingleplayer" [icon]="faUsers"></fa-icon>
+      </span>
+    </div>
+  </div>
+</div>
