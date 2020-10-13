@@ -83,9 +83,3 @@ h1 {
   background-image: url('../../assets/images/home-screenshot-board.png');
   border-radius: 8px;
 }
-
-.footer {
-  position: relative;
-  width: 100vw;
-  margin-top: 550px;
-}
