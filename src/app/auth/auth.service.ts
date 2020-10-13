@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
@@ -24,6 +24,8 @@ export interface AuthResponseData {
 @Injectable()
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+
+  playNowEvent = new EventEmitter<boolean>();
 
   // to store the timeout object
   private tokenExpirationTimer: any;

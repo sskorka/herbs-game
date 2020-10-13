@@ -35,10 +35,12 @@ h1 {
 
 .play-btn {
   display: flex;
+  z-index: 20;
   width: 282px;
   height: 81px;
   font-size: 32px;
   background: radial-gradient(112.77% 487.58% at 86.62% 50%, #7BC579 0%, #DBE987 46.88%, #5DA700 100%);
+  cursor: pointer;
 }
 
 .play-btn .arrow {
