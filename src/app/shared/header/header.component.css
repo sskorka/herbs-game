@@ -80,13 +80,13 @@ li:active:not(.no-hover) {
 .flag-gb {
   width: 30px;
   height: 15px;
-  background-image: url('../../../assets/icons/locale-flags/gb-masked.svg');
+  background-image: url('../../../assets/icons/locale-flags/gb.jpg');
   background-repeat: no-repeat;
   background-size: contain;
   border-radius: 8px;
 }
 
-.icon {
-  margin-left: 10px;
-  font-size: 25px;
+.ng-fa-icon {
+  margin-left: 5px;
+  font-size: 20px;
 }
