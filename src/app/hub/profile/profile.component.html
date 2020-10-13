@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<!-- <div class="panel panel-default">
   <div class="panel-heading">
     Hello, {{ user.name }}!
   </div>
@@ -9,4 +9,38 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<div class="profile">
+  <div class="big-header">
+    <p>Hello, {{ user.name }}!</p>
+  </div>
+  <div class="stats">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">SUMMARY</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Number of games played:</td>
+          <td>12</td>
+        </tr>
+        <tr>
+          <td>Herbs lost due to overflow:</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>Perfect scores:</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Favourite herb:</td>
+          <td>Lavender</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="hover-anim">View Score Chart</button>
 </div>
