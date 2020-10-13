@@ -71,6 +71,7 @@ input:disabled {
 .hover-anim {
   position: relative;
   display: inline-block;
+  overflow: hidden;
   color: #000000;
   font-weight: normal;
   vertical-align: middle;
