@@ -1,109 +1,26 @@
-<div class="row">
-  <div class="col-xs-12" style="color: black;">
-    <app-modal [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
-    <app-modal [message]="generateGameOverMsg()" *ngIf="!!gameState.score.points" (closeEvent)="onConfirmGameOver()"></app-modal>
+<div class="bg"></div>
+<div class="fallback-color"><!-- mandatory due to blur on the foreground --></div>
 
-    <button style="margin-right: 10px;" (click)="onLogGameState()">Log GameState</button>
-    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">Pot</button>
-    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.NewTurn || !gameState.deck.length" (click)="onPlant()">Plant</button>
-    <button style="margin-right: 10px;" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">End</button>
-    <span *ngIf="gameState.currentAction == gameActions.NewTurn">Choose action</span>
-    <span *ngIf="gameState.currentAction == gameActions.PotAction">Pick up herbs or end phase</span>
-    <span *ngIf="gameState.currentAction == gameActions.PlantAction && !anyGardenChoosable">Draw a card</span>
-    <span *ngIf="anyGardenChoosable">Plant the herb!</span>
+<div class="game-container">
+  <div class="button-panel">
+    <input type="checkbox" id="show-names" name="show-container-names">
+    <label for="show-names">Always show container names</label>
+    <!-- TODO: question mark sign here -->
+    <button class="cookie-btn">{{ gameState.cookieAwarded ? "Cookie not yet awarded" : "Cookie earned!" }}</button>
+    <button class="plant-btn">Plant in pot</button>
+    <button class="draw-btn">Draw card</button>
+    <button class="end-turn-btn">End turn</button>
   </div>
+  <div class="garden-discardpile-deck">
+    <div class="community-garden"></div>
+    <div class="discard-pile"></div>
+    <div class="deck"></div>
+  </div>
+  <div class="pots">
+
+  </div>
+  <div class="privategarden">
+
+  </div>
+  <!-- <span>Photo by <a href="https://unsplash.com/@scottwebb?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Scott Webb</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
 </div>
-
-<div class="row">
-  <!-- COMMUNITY GARDEN -->
-  <div class="col-xs-7">
-    <h4>Community garden</h4>
-    <div
-      class="garden"
-      id="community-garden"
-      [ngClass]="{
-        'choosable': gardensChoosable.community,
-        'endangered': communityGardenInDanger,
-        'will-die': communityGardenAboutToDie}"
-      (click)="onGardenClick($event)"
-    >
-      <app-card
-        *ngFor="let card of gameState.communityGarden"
-        [card]="card"
-        (click)="onCardClick(card)"
-      ></app-card>
-    </div>
-  </div>
-
-  <!-- DISCARD PILE -->
-  <div class="col-xs-2">
-    <h4>Discard pile</h4>
-    <div
-      class="garden"
-      id="discard-pile"
-      [ngClass]="{'choosable': gardensChoosable.discard}"
-      (click)="onGardenClick($event)"
-    >
-      <app-card [card]="gameState.discardPile[gameState.discardPile.length - 1]"></app-card>
-    </div>
-  </div>
-
-  <!-- DECK -->
-  <div class="col-xs-2">
-    <h4>Deck</h4>
-    <app-card
-      [isDeck]="!anyGardenChoosable"
-      [card]="gameState.deck[0]"
-      [ngClass]="{'must-draw': gameState.currentAction == gameActions.PlantAction && !anyGardenChoosable}"
-      (click)="onDeckClick()"
-    ></app-card>
-  </div>
-</div>
-
-<!-- POTS -->
-<div class="row" style="margin-top: 30px">
-  <div class="col-xs-12">
-    <app-pot
-      class="col-xs-3"
-      *ngFor="let pot of gameState.pots"
-      [pot]="pot"
-      (click)="onCardClick(pot)"
-    ></app-pot>
-  </div>
-</div>
-
-<!-- PRIVATE GARDEN -->
-<div class="row">
-  <div class="col-xs-12">
-    <h4>Private garden</h4>
-    <div
-      class="garden"
-      id="private-garden"
-      [ngClass]="{'choosable': gardensChoosable.private}"
-      (click)="onGardenClick($event)"
-    >
-      <app-card
-        *ngFor="let card of gameState.privateGarden"
-        [card]="card"
-        (click)="onCardClick(card)"
-      ></app-card>
-      </div>
-  </div>
-</div>
-
-<!-- COOKIE -->
-<div class="row">
-  <div class="col-xs-3">
-    <h4>Cookie reward</h4>
-    <div
-      class="garden cookie-default"
-      [ngClass]="{'cookie-awarded': gameState.cookieAwarded}"
-      >
-    <app-card
-      [isCookie]="true">
-    </app-card>
-    </div>
-  </div>
-</div>
-
-<!-- [ngStyle]="{background: 'url(' + card.graphicsUrl + ')'}" -->

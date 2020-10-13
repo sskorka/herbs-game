@@ -7,8 +7,8 @@ button:disabled {
 }
 
 .garden {
-  min-height: 260px;
   min-width: 180px;
+  min-height: 260px;
 }
 
 .choosable {
@@ -32,11 +32,60 @@ button:disabled {
 }
 
 .cookie-default {
-  -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+
+  -webkit-filter: grayscale(100%);
 }
 
 .cookie-awarded {
-  -webkit-filter: grayscale(0);
   filter: grayscale(0);
+
+  -webkit-filter: grayscale(0);
+}
+
+/* OLD CSS ABOVE */
+
+.bg {
+  position: absolute;
+  z-index: -100;
+  width: 100vw;
+  min-height: -webkit-fill-available;
+  background-image: url('../../../assets/images/singleplayer-bg.jpg');
+  background-repeat: repeat;
+  background-position: -15px -240px;
+  background-size: cover;
+  filter: blur(8px);
+}
+
+.fallback-color {
+  position: absolute;
+  z-index: -101;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+}
+
+.game-container {
+  position: relative;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.button-panel {
+  font-size: 18px;
+}
+
+.button-panel label {
+  color: #B7B7B7;
+  letter-spacing: -0.045em;
+}
+
+.cookie-btn {
+  width: 245px;
+  height: 40px;
+  background-image: url('../../../assets/images/cookie.png');
+  background-repeat: repeat;
+  border-radius: 15px;
 }
