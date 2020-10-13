@@ -1,6 +1,6 @@
 .footer {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   display: flex;
   justify-content: space-evenly;
   width: 100%;
@@ -148,6 +148,7 @@ input:focus {
 .hover-anim {
   position: relative;
   display: inline-block;
+  overflow: hidden;
   color: #000000;
   font-weight: normal;
   vertical-align: middle;
