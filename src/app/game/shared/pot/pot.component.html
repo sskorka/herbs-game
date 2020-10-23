@@ -11,4 +11,9 @@
       [isInPot]="true"
     ></app-card>
   </span>
+  <p
+    class="pot-name"
+    [ngClass]="{'pot-name-blue': i == 0, 'pot-name-purple': i == 1, 'pot-name-black': i == 2, 'pot-name-green': i == 3 }"
+    >
+    {{ pot.potName.toUpperCase() }}</p>
 </div>

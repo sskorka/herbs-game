@@ -1,10 +1,10 @@
 .pot-img {
-  height: 180px;
-  width: 252px;
-  border-radius: 5px;
-  background-position: center;
+  width: 210px;
+  height: 150px;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
+  border-radius: 5px;
 }
 
 .selected {
@@ -13,13 +13,42 @@
 }
 
 .pot-container {
+  position: relative;
   display: inline-block;
+}
+
+.pot-name {
+  position: absolute;
+  left: 50%;
+  width: max-content;
+  color: #FFFFFF;
+  font-size: 23px;
+  line-height: 34px;
+  letter-spacing: 0.075em;
+  text-shadow: 1px 1px 0 #000000;
+  transform: translate(-50%, 0);
+}
+
+.pot-name-blue {
+  color: #1C6CE6;
+}
+
+.pot-name-purple {
+  color: #B11CE6;
+}
+
+.pot-name-black {
+  color: #070707;
+}
+
+.pot-name-green {
+  color: #1B8E08;
 }
 
 .herbs {
   position: absolute;
-  left: 18px;
   top: 5px;
+  left: 18px;
   z-index: -10;
   height: 8em;
 
@@ -31,18 +60,36 @@
 
 .herb {
   position: absolute;
-  /* left: 0%; */
+
+/* left: 0%; */
   bottom: 0;
-  margin: 0;
   padding: 0;
+  margin: 0;
+
   /* float: left; */
 }
 
-.herb:nth-child(1) { left: 0;}
-.herb:nth-child(2) { left: 1.5em;}
-.herb:nth-child(3) { left: 3.0em;}
-.herb:nth-child(4) { left: 4.5em;}
-.herb:nth-child(5) { left: 6.0em;}
-.herb:nth-child(6) { left: 7.5em;}
-.herb:nth-child(7) { left: 9.0em;}
-.herb:nth-child(8) { left: 10.5em;}
+.herb:nth-child(1) {
+  left: 0;
+}
+.herb:nth-child(2) {
+  left: 1.5em;
+}
+.herb:nth-child(3) {
+  left: 3.0em;
+}
+.herb:nth-child(4) {
+  left: 4.5em;
+}
+.herb:nth-child(5) {
+  left: 6.0em;
+}
+.herb:nth-child(6) {
+  left: 7.5em;
+}
+.herb:nth-child(7) {
+  left: 9.0em;
+}
+.herb:nth-child(8) {
+  left: 10.5em;
+}

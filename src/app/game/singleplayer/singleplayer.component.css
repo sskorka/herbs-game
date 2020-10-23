@@ -5,11 +5,11 @@ button:disabled {
 .col-xs-12 span {
   color: white;
 }
-
+/*
 .garden {
   min-width: 180px;
   min-height: 260px;
-}
+} */
 
 .choosable {
   outline: thick double rgb(184, 214, 12);
@@ -65,15 +65,27 @@ button:disabled {
   background-color: #000000;
 }
 
+.component-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
 .game-container {
   position: relative;
   top: 80px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
+  width: 60%;
 }
 
 .button-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 110%;
   font-size: 18px;
 }
 
@@ -82,10 +94,113 @@ button:disabled {
   letter-spacing: -0.045em;
 }
 
-.cookie-btn {
-  width: 245px;
+.button-panel button {
+  width: 160px;
   height: 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+}
+
+.button-panel-left label {
+  margin-left: 5px;
+}
+
+.button-panel-left button {
+  margin-left: 40px;
+}
+
+.button-panel-right {
+  display: flex;
+  justify-content: space-between;
+  width: 520px;
+}
+
+.cookie-btn {
+  width: 245px !important;
+  font-size: 16px;
   background-image: url('../../../assets/images/cookie.png');
   background-repeat: repeat;
+}
+
+.plant-btn {
+  background-color: #67BC9E;
+}
+
+.draw-btn {
+  background-color: #2E9D32;
+}
+
+.end-turn-btn {
+  background-color: #A6BC67;
+}
+
+.garden-discardpile-deck {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.garden-discardpile-deck div:not(:first-child) {
+  justify-content: center;
+  padding: 0;
+}
+
+.garden {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 220px;
+  padding: 0 2%;
+  margin: 15px 0;
   border-radius: 15px;
 }
+
+.garden p:first-of-type {
+  position: absolute;
+  left: 50%;
+  width: max-content;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0.085em;
+  text-shadow: 1px 1px 0 #000000;
+  transform: translate(-50%, 425%);
+}
+
+.community-garden {
+  width: 60%;
+  color: #33A0AF;
+  background: rgba(136, 178, 158, 0.4);
+}
+
+.discard-pile {
+  width: 200px;
+  color: #F127A0;
+  background: linear-gradient(180deg, rgba(152, 30, 74, 0.38) 0%, rgba(152, 30, 74, 0.6) 0.01%, rgba(74, 17, 38, 0.55) 100%);
+}
+
+.deck {
+  width: 200px;
+  color: #348B32;
+  background: rgba(22, 99, 49, 0.4);
+}
+
+.pots {
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 32px;
+  background: rgba(89, 132, 124, 0.4);
+}
+
+.private-garden {
+  width: 100%;
+  color: #147EE0;
+  background: rgba(2, 130, 114, 0.4);
+}
+
+.card-margin {
+  margin-right: 15px;
+}
+

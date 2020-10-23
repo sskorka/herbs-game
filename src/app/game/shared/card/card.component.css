@@ -1,19 +1,19 @@
 .card {
-  height: 252px;
-  width: 180px;
-  border-radius: 5px;
-  background-position: center;
+  width: 135px;
+  height: 190px;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
+  border-radius: 5px;
 }
 
 .in-pot {
   width: 100px;
   height: 140px;
-  border-radius: 5px;
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
+  border-radius: 5px;
 }
 
 .selected {
@@ -22,10 +22,10 @@
 }
 
 .cookie {
-  height: 180px;
   width: 252px;
-  border-radius: 5px;
-  background-position: center;
+  height: 180px;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
+  border-radius: 5px;
 }

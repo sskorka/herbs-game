@@ -9,6 +9,7 @@ import { Pot } from './pot.model';
 })
 export class PotComponent implements OnInit {
   @Input() pot: Pot;
+  @Input() i: number; // holds the iterator of the structure generating pots; used for styling pot's name
 
   constructor() { }
 

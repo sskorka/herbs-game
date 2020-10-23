@@ -1,26 +1,66 @@
 <div class="bg"></div>
 <div class="fallback-color"><!-- mandatory due to blur on the foreground --></div>
 
-<div class="game-container">
-  <div class="button-panel">
-    <input type="checkbox" id="show-names" name="show-container-names">
-    <label for="show-names">Always show container names</label>
-    <!-- TODO: question mark sign here -->
-    <button class="cookie-btn">{{ gameState.cookieAwarded ? "Cookie not yet awarded" : "Cookie earned!" }}</button>
-    <button class="plant-btn">Plant in pot</button>
-    <button class="draw-btn">Draw card</button>
-    <button class="end-turn-btn">End turn</button>
-  </div>
-  <div class="garden-discardpile-deck">
-    <div class="community-garden"></div>
-    <div class="discard-pile"></div>
-    <div class="deck"></div>
-  </div>
-  <div class="pots">
+<div class="component-container">
+  <div class="game-container">
+    <!-- BUTTON PANEL -->
+    <div class="button-panel">
+      <div class="button-panel-left">
+        <input type="checkbox" id="show-names" name="show-container-names">
+        <label for="show-names">Always show container names</label>
+        <button class="cookie-btn">{{ gameState.cookieAwarded ? "Cookie not yet awarded" : "Cookie earned!" }}</button>
+      </div>
+      <div class="button-panel-right">
+        <button class="plant-btn">Plant in pot</button>
+        <button class="draw-btn">Draw card</button>
+        <button class="end-turn-btn">End turn</button>
+      </div>
+      <!-- TODO: question mark sign here -->
+    </div>
 
+    <!-- BOARD -->
+    <div class="garden-discardpile-deck">
+      <div class="garden community-garden">
+        <p>COMMUNITY GARDEN</p>
+        <app-card
+        class="card-margin"
+        *ngFor="let card of gameState.communityGarden"
+        [card]="card"
+        (click)="onCardClick(card)"
+        ></app-card>
+      </div>
+      <div class="garden discard-pile">
+        <p>DISCARD PILE</p>
+        <app-card [card]="gameState.discardPile[gameState.discardPile.length - 1]"></app-card>
+      </div>
+      <div class="garden deck">
+        <p>DECK</p>
+        <app-card
+        [isDeck]="!anyGardenChoosable"
+        [card]="gameState.deck[0]"
+        [ngClass]="{'must-draw': gameState.currentAction == gameActions.PlantAction && !anyGardenChoosable}"
+        (click)="onDeckClick()"
+        ></app-card>
+      </div>
+    </div>
+    <div class="garden pots">
+      <app-pot
+      class=""
+      *ngFor="let pot of gameState.pots; let i = index"
+      [pot]="pot"
+      [i]="i"
+      (click)="onCardClick(pot)"
+      ></app-pot>
+    </div>
+    <div class="garden private-garden">
+      <p>PRIVATE GARDEN</p>
+      <app-card
+      class="card-margin"
+      *ngFor="let card of gameState.privateGarden"
+      [card]="card"
+      (click)="onCardClick(card)"
+      ></app-card>
+    </div>
+    <!-- <span>Photo by <a href="https://unsplash.com/@scottwebb?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Scott Webb</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
   </div>
-  <div class="privategarden">
-
-  </div>
-  <!-- <span>Photo by <a href="https://unsplash.com/@scottwebb?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Scott Webb</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
 </div>
