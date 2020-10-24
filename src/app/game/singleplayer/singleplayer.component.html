@@ -11,16 +11,24 @@
         <button class="cookie-btn">{{ gameState.cookieAwarded ? "Cookie not yet awarded" : "Cookie earned!" }}</button>
       </div>
       <div class="button-panel-right">
-        <button class="plant-btn">Plant in pot</button>
-        <button class="draw-btn">Draw card</button>
-        <button class="end-turn-btn">End turn</button>
+        <button class="plant-btn" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">Plant in pot</button>
+        <button class="draw-btn" [disabled]="gameState.currentAction != gameActions.NewTurn || !gameState.deck.length" (click)="onPlant()">Draw card</button>
+        <button class="end-turn-btn" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">End turn</button>
       </div>
       <!-- TODO: question mark sign here -->
     </div>
 
     <!-- BOARD -->
     <div class="garden-discardpile-deck">
-      <div class="garden community-garden">
+      <div
+        class="garden community-garden"
+        id="community-garden"
+        [ngClass]="{
+          'choosable': gardensChoosable.community,
+          'endangered': communityGardenInDanger,
+          'will-die': communityGardenAboutToDie}"
+        (click)="onGardenClick($event)"
+      >
         <p>COMMUNITY GARDEN</p>
         <app-card
         class="card-margin"
@@ -29,7 +37,12 @@
         (click)="onCardClick(card)"
         ></app-card>
       </div>
-      <div class="garden discard-pile">
+      <div
+        class="garden discard-pile"
+        id="discard-pile"
+        [ngClass]="{'choosable': gardensChoosable.discard}"
+        (click)="onGardenClick($event)"
+      >
         <p>DISCARD PILE</p>
         <app-card [card]="gameState.discardPile[gameState.discardPile.length - 1]"></app-card>
       </div>
@@ -52,7 +65,12 @@
       (click)="onCardClick(pot)"
       ></app-pot>
     </div>
-    <div class="garden private-garden">
+    <div
+      class="garden private-garden"
+      id="private-garden"
+      [ngClass]="{'choosable': gardensChoosable.private}"
+      (click)="onGardenClick($event)"
+    >
       <p>PRIVATE GARDEN</p>
       <app-card
       class="card-margin"
