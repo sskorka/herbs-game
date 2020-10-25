@@ -62,6 +62,10 @@ export class GameManagerService {
   constructor() {}
 
   startGame(): GameState {
+    // Angular keeps the structures' state after auto-logout,
+    // so let's clear that up
+    this.clearAllData();
+
     this.generateDeck();
     this.generatePots();
     this.shuffleDeck();
@@ -82,6 +86,16 @@ export class GameManagerService {
     // And the first turn begins!
     this.currentAction = CurrentAction.NewTurn;
     return this.getGameState();
+  }
+
+  private clearAllData() {
+    this.deck = [];
+    this.discardedHalf = [];
+    this.communityGarden = [];
+    this.privateGarden = [];
+    this.discardPile = [];
+    this.pots = [];
+    this.cookieAwarded = false;
   }
 
   private generateDeck() {
