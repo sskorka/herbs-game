@@ -29,7 +29,7 @@
         class="garden community-garden"
         id="community-garden"
         [ngClass]="{
-          'choosable': gardensChoosable.community,
+          'community-choosable': gardensChoosable.community,
           'endangered': communityGardenInDanger,
           'will-die': communityGardenAboutToDie}"
         (click)="onGardenClick($event)"

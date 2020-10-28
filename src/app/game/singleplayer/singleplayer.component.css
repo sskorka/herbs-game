@@ -5,13 +5,8 @@ button:disabled {
 .col-xs-12 span {
   color: white;
 }
-/*
-.garden {
-  min-width: 180px;
-  min-height: 260px;
-} */
 
-.choosable {
+/* .choosable {
   outline: thick double rgb(184, 214, 12);
   outline-offset: -3px;
 }
@@ -24,7 +19,7 @@ button:disabled {
 .will-die {
   outline: thick double rgb(236, 4, 4);
   outline-offset: -3px;
-}
+} */
 
 .must-draw {
   outline: thick double rgb(200, 3, 69);
@@ -204,3 +199,52 @@ button:disabled {
   margin-right: 15px;
 }
 
+/* ANIMATED CSS */
+
+.community-choosable {
+  -webkit-animation: community-glow 1s ease-in-out infinite alternate;
+  animation: community-glow 1s ease-in-out infinite alternate;
+
+  -moz-animation: community-glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes community-glow {
+  from {
+    box-shadow: 0 0 5px #33A0AF, 0 0 5px #33A0AF, 0 0 10px #33A0AF, 0 0 20px #33A0AF, 0 0 30px #33A0AF, 0 0 40px #33A0AF, 0 0 50px #33A0AF;
+  }
+  to {
+    box-shadow: 0 0 5px #6BD0DD, 0 0 10px #6BD0DD, 0 0 20px #6BD0DD, 0 0 30px #6BD0DD, 0 0 40px #6BD0DD, 0 0 50px #6BD0DD, 0 0 60px #6BD0DD;
+  }
+}
+
+.endangered {
+  -webkit-animation: community-endangered 1s ease-in-out infinite alternate;
+  animation: community-endangered 1s ease-in-out infinite alternate;
+
+  -moz-animation: community-endangered 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes community-endangered {
+  from {
+    box-shadow: 0 0 5px #BD6808, 0 0 5px #BD6808, 0 0 10px #BD6808, 0 0 20px #BD6808, 0 0 30px #BD6808, 0 0 40px #BD6808, 0 0 50px #BD6808;
+  }
+  to {
+    box-shadow: 0 0 5px #DF9949, 0 0 10px #DF9949, 0 0 20px #DF9949, 0 0 30px #DF9949, 0 0 40px #DF9949, 0 0 50px #DF9949, 0 0 60px #DF9949;
+  }
+}
+
+.will-die {
+  -webkit-animation: community-will-die 1s ease-in-out infinite alternate;
+  animation: community-will-die 1s ease-in-out infinite alternate;
+
+  -moz-animation: community-will-die 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes community-will-die {
+  from {
+    box-shadow: 0 0 5px #C00707, 0 0 5px #C00707, 0 0 10px #C00707, 0 0 20px #C00707, 0 0 30px #C00707, 0 0 40px #C00707, 0 0 50px #C00707;
+  }
+  to {
+    box-shadow: 0 0 5px #F13434, 0 0 10px #F13434, 0 0 20px #F13434, 0 0 30px #F13434, 0 0 40px #F13434, 0 0 50px #F13434, 0 0 60px #F13434;
+  }
+}
