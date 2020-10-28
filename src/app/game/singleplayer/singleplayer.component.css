@@ -31,18 +31,6 @@ button:disabled {
   outline-offset: -3px;
 }
 
-.cookie-default {
-  filter: grayscale(100%);
-
-  -webkit-filter: grayscale(100%);
-}
-
-.cookie-awarded {
-  filter: grayscale(0);
-
-  -webkit-filter: grayscale(0);
-}
-
 /* OLD CSS ABOVE */
 
 .bg {
@@ -122,6 +110,18 @@ button:disabled {
   font-size: 16px;
   background-image: url('../../../assets/images/cookie.png');
   background-repeat: repeat;
+}
+
+.cookie-unawarded {
+  filter: grayscale(100%);
+
+  -webkit-filter: grayscale(100%);
+}
+
+.cookie-awarded {
+  filter: grayscale(0);
+
+  -webkit-filter: grayscale(0);
 }
 
 .plant-btn {
