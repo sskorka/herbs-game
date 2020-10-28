@@ -97,8 +97,8 @@ export class SingleplayerComponent implements OnInit, DoCheck {
       return;
     }
 
-    // depeneding on the place clicked, the id might come from a different property
-    const id = (<HTMLElement>event.target).id || (<HTMLElement>(<HTMLElement>event.target).offsetParent.lastChild).id;
+    // depending on the place clicked, the id might come from a different property
+    const id = (<HTMLElement>event.target).id || (<HTMLElement>(<HTMLElement>event.target).offsetParent).id;
 
     switch(id) {
       case "community-garden":
