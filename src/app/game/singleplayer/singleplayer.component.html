@@ -45,7 +45,7 @@
       <div
         class="garden discard-pile"
         id="discard-pile"
-        [ngClass]="{'choosable': gardensChoosable.discard}"
+        [ngClass]="{'discard-choosable': gardensChoosable.discard}"
         (click)="onGardenClick($event)"
       >
         <p>DISCARD PILE</p>
@@ -73,7 +73,7 @@
     <div
       class="garden private-garden"
       id="private-garden"
-      [ngClass]="{'choosable': gardensChoosable.private}"
+      [ngClass]="{'private-choosable': gardensChoosable.private}"
       (click)="onGardenClick($event)"
     >
       <p>PRIVATE GARDEN</p>

@@ -248,3 +248,36 @@ button:disabled {
     box-shadow: 0 0 5px #F13434, 0 0 10px #F13434, 0 0 20px #F13434, 0 0 30px #F13434, 0 0 40px #F13434, 0 0 50px #F13434, 0 0 60px #F13434;
   }
 }
+
+.discard-choosable {
+  -webkit-animation: discard-glow 1s ease-in-out infinite alternate;
+  animation: discard-glow 1s ease-in-out infinite alternate;
+
+  -moz-animation: discard-glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes discard-glow {
+  from {
+    box-shadow: 0 0 5px #92143E, 0 0 5px #92143E, 0 0 10px #92143E, 0 0 20px #92143E, 0 0 30px #92143E, 0 0 40px #92143E, 0 0 50px #92143E;
+  }
+  to {
+    box-shadow: 0 0 5px #C51B54, 0 0 10px #C51B54, 0 0 20px #C51B54, 0 0 30px #C51B54, 0 0 40px #C51B54, 0 0 50px #C51B54, 0 0 60px #C51B54;
+  }
+}
+
+.private-choosable {
+  -webkit-animation: private-glow 1s ease-in-out infinite alternate;
+  animation: private-glow 1s ease-in-out infinite alternate;
+
+  -moz-animation: private-glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes private-glow {
+  from {
+    box-shadow: 0 0 5px #04682D, 0 0 5px #04682D, 0 0 10px #04682D, 0 0 20px #04682D, 0 0 30px #04682D, 0 0 40px #04682D, 0 0 50px #04682D;
+  }
+  to {
+    box-shadow: 0 0 5px #148F47, 0 0 10px #148F47, 0 0 20px #148F47, 0 0 30px #148F47, 0 0 40px #148F47, 0 0 50px #148F47, 0 0 60px #148F47;
+  }
+}
+
