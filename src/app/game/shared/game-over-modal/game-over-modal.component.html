@@ -1,3 +1,42 @@
 <div class="backdrop">
-  
+  <div class="modal-box">
+    <div class="content">
+      <div class="flex-cols">
+        <div class="left-col">
+          <h4>Game Over!</h4>
+          <div class="stats">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Score:</td>
+                  <td class="col-spacer"></td>
+                  <td>{{ score.points }} points</td>
+                </tr>
+                <tr>
+                  <td>Rank:</td>
+                  <td class="col-spacer"></td>
+                  <td>{{ score.rank }}</td>
+                </tr>
+                <tr class="row-spacer"><!-- spacer --></tr>
+                <tr>
+                  <td colspan="3">
+                    <p class="next-rank">
+                      {{ score.messageLeft }}
+                      <span>{{ score.nextRankPoints }}</span>
+                      {{ score.messageRight }}
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- <div class="right-col"></div> -->
+        <!-- placeholder for future charts -->
+      </div>
+      <div class="actions">
+        <button class="hover-anim" routerLink="/hub">Return to HUB</button>
+      </div>
+    </div>
+  </div>
 </div>

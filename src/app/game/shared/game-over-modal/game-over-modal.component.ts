@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { GameScore } from '../../singleplayer/game-manager.service';
 
 @Component({
   selector: 'app-game-over-modal',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-over-modal.component.css']
 })
 export class GameOverModalComponent implements OnInit {
+  @Input() score: GameScore;
 
   constructor() { }
 
