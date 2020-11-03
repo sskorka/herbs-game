@@ -1,6 +1,7 @@
 <div class="bg"></div>
 <div class="fallback-color"><!-- mandatory due to blur on the foreground --></div>
 
+<app-modal [title]="'Illegal move!'" [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
 <div class="component-container">
   <div class="game-container">
     <!-- BUTTON PANEL -->

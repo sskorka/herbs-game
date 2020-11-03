@@ -2,24 +2,29 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 5;
 }
 
 .modal-box {
   position: fixed;
   top: 30vh;
   left: 35vw;
+  z-index: 10;
   width: 30vw;
   padding: 16px;
-  z-index: 10;
   background: white;
-  border-radius: 8px;
   box-shadow: 0 2px 15px rgb(5, 136, 0);
+  border-radius: 8px;
 }
 
 .modal-actions {
   text-align: right;
 }
+
+h4 {
+  font-weight: bold;
+}
+
