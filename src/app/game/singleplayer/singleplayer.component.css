@@ -1,33 +1,3 @@
-button:disabled {
-  background-color: gray;
-}
-
-.col-xs-12 span {
-  color: white;
-}
-
-/* .choosable {
-  outline: thick double rgb(184, 214, 12);
-  outline-offset: -3px;
-}
-
-.endangered {
-  outline: thick double rgb(212, 117, 8);
-  outline-offset: -3px;
-}
-
-.will-die {
-  outline: thick double rgb(236, 4, 4);
-  outline-offset: -3px;
-} */
-
-.must-draw {
-  outline: thick double rgb(200, 3, 69);
-  outline-offset: -3px;
-}
-
-/* OLD CSS ABOVE */
-
 .bg {
   position: absolute;
   z-index: -100;
@@ -129,6 +99,15 @@ button:disabled {
 
 .end-turn-btn {
   background-color: #A6BC67;
+}
+
+button:disabled {
+  background-color: gray;
+}
+
+.must-draw {
+  outline: thick double rgb(200, 3, 69);
+  outline-offset: -3px;
 }
 
 .garden-discardpile-deck {
