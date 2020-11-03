@@ -2,6 +2,15 @@
 <div class="fallback-color"><!-- mandatory due to blur on the foreground --></div>
 
 <app-modal [title]="'Illegal move!'" [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
+<app-game-over-modal [score]="gameState.score" *ngIf="gameState.score.points"></app-game-over-modal>
+<!-- <app-game-over-modal [score]="{
+  points: 38,
+  rank: 'Something something',
+  nextRankPoints: 3,
+  messageLeft: 'Better luck next time! Gather ',
+  messageRight: ' more points to earn the next rank!'
+}"></app-game-over-modal> -->
+
 <div class="component-container">
   <div class="game-container">
     <!-- BUTTON PANEL -->
