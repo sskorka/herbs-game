@@ -1,8 +1,8 @@
 <div class="bg"></div>
 <div class="fallback-color"><!-- mandatory due to blur on the foreground --></div>
 
-<app-modal [title]="'Illegal move!'" [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
-<app-game-over-modal [score]="gameState.score" *ngIf="gameState.score.points"></app-game-over-modal>
+<app-modal class="modal-box" [title]="'Illegal move!'" [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
+<app-game-over-modal class="modal-box" [score]="gameState.score" *ngIf="gameState.score.points"></app-game-over-modal>
 <!-- <app-game-over-modal [score]="{
   points: 38,
   rank: 'Something something',

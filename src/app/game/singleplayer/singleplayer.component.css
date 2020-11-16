@@ -18,6 +18,11 @@
   background-color: #000000;
 }
 
+.modal-box {
+  position: absolute;
+  z-index: 50;
+}
+
 .component-container {
   display: flex;
   justify-content: center;
