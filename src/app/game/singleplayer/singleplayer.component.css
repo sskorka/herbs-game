@@ -111,8 +111,20 @@ button:disabled {
 }
 
 .must-draw {
-  outline: thick double rgb(200, 3, 69);
-  outline-offset: -3px;
+  border-radius: 10px;
+  -webkit-animation: must-draw-glow 1s ease-in-out infinite alternate;
+  animation: must-draw-glow 1s ease-in-out infinite alternate;
+
+  -moz-animation: must-draw-glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes must-draw-glow {
+  from {
+    box-shadow: 0 0 5px #AF337F, 0 0 5px #AF337F, 0 0 10px #AF337F, 0 0 10px #AF337F, 0 0 20px #AF337F, 0 0 20px #AF337F, 0 0 30px #AF337F;
+  }
+  to {
+    box-shadow: 0 0 5px #AF3333, 0 0 10px #AF3333, 0 0 10px #AF3333, 0 0 20px #AF3333, 0 0 30px #AF3333, 0 0 40px #AF3333, 0 0 40px #AF3333;
+  }
 }
 
 .garden-discardpile-deck {

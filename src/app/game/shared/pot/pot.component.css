@@ -10,8 +10,19 @@
 }
 
 .selected {
-  outline: 3px solid rgb(0, 207, 41);
-  outline-offset: -3px;
+  -webkit-animation: selection-glow 1s ease-in-out infinite alternate;
+  animation: selection-glow 1s ease-in-out infinite alternate;
+
+  -moz-animation: selection-glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes selection-glow {
+  from {
+    box-shadow: 0 0 5px #068826, 0 0 5px #068826, 0 0 10px #06884B, 0 0 10px #06884B, 0 0 20px #06884B, 0 0 20px #068872, 0 0 30px #068872;
+  }
+  to {
+    box-shadow: 0 0 5px #109C66, 0 0 10px #109C66, 0 0 10px #108C9C, 0 0 20px #108C9C, 0 0 30px #108C9C, 0 0 40px #108C9C, 0 0 40px #108C9C;
+  }
 }
 
 .pot-container {
