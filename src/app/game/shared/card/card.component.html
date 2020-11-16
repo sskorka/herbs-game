@@ -5,7 +5,8 @@
   >
 </span> -->
 
-<span>
+<div class="card-container"
+  [ngClass]="{'card-container-in-pot': isInPot, 'selected': card.isSelected}">
   <img
     *ngIf="isDeck"
     class="card"
@@ -14,11 +15,11 @@
   <img
     *ngIf="!isDeck && !isCookie"
     [style.background-image]="'url(' + card.graphicsUrl + ')'"
-    [ngClass]="{'card': !isInPot, 'in-pot': isInPot, 'selected': card.isSelected}"
+    class="card"
   >
   <img
     *ngIf="isCookie"
     class="cookie"
     [style.background-image]="'url(' + cookiePath + ')'"
   >
-</span>
+</div>

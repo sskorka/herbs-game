@@ -3,7 +3,7 @@
     class="pot-img"
     [style.background-image]="'url(' + pot.graphicsUrl + ')'"
     [ngClass]="{'selected': pot.isSelected}">
-  <span class="herbs">
+  <span class="herbs" [ngClass]="{'herbs-empty': !pot.herbs.length}">
     <app-card
       class="herb"
       *ngFor="let herb of pot.herbs"

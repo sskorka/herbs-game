@@ -1,15 +1,20 @@
-.card {
+.card-container {
+  position: relative;
+  box-sizing: border-box;
   width: 135px;
   height: 190px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  overflow: hidden;
   border-radius: 5px;
 }
 
-.in-pot {
+.card-container-in-pot {
   width: 100px;
   height: 140px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
