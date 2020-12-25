@@ -104,6 +104,41 @@
 .herb:nth-child(7) {
   left: 9.0em;
 }
-.herb:nth-child(8) {
+
+.herb-pair:nth-child(1) {
+  left: 0;
+}
+.herb-pair:nth-child(2) {
+  left: 0.5em;
+}
+.herb-pair:nth-child(3) {
+  left: 2.0em;
+}
+.herb-pair:nth-child(4) {
+  left: 2.5em;
+}
+.herb-pair:nth-child(5) {
+  left: 4.0em;
+}
+.herb-pair:nth-child(6) {
+  left: 4.5em;
+}
+.herb-pair:nth-child(7) {
+  left: 6.0em;
+}
+.herb-pair:nth-child(8) {
+  left: 6.5em;
+}
+.herb-pair:nth-child(9) {
+  left: 8em;
+}
+.herb-pair:nth-child(10) {
+  left: 8.5em;
+}
+.herb-pair:nth-child(11) {
+  left: 10em;
+}
+.herb-pair:nth-child(12) {
   left: 10.5em;
 }
+
