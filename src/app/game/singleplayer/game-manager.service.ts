@@ -1,3 +1,7 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService, ExtraData } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/user.model';
 import { Card } from '../shared/card/card.model';
 import { Pot, PotName } from '../shared/pot/pot.model';
 
@@ -46,7 +50,18 @@ export interface GameState {
   error: string
 }
 
+export interface Statistics {
+  topScore: number,
+  gamesPlayed: number,
+  herbsLost: number,
+  perfectScores: number
+}
+
+@Injectable()
 export class GameManagerService {
+
+  private user: User;
+  private updateStatsObservable: Observable<ExtraData>;
 
   private deck: Card[] = [];
   private discardedHalf: Card[] = [];
@@ -59,6 +74,8 @@ export class GameManagerService {
 
   private cookieAwarded: boolean = false;
 
+  private overflowCount: number = 0;
+
   private currentAction: CurrentAction;
 
   private placeholderScore: GameScore = {
@@ -69,7 +86,7 @@ export class GameManagerService {
     messageRight: null
   }
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   startGame(): GameState {
     // Angular keeps the structures' state after auto-logout,
@@ -241,10 +258,11 @@ export class GameManagerService {
 
       // if the garden reaches its limit, discard all cards
       if (this.communityGarden.length == GameConstants.COMMUNITY_GARDEN_MAX_HERBS) {
-        const commLength = this.communityGarden.length; // this assignment is MANDATORY!
+        const commLength = this.communityGarden.length; // this assignment is MANDATORY!  // it's been months, i wonder why exactly
         for (let i = 0; i < commLength; i++) {
           this.place(PlaceIn.DiscardPile, this.communityGarden.splice(0, 1));
         }
+        this.overflowCount++;
       }
 
       this.currentAction = CurrentAction.NewTurn;
@@ -426,12 +444,14 @@ export class GameManagerService {
   }
 
   endGame(): GameState {
-    // calculate points, assign the rank and return the gameState object
+    // calculate points, assign the rank, update stats and return the gameState object
     const score: number = this.calculatePoints();
     let rank: Ranks;
     let nextRankPts: number;
     let msg1: string;
     let msg2: string;
+
+    let newStats: Statistics;
 
     console.log(`game over, score: ${score}`);
 
@@ -466,6 +486,26 @@ export class GameManagerService {
       msg1 = `Astonishing! You have mastered the arts of herbalism and shown great patience. Next step: alchemy.`;
       msg2 = '';
     }
+
+    this.user = JSON.parse(localStorage.getItem('userData'));
+    newStats = this.user.stats;
+
+    if(this.user.stats.topScore < score)
+      newStats.topScore = score;
+    if(rank === Ranks.Rank1)
+      newStats.perfectScores++;
+    newStats.gamesPlayed++;
+    newStats.herbsLost += this.overflowCount * 5;
+
+    this.updateStatsObservable = this.authService.updateExtraData(this.user.id, this.user.name, newStats);
+
+    this.updateStatsObservable.subscribe(
+      res => { },
+      errMessage => {
+        console.log("updateStatsObservable: ", errMessage);
+        return this.getGameState(errMessage, null);
+      }
+    );
 
     return this.getGameState(null, { points: score, rank: rank, nextRankPoints: nextRankPts, messageLeft: msg1, messageRight: msg2 } );
   }

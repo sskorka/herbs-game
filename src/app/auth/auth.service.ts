@@ -7,9 +7,11 @@ import { environment } from 'src/environments/environment';
 
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { Statistics } from '../game/singleplayer/game-manager.service';
 
-export interface NameData {
-  name: string
+export interface ExtraData {
+  name: string,
+  stats: Statistics
 }
 
 export interface AuthResponseData {
@@ -46,21 +48,44 @@ export class AuthService {
         this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
       }),
       concatMap((res: AuthResponseData) => {
-        console.log("res in switchMap:", res);
-        return this.registerName(res.localId, _name);
+        console.log("res in concatMap:", res);
+        return this.registerExtraData(res.localId, _name);
       }),
-      tap((nameRes: NameData) => this.assignNameToUser(nameRes.name))
+      tap((extraDataRes: ExtraData) => this.assignExtraDataToUser(extraDataRes))
     );
   }
 
-  registerName(_uid: string, _name: string): Observable<any> {
-    return this.http.put<NameData>(
-      environment.db.names + _uid + '.json',
+  registerExtraData(_uid: string, _name: string): Observable<any> {
+    return this.http.put<ExtraData>(
+      environment.db.extraData + _uid + '.json',
       {
-        name: _name
+        name: _name,
+        stats:
+        {
+          topScore: 0,
+          gamesPlayed: 0,
+          herbsLost: 0,
+          perfectScores: 0
+        }
+      }
+      ).pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateExtraData(_uid: string, _name: string, _stats: Statistics): Observable<any> {
+    return this.http.put<ExtraData>(
+      environment.db.extraData + _uid + '.json',
+      {
+        name: _name,
+        stats: _stats
       }
     ).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError),
+      mergeMap(() => {
+        return this.fetchExtraData(_uid);
+      }),
+      tap((extraData: ExtraData) => this.assignExtraDataToUser(extraData))
     );
   }
 
@@ -74,30 +99,31 @@ export class AuthService {
         password: _password,
         returnSecureToken: true
       }
-    ).pipe(
+      ).pipe(
       catchError(this.handleError),
       tap((res: AuthResponseData) => {
-        this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
+          this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
       }),
       mergeMap((res: AuthResponseData) => {
-        return this.fetchName(res.localId);
+        return this.fetchExtraData(res.localId);
       }),
-      tap((nameRes: NameData) => this.assignNameToUser(nameRes.name))
-    );
+      tap((extraDataRes: ExtraData) => this.assignExtraDataToUser(extraDataRes))
+      );
   }
 
-  fetchName(_uid: string): Observable<NameData> {
-    return this.http.get<NameData>(
-      environment.db.names + _uid + '.json'
-    ).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  assignNameToUser(_name: string): void {
+  assignExtraDataToUser(extraData: ExtraData): void {
     const userData: User = JSON.parse(localStorage.getItem('userData'));
-    userData.name = _name;
+    userData.name = extraData.name;
+    userData.stats = extraData.stats;
     localStorage.setItem('userData', JSON.stringify(userData));
+  }
+
+  fetchExtraData(_uid: string): Observable<ExtraData> {
+    return this.http.get<ExtraData>(
+      environment.db.extraData + _uid + '.json'
+      ).pipe(
+        catchError(this.handleError)
+      );
   }
 
   logout() {

@@ -11,7 +11,8 @@ export const environment = {
   },
   db: {
     default: 'https://herbs-game.firebaseio.com',
-    names: 'https://herbs-game.firebaseio.com/names/'
+    names: 'https://herbs-game.firebaseio.com/names/',
+    extraData: 'https://herbs-game.firebaseio.com/extradata/'
   }
 };
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from 'src/app/auth/user.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +15,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('userData'))
+    // this.user = this.authService.user.next(null);
     console.log("LOADED PROFILE:");
     console.log(this.user);
   }

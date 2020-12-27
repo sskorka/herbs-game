@@ -24,20 +24,20 @@
       </thead>
       <tbody>
         <tr>
+          <td>Top score:</td>
+          <td>{{ user.stats.topScore }}</td>
+        </tr>
+        <tr>
           <td>Number of games played:</td>
-          <td>12</td>
+          <td>{{ user.stats.gamesPlayed }}</td>
         </tr>
         <tr>
           <td>Herbs lost due to overflow:</td>
-          <td>4</td>
+          <td>{{ user.stats.herbsLost }}</td>
         </tr>
         <tr>
           <td>Perfect scores:</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>Favourite herb:</td>
-          <td>Lavender</td>
+          <td>{{ user.stats.perfectScores }}</td>
         </tr>
       </tbody>
     </table>

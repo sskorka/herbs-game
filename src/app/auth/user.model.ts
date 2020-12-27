@@ -1,5 +1,8 @@
+import { Statistics } from '../game/singleplayer/game-manager.service';
+
 export class User {
   public name: string;
+  public stats: Statistics;
 
   constructor(
     public id: string,
