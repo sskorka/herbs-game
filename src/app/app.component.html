@@ -1,5 +1,15 @@
-<app-auth *ngIf="isAuthOn" (onCloseEvent)="closeLogin()"></app-auth>
-<app-header (loginEvent)="openLogin()"></app-header>
+<div class="low-res-info">
+  <div class="info">
+    <p>Whoops! Your screen is too small to view this page!</p>
+    <p>Visit us again from another device to enjoy the full experience!</p>
+    <p>We recommend devices such as tablets or PCs, with a minimum screen width of 1250px.</p>
+  </div>
+</div>
 
-<router-outlet></router-outlet>
+<div class="full-res-view">
+  <app-auth *ngIf="isAuthOn" (onCloseEvent)="closeLogin()"></app-auth>
+  <app-header (loginEvent)="openLogin()"></app-header>
+
+  <router-outlet></router-outlet>
+</div>
 

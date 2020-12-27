@@ -1,0 +1,29 @@
+@media only screen and (min-width: 1250px) {
+  .low-res-info {
+    display: none;
+  }
+}
+
+.low-res-info {
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  font-size: 24px;
+  background-color: black;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+}
+
+@media only screen and (max-width: 1249px) {
+  .full-res-view {
+    display: none;
+  }
+}
