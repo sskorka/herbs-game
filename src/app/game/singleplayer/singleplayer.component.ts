@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { Card } from '../shared/card/card.model';
 import { GameManagerService, GameState, CurrentAction, GameConstants } from './game-manager.service';
 import { Pot, PotName } from '../shared/pot/pot.model';
@@ -8,7 +8,8 @@ import { Pot, PotName } from '../shared/pot/pot.model';
   templateUrl: './singleplayer.component.html',
   styleUrls: ['./singleplayer.component.css']
 })
-export class SingleplayerComponent implements OnInit, DoCheck {
+export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked {
+  @ViewChild('info') information: ElementRef;
 
   gameState: GameState;
   gameActions = CurrentAction;
@@ -36,6 +37,21 @@ export class SingleplayerComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.anyGardenChoosable = this.gardensChoosable.community || this.gardensChoosable.private || this.gardensChoosable.discard;
+  }
+
+  ngAfterViewChecked() {
+    let newInformation: string;
+
+    if(this.gameState.currentAction == this.gameActions.NewTurn)
+      newInformation = "Choose action";
+    else if(this.gameState.currentAction == this.gameActions.PotAction)
+      newInformation = "Pick up herbs and plant them in a pot, or end the phase";
+    else if(this.gameState.currentAction == this.gameActions.PlantAction && !this.anyGardenChoosable)
+      newInformation = "Draw a card";
+    else if(this.anyGardenChoosable)
+      newInformation = "Plant the herb in one of the available areas!";
+
+    this.information.nativeElement.innerHTML = newInformation;
   }
 
   onLogGameState() {

@@ -3,27 +3,19 @@
 
 <app-modal class="modal-box" [title]="'Illegal move!'" [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
 <app-game-over-modal class="modal-box" [score]="gameState.score" *ngIf="gameState.score.points"></app-game-over-modal>
-<!-- <app-game-over-modal [score]="{
-  points: 38,
-  rank: 'Something something',
-  nextRankPoints: 3,
-  messageLeft: 'Better luck next time! Gather ',
-  messageRight: ' more points to earn the next rank!'
-}"></app-game-over-modal> -->
 
 <div class="component-container">
   <div class="game-container">
     <!-- BUTTON PANEL -->
     <div class="button-panel">
       <div class="button-panel-left">
-        <input type="checkbox" id="show-names" name="show-container-names">
-        <label for="show-names">Always show container names</label>
         <button
           class="cookie-btn cookie-unawarded"
           [ngClass]="{'cookie-awarded': gameState.cookieAwarded}"
         >
             {{ gameState.cookieAwarded ? "Cookie earned!" : "Cookie not yet awarded" }}
         </button>
+        <span #info class="current-action-info"></span>
       </div>
       <div class="button-panel-right">
         <button class="plant-btn" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">Plant in pot</button>

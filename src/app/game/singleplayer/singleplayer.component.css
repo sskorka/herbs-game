@@ -61,6 +61,11 @@
   outline: none;
 }
 
+.button-panel-left {
+  display: flex;
+  align-items: center;
+}
+
 .button-panel-left label {
   margin-left: 5px;
 }
@@ -94,6 +99,11 @@
   -webkit-filter: grayscale(0);
 }
 
+.current-action-info {
+  margin-left: 15px;
+  color: aliceblue;
+}
+
 .plant-btn {
   background-color: #67BC9E;
 }
@@ -111,7 +121,6 @@ button:disabled {
 }
 
 .must-draw {
-  border-radius: 10px;
   -webkit-animation: must-draw-glow 1s ease-in-out infinite alternate;
   animation: must-draw-glow 1s ease-in-out infinite alternate;
 
