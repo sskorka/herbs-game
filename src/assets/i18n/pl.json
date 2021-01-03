@@ -1,145 +1,145 @@
 {
-  "Auth" : {
-    "RegisterTitle" : "Register",
-    "SignInTitle" : "Sign in",
-    "EmailLabel" : "Email address",
-    "EmailPlaceholder" : "Enter your email address",
-    "PasswordLabel" : "Password",
-    "PasswordPlaceholder" : "Enter your password",
-    "NameLabel" : "Name",
-    "NamePlaceholder" : "Enter your name",
-    "ForgotPassword" : "Forgot password?",
-    "CreateAccountSwitch" : "...or create a new account now!",
-    "SignInSwitch" : "Sign in instead",
-    "LoginButton" : "Login",
-    "RegisterButton" : "Register"
+  "Auth": {
+    "RegisterTitle": "Rejestracja",
+    "SignInTitle": "Logowanie",
+    "EmailLabel": "Adres e-mail",
+    "EmailPlaceholder": "Podaj swój adres e-mail",
+    "PasswordLabel": "Hasło",
+    "PasswordPlaceholder": "Podaj hasło",
+    "NameLabel": "Imię",
+    "NamePlaceholder": "Podaj swoje imię",
+    "ForgotPassword": "Zapomniałeś hasła?",
+    "CreateAccountSwitch": "...lub załóż nowe konto.",
+    "SignInSwitch": "Zaloguj się",
+    "LoginButton": "Zaloguj",
+    "RegisterButton": "Załóż konto"
   },
   "Header": {
-      "SignIn" : "Logowanie / Rejestracja",
-      "GoToHub" : "Powrót do HUBa",
-      "Logout" : "Wyloguj się"
+    "SignIn": "Logowanie / Rejestracja",
+    "GoToHub": "Powrót do HUBa",
+    "Logout": "Wyloguj się"
   },
-  "Footer" : {
-    "QuickLinks" : "Szybkie Linki",
-    "Home" : "Strona główna",
-    "SignIn" : "Logowanie / Rejestracja",
-    "FollowMe" : "Obserwuj",
-    "Contact" : "Kontakt",
-    "OrUseThisForm" : "...lub skorzystaj z formularza",
-    "Message" : "Wiadomość",
-    "Send" : "Wyślij"
+  "Footer": {
+    "QuickLinks": "Skróty",
+    "Home": "Strona główna",
+    "SignIn": "Logowanie / Rejestracja",
+    "FollowMe": "Obserwuj",
+    "Contact": "Kontakt",
+    "OrUseThisForm": "...lub skorzystaj z formularza",
+    "Message": "Wiadomość",
+    "Send": "Wyślij"
   },
-  "Modal" : {
-    "Close" : "Close"
+  "Modal": {
+    "Close": "Zamknij"
   },
-  "Home" : {
-    "H1" : "Sign up and play!",
-    "H2" : "TITLE is a free-to-play implementation of a kickstarter-funded card game Herbaceous. Become a herbalist in a solitaire variant of the game or check back soon for a full multiplayer experience!",
-    "PlayButton" : "Play Now"
+  "Home": {
+    "H1": "Załóż konto i graj!",
+    "H2": "TITLE to darmowa, przeglądarkowa wersja sfinansowanej w serwisie Kickstarter gry karcianej Niezłe Ziółka. Zostań zielarzem grając w jednoosobowy wariant gry lub już wkrótce ciesz się zabawą w trybie dla wielu graczy!",
+    "PlayButton": "Zagraj"
   },
-  "HUB" : {
-    "GameMode" : {
-      "GameMode" : "Game mode",
-      "Singleplayer" : "Singleplayer",
-      "SingleplayerDesc" : "Put your gardening skills to the test in the solo variant of the game.",
-      "Multiplayer" : "Multiplayer",
-      "MultiplayerDesc" : "Standard variant of the game. (Coming soon!)",
-      "Theme" : "Theme",
-      "Default" : "Default",
+  "HUB": {
+    "GameMode": {
+      "GameMode": "Tryb gry",
+      "Singleplayer": "Jednoosobowy",
+      "SingleplayerDesc": "Sprawdź swoje zdolności ogrodnicze w trybie solo.",
+      "Multiplayer": "Wieloosobowy",
+      "MultiplayerDesc": "Standardowy wariant gry. (Już wkrótce!)",
+      "Theme": "Skórka",
+      "Default": "Domyślny",
       "Start": "Start",
-      "Mode" : {
-        "Selected" : "Selected",
-        "MinimumShort" : "min"
+      "Mode": {
+        "Selected": "Wybrano",
+        "MinimumShort": "min"
       }
     },
-    "Profile" : {
-      "Greeting" : "Hello",
-      "Summary" : "Summary",
-      "ViewScoreChart" : "View Score Chart",
-      "Stats" : {
-        "TopScore" : "Top score",
-        "GamesPlayed" : "Number of games played",
-        "HerbsLost" : "Herbs lost due to overflow",
-        "PerfectScores" : "Perfect scores"
+    "Profile": {
+      "Greeting": "Cześć",
+      "Summary": "Statystyki",
+      "ViewScoreChart": "Zestawienie globalne",
+      "Stats": {
+        "TopScore": "Najwyższy wynik",
+        "GamesPlayed": "Liczba rozegranych gier",
+        "HerbsLost": "Liczba straconych ziół",
+        "PerfectScores": "Liczba perfekcyjnych wyników"
       }
     }
   },
-  "Game" : {
-    "Shared" : {
-      "GameOverModal" : {
-        "GameOver" : "Game Over",
-        "Score" : "Score",
-        "Points" : "points",
-        "Rank" : "Rank",
-        "ReturnToHub" : "Return to HUB"
+  "Game": {
+    "Shared": {
+      "GameOverModal": {
+        "GameOver": "Koniec Gry",
+        "Score": "Wynik",
+        "Points": "pkt",
+        "Rank": "Ranga",
+        "ReturnToHub": "Powrót do HUBu"
       },
-      "Models" : {
-        "Pots" : {
-          "LargePot" : "Duży dzban",
-          "SmallPots" : "Small Pots",
-          "WoodenPlanter" : "Wooden Planter",
-          "GlassJar" : "Glass Jar"
+      "Models": {
+        "Pots": {
+          "LargePot": "Duża Donica",
+          "SmallPots": "Małe Doniczki",
+          "WoodenPlanter": "Drewniana Skrzynka",
+          "GlassJar": "Szklany Wazon"
         },
-        "Herbs" : {
-          "Bay" : "Bay",
-          "Dill" : "Dill",
-          "Tarragon" : "Tarragon",
-          "Saffron" : "Saffron",
-          "Lavender" : "Lavender",
-          "Rosemary" : "Rosemary",
-          "Sage" : "Sage",
-          "Mint" : "Mint",
-          "Chive" : "Chive",
-          "Thyme" : "Thyme"
-        },
-        "Errors" : {
-          "NoPotSelected" : "Select the pot to plant your herbs in.",
-          "PotOverflow" : "This move would exceed the herbs limit in this pot!",
-          "NoSpecials" : "You can't plant special herbs here!",
-          "InvalidSelection" : "Your selection does not match pot's requirements!"
+        "Herbs": {
+          "Bay": "Wawrzyn",
+          "Dill": "Koper",
+          "Tarragon": "Estragon",
+          "Saffron": "Szafran",
+          "Lavender": "Lawenda",
+          "Rosemary": "Rozmaryn",
+          "Sage": "Szałwia",
+          "Mint": "Mięta",
+          "Chive": "Szczypiorek",
+          "Thyme": "Tymianek"
         }
+      },
+      "Errors": {
+        "InvalidSelection": "Zaznaczone karty nie spełniają wymagań naczynia!",
+        "NoPotSelected": "Zaznacz naczynie, aby zasadzić w nim wybrane ziółka.",
+        "NoSpecials": "Tu nie można zasadzić ziół specjalnych!",
+        "PotOverflow": "Twój ruch wykroczyłby poza limit dostępnego miejsca w tym naczyniu!"
       }
     },
-    "SP" : {
-      "IllegalMove" : "Illegal move!",
-      "CookieEarned" : "Cookie earned!",
-      "CookieNotEarned" : "Cookie not yet awarded",
-      "Buttons" : {
-        "PlantInPot" : "Plant in pot",
-        "DrawCard" : "Draw card",
-        "EndTurn" : "End turn"
+    "SP": {
+      "IllegalMove": "Nieprawidłowy ruch!",
+      "CookieEarned": "Ciastko zdobyte!",
+      "CookieNotEarned": "Ciastko nieprzyznane",
+      "Buttons": {
+        "PlantInPot": "Zasadź",
+        "DrawCard": "Weź kartę",
+        "EndTurn": "Kończ turę"
       },
-      "Info" : {
-        "NewTurn" : "Choose action",
-        "PotAction" : "Pick up herbs and plant them in a pot, or end the phase",
-        "DrawCard" : "Draw a card",
-        "Plant" : "Plant the herb in one of the available areas!"
+      "Info": {
+        "NewTurn": "Wybierz akcję",
+        "PotAction": "Zbierz ziółka i posadź je w naczyniu, lub zakończ turę",
+        "DrawCard": "Pociągnij kartę",
+        "Plant": "Zasadź ziółko w jednyn z dostępnych naczyń!"
       },
-      "Ranks" : {
-        "Rank6" : "Fledgling Grower",
-        "Rank5" : "Beginning Planter",
-        "Rank4" : "Clever Cultivator",
-        "Rank3" : "Talented Gardener",
-        "Rank2" : "Professional Herbalist",
-        "Rank1" : "True Green Thumb Harvester"
+      "Ranks": {
+        "Rank6": "Ogrodnik Amator",
+        "Rank5": "Uczeń Szkoły Ogrodniczej",
+        "Rank4": "Młody Ogrodnik",
+        "Rank3": "Doświadczony Ogrodnik",
+        "Rank2": "Profesjonalny Ogrodnik",
+        "Rank1": "Mistrz Ogrodnictwa"
       },
-      "RankMessages" : {
-        "Rank6Msg1" : "Better luck next time! Gather ",
-        "Rank6Msg2" : " more points to earn the next rank!",
-        "Rank5Msg1" : "Every herbalist starts somewhere, right? Gather ",
-        "Rank5Msg2" : " more points to earn the next rank!",
-        "Rank4Msg1" : "You've made some real progress! But your journey is just beginning. You need ",
-        "Rank4Msg2" : " more points to earn the next rank!",
-        "Rank3Msg1" : "That wasn't so bad! You will make a decent herbalist if you make an extra effort! Get ",
-        "Rank3Msg2" : " more points to earn the next rank.",
-        "Rank2Msg1" : "Good job! You're almost at the top of the ladder! Earn ",
-        "Rank2Msg2" : " more points to earn the final rank.",
-        "Rank1Msg" : "Astonishing! You have mastered the arts of herbalism and shown great patience. Next step: alchemy."
+      "RankMessages": {
+        "Rank6Msg1": "Następnym razem Ci się uda! Zdobądź ",
+        "Rank6Msg2": " pkt by uzyskać wyższą rangę!",
+        "Rank5Msg1": "Początki są zawsze trudne, prawda? Zdobądź ",
+        "Rank5Msg2": " pkt by uzyskać wyższą rangę!",
+        "Rank4Msg1": "Robisz postępy, ale twoja przygoda się dopiero zaczyna! Potrzebujesz ",
+        "Rank4Msg2": " pkt by uzyskać wyższą rangę!",
+        "Rank3Msg1": "Nieźle! Przy odrobinie wysiłku zostaniesz przyzwoitym zielarzem! Zdobądź ",
+        "Rank3Msg2": " pkt by uzyskać wyższą rangę.",
+        "Rank2Msg1": "Dobra robota! Jesteś już prawie na szczycie! Zdobądź ",
+        "Rank2Msg2": " pkt by uzyskać najwyższą rangę.",
+        "Rank1Msg": "Piorunująco! Udało Ci się osiągnąć mistrzostwo w zielarstwie i wykazać się cierpliwością. Następny krok: znachorstwo."
       },
-      "CommunityGarden" : "Community Garden",
-      "DiscardPile" : "Discard Pile",
-      "PrivateGarden" : "Private Garden",
-      "Deck" : "Deck"
+      "CommunityGarden": "Wspólny Ogród",
+      "DiscardPile": "Kompostownik",
+      "PrivateGarden": "Prywatny Ogród",
+      "Deck": "Talia"
     }
   }
 }
