@@ -23,12 +23,12 @@ export enum CurrentAction {
 }
 
 export enum Ranks {
-  Rank6 = "Fledgling Grower", // worst
-  Rank5 = "Beginning Planter",
-  Rank4 = "Clever Cultivator",
-  Rank3 = "Talented Gardener",
-  Rank2 = "Professional Herbalist",
-  Rank1 = "True Green Thumb Harvester" // best
+  Rank6, // worst
+  Rank5,
+  Rank4,
+  Rank3,
+  Rank2,
+  Rank1 // best
 }
 
 export interface GameScore {
