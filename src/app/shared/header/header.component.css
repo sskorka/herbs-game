@@ -18,9 +18,24 @@ a {
   justify-content: space-between;
 }
 
-.header-container .title {
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 60px;
   margin-left: 5%;
   font-size: 25px;
+  outline: none;
+}
+
+.title:hover {
+  background: rgba(255, 255, 255, 0.267);
+  cursor: pointer;
+}
+
+.title:active {
+  background: rgba(255, 255, 255, 0.397);
 }
 
 .header-right {
