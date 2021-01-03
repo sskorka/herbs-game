@@ -1,0 +1,145 @@
+{
+  "Auth" : {
+    "RegisterTitle" : "Register",
+    "SignInTitle" : "Sign in",
+    "EmailLabel" : "Email address",
+    "EmailPlaceholder" : "Enter your email address",
+    "PasswordLabel" : "Password",
+    "PasswordPlaceholder" : "Enter your password",
+    "NameLabel" : "Name",
+    "NamePlaceholder" : "Enter your name",
+    "ForgotPassword" : "Forgot password?",
+    "CreateAccountSwitch" : "...or create a new account now!",
+    "SignInSwitch" : "Sign in instead",
+    "LoginButton" : "Login",
+    "RegisterButton" : "Register"
+  },
+  "Header": {
+      "SignIn" : "Logowanie / Rejestracja",
+      "GoToHub" : "Powrót do HUBa",
+      "Logout" : "Wyloguj się"
+  },
+  "Footer" : {
+    "QuickLinks" : "Szybkie Linki",
+    "Home" : "Strona główna",
+    "SignIn" : "Logowanie / Rejestracja",
+    "FollowMe" : "Obserwuj",
+    "Contact" : "Kontakt",
+    "OrUseThisForm" : "...lub skorzystaj z formularza",
+    "Message" : "Wiadomość",
+    "Send" : "Wyślij"
+  },
+  "Modal" : {
+    "Close" : "Close"
+  },
+  "Home" : {
+    "H1" : "Sign up and play!",
+    "H2" : "TITLE is a free-to-play implementation of a kickstarter-funded card game Herbaceous. Become a herbalist in a solitaire variant of the game or check back soon for a full multiplayer experience!",
+    "PlayButton" : "Play Now"
+  },
+  "HUB" : {
+    "GameMode" : {
+      "GameMode" : "Game mode",
+      "Singleplayer" : "Singleplayer",
+      "SingleplayerDesc" : "Put your gardening skills to the test in the solo variant of the game.",
+      "Multiplayer" : "Multiplayer",
+      "MultiplayerDesc" : "Standard variant of the game. (Coming soon!)",
+      "Theme" : "Theme",
+      "Default" : "Default",
+      "Start": "Start",
+      "Mode" : {
+        "Selected" : "Selected",
+        "MinimumShort" : "min"
+      }
+    },
+    "Profile" : {
+      "Greeting" : "Hello",
+      "Summary" : "Summary",
+      "ViewScoreChart" : "View Score Chart",
+      "Stats" : {
+        "TopScore" : "Top score",
+        "GamesPlayed" : "Number of games played",
+        "HerbsLost" : "Herbs lost due to overflow",
+        "PerfectScores" : "Perfect scores"
+      }
+    }
+  },
+  "Game" : {
+    "Shared" : {
+      "GameOverModal" : {
+        "GameOver" : "Game Over",
+        "Score" : "Score",
+        "Points" : "points",
+        "Rank" : "Rank",
+        "ReturnToHub" : "Return to HUB"
+      },
+      "Models" : {
+        "Pots" : {
+          "LargePot" : "Duży dzban",
+          "SmallPots" : "Small Pots",
+          "WoodenPlanter" : "Wooden Planter",
+          "GlassJar" : "Glass Jar"
+        },
+        "Herbs" : {
+          "Bay" : "Bay",
+          "Dill" : "Dill",
+          "Tarragon" : "Tarragon",
+          "Saffron" : "Saffron",
+          "Lavender" : "Lavender",
+          "Rosemary" : "Rosemary",
+          "Sage" : "Sage",
+          "Mint" : "Mint",
+          "Chive" : "Chive",
+          "Thyme" : "Thyme"
+        },
+        "Errors" : {
+          "NoPotSelected" : "Select the pot to plant your herbs in.",
+          "PotOverflow" : "This move would exceed the herbs limit in this pot!",
+          "NoSpecials" : "You can't plant special herbs here!",
+          "InvalidSelection" : "Your selection does not match pot's requirements!"
+        }
+      }
+    },
+    "SP" : {
+      "IllegalMove" : "Illegal move!",
+      "CookieEarned" : "Cookie earned!",
+      "CookieNotEarned" : "Cookie not yet awarded",
+      "Buttons" : {
+        "PlantInPot" : "Plant in pot",
+        "DrawCard" : "Draw card",
+        "EndTurn" : "End turn"
+      },
+      "Info" : {
+        "NewTurn" : "Choose action",
+        "PotAction" : "Pick up herbs and plant them in a pot, or end the phase",
+        "DrawCard" : "Draw a card",
+        "Plant" : "Plant the herb in one of the available areas!"
+      },
+      "Ranks" : {
+        "Rank6" : "Fledgling Grower",
+        "Rank5" : "Beginning Planter",
+        "Rank4" : "Clever Cultivator",
+        "Rank3" : "Talented Gardener",
+        "Rank2" : "Professional Herbalist",
+        "Rank1" : "True Green Thumb Harvester"
+      },
+      "RankMessages" : {
+        "Rank6Msg1" : "Better luck next time! Gather ",
+        "Rank6Msg2" : " more points to earn the next rank!",
+        "Rank5Msg1" : "Every herbalist starts somewhere, right? Gather ",
+        "Rank5Msg2" : " more points to earn the next rank!",
+        "Rank4Msg1" : "You've made some real progress! But your journey is just beginning. You need ",
+        "Rank4Msg2" : " more points to earn the next rank!",
+        "Rank3Msg1" : "That wasn't so bad! You will make a decent herbalist if you make an extra effort! Get ",
+        "Rank3Msg2" : " more points to earn the next rank.",
+        "Rank2Msg1" : "Good job! You're almost at the top of the ladder! Earn ",
+        "Rank2Msg2" : " more points to earn the final rank.",
+        "Rank1Msg" : "Astonishing! You have mastered the arts of herbalism and shown great patience. Next step: alchemy."
+      },
+      "CommunityGarden" : "Community Garden",
+      "DiscardPile" : "Discard Pile",
+      "PrivateGarden" : "Private Garden",
+      "Deck" : "Deck"
+    }
+  }
+}
