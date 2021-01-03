@@ -8,7 +8,7 @@
 
 <div class="full-res-view">
   <app-auth *ngIf="isAuthOn" (onCloseEvent)="closeLogin()"></app-auth>
-  <app-header (loginEvent)="openLogin()"></app-header>
+  <app-header (loginEvent)="openLogin()" (langChanged)="changeLang($event)"></app-header>
 
   <router-outlet></router-outlet>
 </div>

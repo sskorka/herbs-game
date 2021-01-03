@@ -5,8 +5,9 @@
       <ul class="header-right-list">
         <li class="no-hover">
           <div class="lang-selector">
-            <span class="flag-gb"></span>
-            <fa-icon [icon]="faCaretDown"></fa-icon>
+            <span class="flag flag-gb" (click)="changeLang('en')"></span>
+            <p class="lang-separator">/</p>
+            <span class="flag flag-pl" (click)="changeLang('pl')"></span>
           </div>
         </li>
         <li *ngIf="!isAuthenticated" (click)="openLogin()">

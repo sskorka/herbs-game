@@ -50,4 +50,8 @@ export class AppComponent implements OnInit, OnDestroy {
   closeLogin() {
     this.isAuthOn = false;
   }
+
+  changeLang(lang: string) {
+    this.translate.use(lang);
+  }
 }

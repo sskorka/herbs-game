@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
 
   @Output() loginEvent = new EventEmitter<void>();
+  @Output() langChanged = new EventEmitter<string>();
 
   constructor(private authService: AuthService) { }
 
@@ -37,6 +38,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
+  }
+
+  changeLang(lang: string) {
+    this.langChanged.emit(lang);
   }
 
 }
