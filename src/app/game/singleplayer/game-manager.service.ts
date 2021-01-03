@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { AuthService, ExtraData } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
@@ -86,7 +87,7 @@ export class GameManagerService {
     messageRight: null
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private translate: TranslateService) {}
 
   startGame(): GameState {
     // Angular keeps the structures' state after auto-logout,
@@ -277,7 +278,7 @@ export class GameManagerService {
 
       // check if cards have been selected without a pot (error)
       if ((arg.comm.length > 0 || arg.priv.length > 0) && !arg.pot) {
-        return this.getGameState("Select the pot to plant your herbs in.");
+        return this.getGameState(this.translate.instant("Game.Shared.Errors.NoPotSelected"));
       }
 
       // check if user wants to skip pot action
@@ -289,18 +290,18 @@ export class GameManagerService {
         // check if there's not going to be any overflow before planting
         let pot: Pot = this.pots.find(p => p.potName == arg.pot);
         if((arg.comm.length + arg.priv.length + pot.herbs.length) > pot.maxHerbs) {
-          return this.getGameState("Maximum number of herbs reached!");
+          return this.getGameState(this.translate.instant("Game.Shared.Errors.PotOverflow"));
         }
 
         // if not, check if there are special herbs in the selection
         // those are only allowed in the Glass Jar
         if([...arg.comm, ...arg.priv].find(h => h.isSpecial) && !(pot.potName == PotName.GlassJar)) {
-          return this.getGameState("You can't plant special herbs here!");
+          return this.getGameState(this.translate.instant("Game.Shared.Errors.NoSpecials"));
         }
 
         // if not, check if the selection matches pot's requirements
         if(!pot.herbsValid([...arg.comm, ...arg.priv], pot.herbs)) {
-          return this.getGameState("Your selection does not match pot's requirements!");
+          return this.getGameState(this.translate.instant("Game.Shared.Errors.InvalidSelection"));
         }
 
         // if not, plant from both arrays
@@ -458,32 +459,32 @@ export class GameManagerService {
     if (score < 37) {
       rank = Ranks.Rank6;
       nextRankPts = 37 - score;
-      msg1 = 'Better luck next time! Gather ';
-      msg2 = ' more points to earn the next rank!';
+      msg1 = this.translate.instant('Game.SP.RankMessages.Rank6Msg1');
+      msg2 = this.translate.instant('Game.SP.RankMessages.Rank6Msg2');
     } else if (score >= 37 && score <= 41) {
       rank = Ranks.Rank5;
       nextRankPts = 42 - score;
-      msg1 = 'Every herbalist starts somewhere, right? Gather ';
-      msg2 = ' more points to earn the next rank!';
+      msg1 = this.translate.instant('Game.SP.RankMessages.Rank5Msg1');
+      msg2 = this.translate.instant('Game.SP.RankMessages.Rank5Msg2');
     } else if (score >= 42 && score <= 46) {
       rank = Ranks.Rank4;
       nextRankPts = 47 - score;
-      msg1 = 'You\'ve made some real progress! But your journey is just beginning. You need ';
-      msg2 = ' more points to earn the next rank!';
+      msg1 = this.translate.instant('Game.SP.RankMessages.Rank4Msg1');
+      msg2 = this.translate.instant('Game.SP.RankMessages.Rank4Msg2');
     } else if (score >= 47 && score <= 51) {
       rank = Ranks.Rank3;
       nextRankPts = 52 - score;
-      msg1 = 'That wasn\'t so bad! You will make a decent herbalist if you make an extra effort! Get ';
-      msg2 = ' more points to earn the next rank.';
+      msg1 = this.translate.instant('Game.SP.RankMessages.Rank3Msg1');
+      msg2 = this.translate.instant('Game.SP.RankMessages.Rank3Msg2');
     } else if (score >= 52 && score <= 56) {
       rank = Ranks.Rank2;
       nextRankPts = 57 - score;
-      msg1 = 'Good job! You\'re almost at the top of the ladder! Earn ';
-      msg2 = ' more points to earn the final rank.';
+      msg1 = this.translate.instant('Game.SP.RankMessages.Rank2Msg1');
+      msg2 = this.translate.instant('Game.SP.RankMessages.Rank2Msg2');
     } else if (score >= 57) {
       rank = Ranks.Rank1;
       nextRankPts = -1;
-      msg1 = `Astonishing! You have mastered the arts of herbalism and shown great patience. Next step: alchemy.`;
+      msg1 = this.translate.instant('Game.SP.RankMessages.Rank1Msg');
       msg2 = '';
     }
 

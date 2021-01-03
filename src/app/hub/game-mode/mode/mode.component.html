@@ -6,12 +6,12 @@
   <div class="additional">
     <div class="additional-selected">
       <fa-icon [icon]="faCheck" class="tick"></fa-icon>
-      <p>SELECTED</p>
+      <p>{{ 'HUB.GameMode.Mode.Selected' | translate | uppercase }}</p>
     </div>
     <div class="additional-bullets">
       <span class="bullet">
         <p class="bullet-time-number">{{ estimatedGameTime }}</p>
-        <p class="bullet-time-string">min</p>
+        <p class="bullet-time-string">{{ 'HUB.GameMode.Mode.MinimumShort' | translate | lowercase }}</p>
       </span>
       <span class="bullet">
         <fa-icon *ngIf="isSingleplayer" [icon]="faUser"></fa-icon>

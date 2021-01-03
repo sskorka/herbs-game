@@ -13,34 +13,34 @@
 
 <div class="profile">
   <div class="big-header">
-    <p>Hello, {{ user.name }}!</p>
+    <p>{{ 'HUB.Profile.Greeting' | translate }}, {{ user.name }}!</p>
   </div>
   <div class="stats">
     <table>
       <thead>
         <tr>
-          <th colspan="2">SUMMARY</th>
+          <th colspan="2">{{ 'HUB.Profile.Summary' | translate | uppercase }}</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Top score:</td>
+          <td>{{ 'HUB.Profile.Stats.TopScore' | translate }}:</td>
           <td>{{ user.stats.topScore }}</td>
         </tr>
         <tr>
-          <td>Number of games played:</td>
+          <td>{{ 'HUB.Profile.Stats.GamesPlayed' | translate }}:</td>
           <td>{{ user.stats.gamesPlayed }}</td>
         </tr>
         <tr>
-          <td>Herbs lost due to overflow:</td>
+          <td>{{ 'HUB.Profile.Stats.HerbsLost' | translate }}:</td>
           <td>{{ user.stats.herbsLost }}</td>
         </tr>
         <tr>
-          <td>Perfect scores:</td>
+          <td>{{ 'HUB.Profile.Stats.PerfectScores' | translate }}:</td>
           <td>{{ user.stats.perfectScores }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <button class="hover-anim">View Score Chart</button>
+  <button class="hover-anim">{{ 'HUB.Profile.ViewScoreChart' | translate }}</button>
 </div>

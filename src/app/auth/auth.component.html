@@ -4,61 +4,61 @@
     <div class="plant-img"></div>
     <div class="gradient-svg">
       <div class="login-form">
-        <h1 class="login-form-header">{{ isInRegisterMode ? "Register" : "Sign in" }}</h1>
+        <h1 class="login-form-header">{{ (isInRegisterMode ? "Auth.RegisterTitle" : "Auth.SignInTitle") | translate }}</h1>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
 
           <!-- <p *ngIf="!isInRegisterMode">Don't have an account yet? <a style="cursor: pointer;" (click)="onToggleRegistration()">Click here to register</a></p>
           <p *ngIf="isInRegisterMode">Already have an account? <a style="cursor: pointer;" (click)="onToggleRegistration()">Log in</a></p> -->
 
           <div class="login-input-container">
-            <label for="email">Email address:</label>
+            <label for="email">{{ 'Auth.EmailLabel' | translate }}:</label>
             <br>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Enter your email address"
+              placeholder="{{ 'Auth.EmailPlaceholder' | translate }}"
               required
               email
               ngModel
               [disabled]="isLoading">
           </div>
           <div class="login-input-container" *ngIf="isInRegisterMode">
-            <label for="name">Name:</label>
+            <label for="name">{{ 'Auth.NameLabel' | translate }}:</label>
             <br>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Enter your name"
+              placeholder="{{ 'Auth.NamePlaceholder' | translate }}"
               required
               ngModel
               [disabled]="isLoading">
           </div>
           <div class="login-input-container">
-            <label for="password">Password:</label>
+            <label for="password">{{ 'Auth.PasswordLabel' | translate }}:</label>
             <br>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Enter your password"
+              placeholder="{{ 'Auth.PasswordPlaceholder' | translate }}"
               required
               minlength="6"
               ngModel
               [disabled]="isLoading">
               <br>
               <div class="login-link-right">
-                <a class="login-link login-link-right" target="_blank" [routerLink]="['/recovery']">Forgot password?</a>
+                <a class="login-link login-link-right" target="_blank" [routerLink]="['/recovery']">{{ 'Auth.ForgotPassword' | translate }}</a>
               </div>
           </div>
           <div>
-            <button *ngIf="!isLoading" type="submit" [disabled]="!authForm.valid">{{ isInRegisterMode ? 'Register' : 'Login'}}</button>
+            <button *ngIf="!isLoading" type="submit" [disabled]="!authForm.valid">{{ (isInRegisterMode ? 'Auth.RegisterButton' : 'Auth.LoginButton') | translate }}</button>
             <app-loading-dots *ngIf="isLoading"></app-loading-dots>
           </div>
           <div class="login-link-center">
-            <a class="login-link" *ngIf="!isInRegisterMode" (click)="onToggleRegistration()">...or create a new account now!</a>
-            <a class="login-link" *ngIf="isInRegisterMode" (click)="onToggleRegistration()">Sign in instead</a>
+            <a class="login-link" *ngIf="!isInRegisterMode" (click)="onToggleRegistration()">{{ 'Auth.CreateAccountSwitch' | translate }}</a>
+            <a class="login-link" *ngIf="isInRegisterMode" (click)="onToggleRegistration()">{{ 'Auth.SignInSwitch' | translate }}</a>
           </div>
         </form>
           </div>

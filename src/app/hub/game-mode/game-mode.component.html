@@ -1,27 +1,27 @@
 <div class="frame">
-  <div class="header"><p>Game mode:</p></div>
+  <div class="header"><p>{{ "HUB.GameMode.GameMode" | translate }}:</p></div>
   <div class="modes">
     <app-mode
-      [title]="'Singleplayer'"
-      [description]="'Put your gardening skills to the test in the solo variant of the game.'"
+      [title]="'HUB.GameMode.Singleplayer' | translate"
+      [description]="'HUB.GameMode.SingleplayerDesc' | translate"
       [isSelected]="true"
       [isSingleplayer]="true"
       [estimatedGameTime]="20">
     </app-mode>
     <app-mode
-      [title]="'Multiplayer'"
-      [description]="'Standard variant of the game. (Coming soon!)'"
+      [title]="'HUB.GameMode.Multiplayer' | translate"
+      [description]="'HUB.GameMode.MultiplayerDesc' | translate"
       [isSelected]="false"
       [isSingleplayer]="false"
       [estimatedGameTime]="30">
     </app-mode>
   </div>
-  <div class="header"><p>Theme:</p></div>
+  <div class="header"><p>{{ 'HUB.GameMode.Theme' | translate}}:</p></div>
   <div class="theme-dropdown">
-    <input list="themes" name="theme" id="theme" disabled placeholder="Herbaceous (Default)">
+    <input list="themes" name="theme" id="theme" disabled placeholder="Herbaceous ({{ 'HUB.GameMode.Default' | translate}})">
     <!-- <datalist id="themes">
       <option value="Herbaceous (Default)">
     </datalist> -->
   </div>
-  <div class="start"><button class="hover-anim" routerLink="/solitaire">Start!</button></div>
+  <div class="start"><button class="hover-anim" routerLink="/solitaire">{{ 'HUB.GameMode.Start' | translate }}!</button></div>
 </div>

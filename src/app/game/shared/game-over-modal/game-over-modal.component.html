@@ -3,19 +3,19 @@
     <div class="content">
       <div class="flex-cols">
         <div class="left-col">
-          <h4>Game Over!</h4>
+          <h4>{{ 'Game.Shared.GameOverModal.GameOver' | translate }}!</h4>
           <div class="stats">
             <table>
               <tbody>
                 <tr>
-                  <td>Score:</td>
+                  <td>{{ 'Game.Shared.GameOverModal.Score' | translate }}:</td>
                   <td class="col-spacer"></td>
-                  <td>{{ score.points }} points</td>
+                  <td>{{ score.points }} {{ 'Game.Shared.GameOverModal.Points' | translate | lowercase }}</td>
                 </tr>
                 <tr>
-                  <td>Rank:</td>
+                  <td>{{ 'Game.Shared.GameOverModal.Rank' | translate }}:</td>
                   <td class="col-spacer"></td>
-                  <td>{{ score.rank }}</td>
+                  <td>{{ getTranslation(score.rank) }}</td>
                 </tr>
                 <tr class="row-spacer"><!-- spacer --></tr>
                 <tr>
@@ -35,7 +35,7 @@
         <!-- placeholder for future charts -->
       </div>
       <div class="actions">
-        <button class="hover-anim" routerLink="/hub">Return to HUB</button>
+        <button class="hover-anim" routerLink="/hub">{{ 'Game.Shared.GameOverModal.ReturnToHub' | translate }}</button>
       </div>
     </div>
   </div>

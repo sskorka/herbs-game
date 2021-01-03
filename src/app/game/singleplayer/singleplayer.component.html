@@ -1,7 +1,7 @@
 <div class="bg"></div>
 <div class="fallback-color"><!-- mandatory due to blur on the foreground --></div>
 
-<app-modal class="modal-box" [title]="'Illegal move!'" [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
+<app-modal class="modal-box" [title]="'Game.SP.IllegalMove' | translate" [message]="gameState.error" *ngIf="gameState.error" (closeEvent)="onHandleError()"></app-modal>
 <app-game-over-modal class="modal-box" [score]="gameState.score" *ngIf="gameState.score.points"></app-game-over-modal>
 
 <div class="component-container">
@@ -13,14 +13,14 @@
           class="cookie-btn cookie-unawarded"
           [ngClass]="{'cookie-awarded': gameState.cookieAwarded}"
         >
-            {{ gameState.cookieAwarded ? "Cookie earned!" : "Cookie not yet awarded" }}
+            {{ (gameState.cookieAwarded ? 'Game.SP.CookieEarned' : 'Game.SP.CookieNotEarned') | translate }}
         </button>
         <span #info class="current-action-info"></span>
       </div>
       <div class="button-panel-right">
-        <button class="plant-btn" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">Plant in pot</button>
-        <button class="draw-btn" [disabled]="gameState.currentAction != gameActions.NewTurn || !gameState.deck.length" (click)="onPlant()">Draw card</button>
-        <button class="end-turn-btn" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">End turn</button>
+        <button class="plant-btn" [disabled]="gameState.currentAction != gameActions.NewTurn" (click)="onPot()">{{ 'Game.SP.Buttons.PlantInPot' | translate }}</button>
+        <button class="draw-btn" [disabled]="gameState.currentAction != gameActions.NewTurn || !gameState.deck.length" (click)="onPlant()">{{ 'Game.SP.Buttons.DrawCard' | translate }}</button>
+        <button class="end-turn-btn" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">{{ 'Game.SP.Buttons.EndTurn' | translate }}</button>
       </div>
       <!-- TODO: question mark sign here -->
     </div>
@@ -36,7 +36,7 @@
           'will-die': communityGardenAboutToDie}"
         (click)="onGardenClick($event)"
       >
-        <p>COMMUNITY GARDEN</p>
+        <p>{{ 'Game.SP.CommunityGarden' | translate | uppercase }}</p>
         <app-card
         class="card-margin"
         *ngFor="let card of gameState.communityGarden"
@@ -50,11 +50,11 @@
         [ngClass]="{'discard-choosable': gardensChoosable.discard}"
         (click)="onGardenClick($event)"
       >
-        <p>DISCARD PILE</p>
+        <p>{{ 'Game.SP.DiscardPile' | translate | uppercase }}</p>
         <app-card [card]="gameState.discardPile[gameState.discardPile.length - 1]"></app-card>
       </div>
       <div class="garden deck">
-        <p>DECK</p>
+        <p>{{ 'Game.SP.Deck' | translate | uppercase }}</p>
         <app-card
         [isDeck]="!anyGardenChoosable"
         [card]="gameState.deck[0]"
@@ -78,7 +78,7 @@
       [ngClass]="{'private-choosable': gardensChoosable.private}"
       (click)="onGardenClick($event)"
     >
-      <p>PRIVATE GARDEN</p>
+      <p>{{ 'Game.SP.PrivateGarden' | translate | uppercase }}</p>
       <app-card
       class="card-margin"
       *ngFor="let card of gameState.privateGarden"

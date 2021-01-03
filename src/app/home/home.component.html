@@ -5,14 +5,14 @@
     </div>
     <div class="jumbo-left">
       <h1>
-        Sign up and play!
+        {{ "Home.H1" | translate }}
       </h1>
       <p class="description">
-        TITLE is a free-to-play implementation of a kickstarter-funded card game Herbaceous. Become a herbalist in a solitaire variant of the game or check back soon for a full multiplayer experience!
+        {{ "Home.H2" | translate }}
       </p>
       <div class="play-btn no-selection" (click)="onPlay()">
         <span class="arrow"></span>
-        <p>Play Now</p>
+        <p>{{ "Home.PlayButton" | translate }}</p>
       </div>
     </div>
   </div>

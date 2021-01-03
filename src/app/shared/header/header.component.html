@@ -11,15 +11,15 @@
           </div>
         </li>
         <li *ngIf="!isAuthenticated" (click)="openLogin()">
-          <a>Sign in / Sign up</a>
+          <a>{{ 'Header.SignIn' | translate }}</a>
           <fa-icon [icon]="faSignInAlt" class="icon"></fa-icon>
         </li>
         <li *ngIf="isAuthenticated" routerLink="/hub" routerLinkActive="hidden">
-          <a>Go to HUB</a>
+          <a>{{ 'Header.GoToHub' | translate }}</a>
           <fa-icon [icon]="faGamepad" class="icon"></fa-icon>
         </li>
         <li *ngIf="isAuthenticated" (click)="onLogout()">
-          <a>Logout</a>
+          <a>{{ 'Header.Logout' | translate }}</a>
           <fa-icon [icon]="faSignOutAlt" class="icon"></fa-icon>
         </li>
       </ul>

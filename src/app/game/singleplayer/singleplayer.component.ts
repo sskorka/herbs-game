@@ -2,6 +2,7 @@ import { Component, OnInit, DoCheck, ViewChild, ElementRef, AfterViewChecked } f
 import { Card } from '../shared/card/card.model';
 import { GameManagerService, GameState, CurrentAction, GameConstants } from './game-manager.service';
 import { Pot, PotName } from '../shared/pot/pot.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-singleplayer',
@@ -28,7 +29,7 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
   plantSequence = new Set();
 
   // inject the gameManager for communication with the game logic
-  constructor(private gameMgr: GameManagerService) { }
+  constructor(private gameMgr: GameManagerService, private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.gameState = this.gameMgr.startGame();
@@ -43,13 +44,13 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     let newInformation: string;
 
     if(this.gameState.currentAction == this.gameActions.NewTurn)
-      newInformation = "Choose action";
+      newInformation = this.translate.instant('Game.SP.Info.NewTurn');
     else if(this.gameState.currentAction == this.gameActions.PotAction)
-      newInformation = "Pick up herbs and plant them in a pot, or end the phase";
+      newInformation = this.translate.instant('Game.SP.Info.PotAction');
     else if(this.gameState.currentAction == this.gameActions.PlantAction && !this.anyGardenChoosable)
-      newInformation = "Draw a card";
+      newInformation = this.translate.instant('Game.SP.Info.DrawCard');
     else if(this.anyGardenChoosable)
-      newInformation = "Plant the herb in one of the available areas!";
+      newInformation = this.translate.instant('Game.SP.Info.Plant');
 
     this.information.nativeElement.innerHTML = newInformation;
   }
