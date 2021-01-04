@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ToastNotificationsModule } from 'ngx-toast-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoadingDotsComponent } from './shared/loading-dots/loading-dots.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ModeComponent } from './hub/game-mode/mode/mode.component';
+import { ComingsoonToastComponent } from './shared/comingsoon-toast/comingsoon-toast.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,6 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingDotsComponent,
     ForgotPasswordComponent,
     ModeComponent,
+    ComingsoonToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
+    ToastNotificationsModule.forRoot({
+      component: ComingsoonToastComponent,
+      duration: 3000,
+      type: 'info',
+      position: 'bottom-center',
+      preventDuplicates: true
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
