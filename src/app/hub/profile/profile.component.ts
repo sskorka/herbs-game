@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from 'src/app/auth/user.model';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Toaster } from 'ngx-toast-notifications';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +13,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class ProfileComponent implements OnInit {
   user: User = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private toaster: Toaster,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('userData'))
@@ -20,4 +24,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.user);
   }
 
+  onViewChart(): void {
+    this.toaster.open(this.translate.instant("ComingSoon"));
+  }
 }

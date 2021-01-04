@@ -23,9 +23,9 @@
     </div>
     <div class="content">
       <ul>
-        <li><a>Facebook</a></li>
-        <li><a>LinkedIn</a></li>
-        <li><a>Instagram</a></li>
+        <li (click)="comingSoon()"><a>Facebook</a></li>
+        <li (click)="comingSoon()"><a>LinkedIn</a></li>
+        <li (click)="comingSoon()"><a>Instagram</a></li>
       </ul>
     </div>
   </div>
@@ -46,9 +46,9 @@
           <div class="contact-form-container">
             <p>{{ 'Footer.OrUseThisForm' | translate }}:</p>
             <form (ngSubmit)="onContactFormSubmit(f)" #f="ngForm">
-              <input type="email" name="email" placeholder="E-mail" autocomplete="off" ngModel required email>
+              <input type="email" name="email" placeholder="E-mail" autocomplete="off" (input)="onContactFormInput()" ngModel required email>
               <br>
-              <textarea name="message" placeholder="{{ 'Footer.Message' | translate}}" rows="5" cols="25" autocomplete="off" ngModel required maxlength="800"></textarea>
+              <textarea name="message" placeholder="{{ 'Footer.Message' | translate}}" rows="5" cols="25" autocomplete="off" (input)="onContactFormInput()" ngModel required maxlength="800"></textarea>
               <br>
               <button type="submit" class="send-btn hover-anim" [disabled]="!f.valid">{{ 'Footer.Send' | translate }}!</button>
             </form>
