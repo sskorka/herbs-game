@@ -6,8 +6,8 @@
     </div>
     <div class="content">
       <ul>
-        <li><a>{{ 'Footer.Home' | translate }}</a></li>
-        <li><a>{{ 'Footer.SignIn' | translate }}</a></li>
+        <li><a routerLink="/home">{{ 'Footer.Home' | translate }}</a></li>
+        <li><a (click)="onLogin()">{{ 'Footer.SignIn' | translate }}</a></li>
         <li>
           <div class="github">
             <a href="https://github.com/sskorka/herbs-game" target="_blank" class="github-btn"></a>
