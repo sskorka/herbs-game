@@ -27,7 +27,9 @@
     "Contact": "Contact",
     "OrUseThisForm": "...or use this form",
     "Message": "Message",
-    "Send": "Send"
+    "Send": "Send",
+    "Bug": "Nice! You've found a bug!",
+    "Demo": "This form is for demo purposes only. If you wish to contact me, please use the email address above :)"
   },
   "Modal": {
     "Close": "Close"
@@ -141,5 +143,6 @@
       "PrivateGarden": "Private Garden",
       "Deck": "Deck"
     }
-  }
+  },
+  "ComingSoon": "Coming Soon!"
 }

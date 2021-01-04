@@ -27,7 +27,9 @@
     "Contact": "Kontakt",
     "OrUseThisForm": "...lub skorzystaj z formularza",
     "Message": "Wiadomość",
-    "Send": "Wyślij"
+    "Send": "Wyślij",
+    "Demo": "Formularz kontaktowy jest obecnie do celów demonstracyjnych. W przypadku chęci kontaktu, użyj powyższego adresu e-mail :)",
+    "Bug": "Brawo! Znalazłeś błąd!"
   },
   "Modal": {
     "Close": "Zamknij"
@@ -141,5 +143,6 @@
       "PrivateGarden": "Prywatny Ogród",
       "Deck": "Talia"
     }
-  }
+  },
+  "ComingSoon": "Już wkrótce!"
 }
