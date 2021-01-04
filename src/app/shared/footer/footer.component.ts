@@ -17,8 +17,9 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onContactFormSubmit(form: NgForm) {
-    console.log(form);
+  onContactFormSubmit(form: NgForm): void {
+    form.resetForm();
+  }
 
   onContactFormInput(): void {
     this.toaster.open(this.translate.instant("Footer.Demo"));
