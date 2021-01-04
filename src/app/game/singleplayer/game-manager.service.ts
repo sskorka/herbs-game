@@ -74,6 +74,7 @@ export class GameManagerService {
   private pots: Pot[] = [];
 
   private cookieAwarded: boolean = false;
+  private lastPhase: boolean = false;
 
   private overflowCount: number = 0;
 
@@ -328,12 +329,15 @@ export class GameManagerService {
       }
 
       // switch to the mandatory plant action
-      // if deck is empty - NewTurn state until no more actions are possible
-      this.currentAction = (this.deck.length) ? CurrentAction.PlantAction : CurrentAction.NewTurn;
-
-      // if no more actions are possible - END THE GAME
-      // we return the GameState from the endGame() so that the component has access to the score object
-      if (!this.deck.length && this.noMoreMoves()) {
+      // if deck is empty - NewTurn state for one last time, then END THE GAME
+      if(this.deck.length) {
+        this.currentAction = CurrentAction.PlantAction;
+      } else if(!this.deck.length && !this.lastPhase && !this.noMoreMoves()) {
+        this.currentAction = CurrentAction.NewTurn;
+        this.lastPhase = true;
+      } else if((!this.deck.length && this.lastPhase) || (!this.deck.length && this.noMoreMoves())) {  // TODO no need to check this.noMoreMoves() twice
+        // if no more actions are possible - END THE GAME
+        // we return the GameState from the endGame() so that the component has access to the score object
         return this.endGame();
       }
 
