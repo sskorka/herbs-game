@@ -19,7 +19,6 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { SingleplayerComponent } from './game/singleplayer/singleplayer.component';
 import { CardComponent } from './game/shared/card/card.component';
-import { GardenComponent } from './game/shared/garden/garden.component';
 import { DeckComponent } from './game/shared/deck/deck.component';
 import { PotComponent } from './game/shared/pot/pot.component';
 import { GameManagerService } from './game/singleplayer/game-manager.service';
@@ -48,7 +47,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ModalComponent,
     SingleplayerComponent,
     CardComponent,
-    GardenComponent,
     DeckComponent,
     PotComponent,
     GameOverModalComponent,
