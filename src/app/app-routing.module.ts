@@ -6,7 +6,6 @@ import { HubComponent } from './hub/hub.component';
 import { SingleplayerComponent } from './game/singleplayer/singleplayer.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
-import { AppComponent } from './app.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home'},

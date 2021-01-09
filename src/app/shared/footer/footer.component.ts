@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { NgForm } from '@angular/forms';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { Toaster } from 'ngx-toast-notifications';
 import { TranslateService } from '@ngx-translate/core';
 

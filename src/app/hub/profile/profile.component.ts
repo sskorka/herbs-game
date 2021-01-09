@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TranslateService } from '@ngx-translate/core';
+import { Toaster } from 'ngx-toast-notifications';
 import { User } from 'src/app/auth/user.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Toaster } from 'ngx-toast-notifications';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',

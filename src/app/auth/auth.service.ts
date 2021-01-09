@@ -1,12 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { catchError, tap, concatMap, mergeMap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 
+import { environment } from 'src/environments/environment';
 import { User } from './user.model';
-import { Router } from '@angular/router';
 import { Statistics } from '../game/singleplayer/game-manager.service';
 
 export interface ExtraData {

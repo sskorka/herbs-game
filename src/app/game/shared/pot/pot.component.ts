@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Card } from '../card/card.model';
 import { Pot, PotName } from './pot.model';
 
 @Component({

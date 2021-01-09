@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
 import { AuthService, AuthResponseData, ExtraData } from './auth.service';
 
 @Component({
