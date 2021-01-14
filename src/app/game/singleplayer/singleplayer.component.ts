@@ -33,7 +33,6 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
 
   ngOnInit(): void {
     this.gameState = this.gameMgr.startGame();
-    console.log('state looks as follows:', this.gameState);
   }
 
   ngDoCheck(): void {
@@ -53,12 +52,6 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
       newInformation = this.translate.instant('Game.SP.Info.Plant');
 
     this.information.nativeElement.innerHTML = newInformation;
-  }
-
-  onLogGameState() {
-    console.log('GameState:', this.gameState);
-    console.log('anyGardenChoosable:', this.anyGardenChoosable);
-    console.log('gardensChoosable:', this.gardensChoosable);
   }
 
   // POT PHASE:

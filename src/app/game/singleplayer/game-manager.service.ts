@@ -449,8 +449,6 @@ export class GameManagerService {
 
     let newStats: Statistics;
 
-    console.log(`game over, score: ${score}`);
-
     if (score < 37) {
       rank = Ranks.Rank6;
       nextRankPts = 37 - score;
@@ -498,7 +496,6 @@ export class GameManagerService {
     this.updateStatsObservable.subscribe(
       res => { },
       errMessage => {
-        console.log("updateStatsObservable: ", errMessage);
         return this.getGameState(errMessage, null);
       }
     );

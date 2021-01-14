@@ -15,9 +15,7 @@ export class ProfileComponent implements OnInit {
   constructor(private toaster: Toaster, private translate: TranslateService) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('userData'))
-    console.log("LOADED PROFILE:");
-    console.log(this.user);
+    this.user = JSON.parse(localStorage.getItem('userData'));
   }
 
   onViewChart(): void {

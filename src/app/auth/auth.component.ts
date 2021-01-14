@@ -47,8 +47,7 @@ export class AuthComponent implements OnInit {
     }
 
     authObservable.subscribe(
-        response => {
-          console.log("auth.component observable response:", response);
+      response => {
           this.onClose();
           this.isLoading = false;
           this.router.navigate(['/hub']);

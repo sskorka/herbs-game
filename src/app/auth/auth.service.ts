@@ -47,7 +47,6 @@ export class AuthService {
         this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
       }),
       concatMap((res: AuthResponseData) => {
-        console.log("res in concatMap:", res);
         return this.registerExtraData(res.localId, _name);
       }),
       tap((extraDataRes: ExtraData) => this.assignExtraDataToUser(extraDataRes))
