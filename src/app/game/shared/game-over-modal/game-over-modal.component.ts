@@ -31,5 +31,4 @@ export class GameOverModalComponent implements OnInit {
         return this.translate.instant('Game.SP.Ranks.Rank1');
     }
   }
-
 }

@@ -6,10 +6,6 @@
       <div class="login-form">
         <h1 class="login-form-header">{{ (isInRegisterMode ? "Auth.RegisterTitle" : "Auth.SignInTitle") | translate }}</h1>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-
-          <!-- <p *ngIf="!isInRegisterMode">Don't have an account yet? <a style="cursor: pointer;" (click)="onToggleRegistration()">Click here to register</a></p>
-          <p *ngIf="isInRegisterMode">Already have an account? <a style="cursor: pointer;" (click)="onToggleRegistration()">Log in</a></p> -->
-
           <div class="login-input-container">
             <label for="email">{{ 'Auth.EmailLabel' | translate }}:</label>
             <br>

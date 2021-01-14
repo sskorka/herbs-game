@@ -66,11 +66,9 @@ export class GameManagerService {
 
   private deck: Card[] = [];
   private discardedHalf: Card[] = [];
-
   private communityGarden: Card[] = [];
   private privateGarden: Card[] = [];
   private discardPile: Card[] = [];
-
   private pots: Pot[] = [];
 
   private cookieAwarded: boolean = false;
@@ -107,10 +105,6 @@ export class GameManagerService {
     this.place(PlaceIn.CommunityGarden, this.deck.splice(0, 2));
     this.place(PlaceIn.PrivateGarden, this.deck.splice(0, 3));
     this.place(PlaceIn.DiscardPile, this.deck.splice(0, 1));
-
-    // this.plant(PotName.LargePot, this.deck.splice(0,1));
-    // this.plant(PotName.LargePot, this.deck.splice(0,1));
-    // this.plant(PotName.LargePot, this.deck.splice(0,1));
 
     // And the first turn begins!
     this.currentAction = CurrentAction.NewTurn;
@@ -273,9 +267,6 @@ export class GameManagerService {
     else {
       // TODO check if the collection matches the real game state
       // this will be especially mandatory in the multiplayer version
-
-      // if (arg.comm.length > 0)
-      //   if (arg.comm.every(h => this.communityGarden.includes(h)))
 
       // check if cards have been selected without a pot (error)
       if ((arg.comm.length > 0 || arg.priv.length > 0) && !arg.pot) {

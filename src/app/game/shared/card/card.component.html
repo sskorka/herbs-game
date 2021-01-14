@@ -1,10 +1,3 @@
-<!-- <span>
-  <img
-    [style.background-image]="!isDeck ? 'url(' + card.graphicsUrl + ')' : 'url(' + deckPath + ')'"
-    [ngClass]="{'card':!isInPot && !isBun, 'in-pot': isInPot, 'selected': card.isSelected}"
-  >
-</span> -->
-
 <div class="card-container"
   [ngClass]="{'card-container-in-pot': isInPot, 'selected': card.isSelected}">
   <img
@@ -13,13 +6,8 @@
     [style.background-image]="'url(' + deckPath + ')'"
   >
   <img
-    *ngIf="!isDeck && !isCookie"
+    *ngIf="!isDeck"
     [style.background-image]="'url(' + card.graphicsUrl + ')'"
     class="card"
-  >
-  <img
-    *ngIf="isCookie"
-    class="cookie"
-    [style.background-image]="'url(' + cookiePath + ')'"
   >
 </div>

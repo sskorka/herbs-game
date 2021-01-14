@@ -22,7 +22,6 @@
         <button class="draw-btn" [disabled]="gameState.currentAction != gameActions.NewTurn || !gameState.deck.length" (click)="onPlant()">{{ 'Game.SP.Buttons.DrawCard' | translate }}</button>
         <button class="end-turn-btn" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">{{ 'Game.SP.Buttons.EndTurn' | translate }}</button>
       </div>
-      <!-- TODO: question mark sign here -->
     </div>
 
     <!-- BOARD -->

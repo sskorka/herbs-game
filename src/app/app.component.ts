@@ -10,9 +10,9 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  // true if login modal should be opened
+  /** true if login modal should be opened */
   isAuthOn: boolean = false;
-  // user login status
+  /** user login status */
   isAuthenticated: boolean = false;
   private userSub: Subscription;
 

@@ -12,13 +12,10 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class ProfileComponent implements OnInit {
   user: User = null;
 
-  constructor(private authService: AuthService,
-    private toaster: Toaster,
-    private translate: TranslateService) { }
+  constructor(private toaster: Toaster, private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('userData'))
-    // this.user = this.authService.user.next(null);
     console.log("LOADED PROFILE:");
     console.log(this.user);
   }

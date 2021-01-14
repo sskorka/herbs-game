@@ -1,6 +1,4 @@
 .footer {
-  /* position: absolute;
-  bottom: 0; */
   display: flex;
   justify-content: space-evenly;
   width: 100%;
@@ -19,8 +17,6 @@
 .title p {
   display: inline-block;
   font-size: 32px;
-
-/* position: absolute; */
   transform: translate(6%, -25%);
 
   margin-block-end: 0;
@@ -136,8 +132,6 @@ input:focus {
   font-size: 22px;
   line-height: 32px;
   border: none;
-
-/* background: radial-gradient(112.77% 487.58% at 86.62% 50%, #7BC579 0%, #DBE987 46.88%, #5DA700 100%); */
   border-radius: 8px;
 }
 

@@ -89,8 +89,6 @@ export class AuthService {
   }
 
   login(_email: string, _password: string) {
-    let returnedName: string = "";
-
     return this.http.post<AuthResponseData>(
       environment.endpoints.signin + environment.API_KEY,
       {
