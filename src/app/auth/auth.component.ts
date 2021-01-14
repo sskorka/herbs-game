@@ -60,15 +60,15 @@ export class AuthComponent implements OnInit {
       );
   }
 
-  onToggleRegistration() {
+  onToggleRegistration(): void {
     this.isInRegisterMode = !this.isInRegisterMode;
   }
 
-  onHandleError() {
+  onHandleError(): void {
     this.error = null;
   }
 
-  onClose() {
+  onClose(): void {
     this.onCloseEvent.emit();
   }
 }

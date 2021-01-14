@@ -33,7 +33,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  signup(_email: string, _name: string, _password: string) {
+  signup(_email: string, _name: string, _password: string): Observable<any> {
     return this.http.post<AuthResponseData>(
       environment.endpoints.signup + environment.API_KEY,
       {
@@ -87,7 +87,7 @@ export class AuthService {
     );
   }
 
-  login(_email: string, _password: string) {
+  login(_email: string, _password: string): Observable<any> {
     return this.http.post<AuthResponseData>(
       environment.endpoints.signin + environment.API_KEY,
       {
@@ -122,7 +122,7 @@ export class AuthService {
       );
   }
 
-  logout() {
+  logout(): void {
     this.user.next(null);
     this.router.navigate(['/home']);
     localStorage.removeItem('userData');
@@ -132,7 +132,7 @@ export class AuthService {
     this.tokenExpirationTimer = null;
   }
 
-  autoLogin() {
+  autoLogin(): void {
     // If data in localstorage exist, convert to object
     const userData: {
       id: string,
@@ -161,13 +161,13 @@ export class AuthService {
     }
   }
 
-  autoLogout(expirationTime: number) {
+  autoLogout(expirationTime: number): void {
     this.tokenExpirationTimer = setTimeout(
       () => this.logout(),
       expirationTime);
   }
 
-  private handleAuthentication(uid: string, email: string, token: string, expiresIn: number) {
+  private handleAuthentication(uid: string, email: string, token: string, expiresIn: number): void {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(uid, email, token, expirationDate);
     this.user.next(user);
@@ -175,7 +175,7 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
-  private handleError(err: HttpErrorResponse) {
+  private handleError(err: HttpErrorResponse): Observable<any> {
     // TODO: log the error object on the server
     let errMessage = 'A mysterious error occurred! Try again and please remind the developer to implement a better error handling system. Thanks.';
 

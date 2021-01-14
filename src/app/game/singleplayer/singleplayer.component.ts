@@ -39,7 +39,7 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     this.anyGardenChoosable = this.gardensChoosable.community || this.gardensChoosable.private || this.gardensChoosable.discard;
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     let newInformation: string;
 
     if(this.gameState.currentAction == this.gameActions.NewTurn)
@@ -60,7 +60,7 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
   //
   // PLANT PHASE:
   // check onDeckClick()
-  onCardClick(card: Card | Pot) {
+  onCardClick(card: Card | Pot): void {
 
     // don't select if not in pot phase
     if (this.gameState.currentAction != this.gameActions.PotAction) {
@@ -79,7 +79,7 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
 
   // if plantSequence is empty, show the card and wait for player's choice of garden
   // if plantSequence is 2 characters long, the sequence can autofinish and then endAction()
-  onDeckClick() {
+  onDeckClick(): void {
 
     // unclickable if not plant action or garden selection
     if (this.gameState.currentAction != this.gameActions.PlantAction || this.anyGardenChoosable) {
@@ -100,7 +100,7 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
   }
 
   // when player chooses one of the three gardens to plant the herb
-  onGardenClick(event: Event) {
+  onGardenClick(event: Event): void {
 
     // react only if necessary
     if(!this.anyGardenChoosable) {
@@ -171,17 +171,17 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     }
   }
 
-  onPot() {
+  onPot(): void {
     this.gameState = this.gameMgr.finishAction(this.gameActions.PotAction)
   }
 
-  onPlant() {
+  onPlant(): void {
     this.gameState = this.gameMgr.finishAction(this.gameActions.PlantAction)
   }
 
   // this gets called only on user click, so only due to the pot phase being finished or skipped
   // NOT after plant phase
-  onEndAction() {
+  onEndAction(): void {
     let comm: Card[] = this.gameState.communityGarden.filter(h => h.isSelected);
     let priv: Card[] = this.gameState.privateGarden.filter(h => h.isSelected);
     let pot: Pot = this.gameState.pots.find(p => p.isSelected);
@@ -208,11 +208,11 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     }
   }
 
-  onHandleError() {
+  onHandleError(): void {
     this.gameState.error = null;
   }
 
-  onConfirmGameOver() {
+  onConfirmGameOver(): void {
     this.gameState.score = null;
   }
 }

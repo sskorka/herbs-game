@@ -111,7 +111,7 @@ export class GameManagerService {
     return this.getGameState();
   }
 
-  private clearAllData() {
+  private clearAllData(): void {
     this.deck = [];
     this.discardedHalf = [];
     this.communityGarden = [];
@@ -121,7 +121,7 @@ export class GameManagerService {
     this.cookieAwarded = false;
   }
 
-  private generateDeck() {
+  private generateDeck(): void {
     // A deck consists of 72 cards: 63 herbs and 9 special herbs
     // There are 7 different herbs (9 of each) and 3 special herbs (3 of each)
 

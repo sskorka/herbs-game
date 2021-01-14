@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onPlay() {
+  onPlay(): void {
     this.authService.playNowEvent.emit();
   }
 }
