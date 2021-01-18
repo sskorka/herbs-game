@@ -1,8 +1,11 @@
 import { Component, OnInit, DoCheck, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Card } from '../shared/card/card.model';
-import { GameManagerService, GameState, CurrentAction, GameConstants } from './game-manager.service';
+import { GameManagerService } from './game-manager.service';
 import { Pot, PotName } from '../shared/pot/pot.model';
+import { GameState } from './models/game-state';
+import { CurrentAction } from './models/current-action';
+import { GameConstants } from './models/game-constants';
 
 @Component({
   selector: 'app-singleplayer',

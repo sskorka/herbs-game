@@ -1,10 +1,5 @@
 import { Card } from '../card/card.model';
 
-interface ScoreTable {
-  numberOfCards: number,
-  score: number
-}
-
 // names must be consistent in both gameManager and model, thus the use of enum
 export enum PotName {
   LargePot = "Large Pot",

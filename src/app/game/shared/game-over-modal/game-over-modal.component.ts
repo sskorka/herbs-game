@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { GameScore, Ranks } from '../../singleplayer/game-manager.service';
+import { GameScore } from '../../singleplayer/models/game-score';
+import { Ranks } from '../../singleplayer/models/ranks';
 
 @Component({
   selector: 'app-game-over-modal',

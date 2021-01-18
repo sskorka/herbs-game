@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpParams } from '@angular/common/http';
 import { exhaustMap, take } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { User } from './models/user';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor{

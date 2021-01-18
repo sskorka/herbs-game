@@ -2,7 +2,9 @@ import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService, AuthResponseData, ExtraData } from './auth.service';
+import { AuthService } from './auth.service';
+import { AuthResponseData } from './models/auth-response-data';
+import { ExtraData } from './models/extra-data';
 
 @Component({
   selector: 'app-auth',

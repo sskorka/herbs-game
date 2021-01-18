@@ -3,24 +3,11 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { catchError, tap, concatMap, mergeMap } from 'rxjs/operators';
-
 import { environment } from 'src/environments/environment';
-import { User } from './user.model';
-import { Statistics } from '../game/singleplayer/game-manager.service';
-
-export interface ExtraData {
-  name: string,
-  stats: Statistics
-}
-
-export interface AuthResponseData {
-  idToken: string,
-  email: string,
-  refreshToken: string,
-  expiresIn: string,
-  localId: string,
-  registered?: boolean
-}
+import { User } from './models/user';
+import { AuthResponseData } from './models/auth-response-data';
+import { ExtraData } from './models/extra-data';
+import { Statistics } from '../game/singleplayer/models/statistics';
 
 @Injectable()
 export class AuthService {

@@ -1,62 +1,18 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { AuthService, ExtraData } from 'src/app/auth/auth.service';
-import { User } from 'src/app/auth/user.model';
+import { AuthService } from 'src/app/auth/auth.service';
+import { ExtraData } from 'src/app/auth/models/extra-data';
+import { User } from 'src/app/auth/models/user';
 import { Card } from '../shared/card/card.model';
 import { Pot, PotName } from '../shared/pot/pot.model';
-
-export class GameConstants {
-  public static readonly COMMUNITY_GARDEN_MAX_HERBS = 5;
-}
-
-export enum PlaceIn {
-  CommunityGarden,
-  PrivateGarden,
-  DiscardPile,
-}
-
-export enum CurrentAction {
-  NewTurn,
-  PotAction,
-  PlantAction
-}
-
-export enum Ranks {
-  Rank6, // worst
-  Rank5,
-  Rank4,
-  Rank3,
-  Rank2,
-  Rank1 // best
-}
-
-export interface GameScore {
-  points: number,
-  rank: Ranks,
-  nextRankPoints: number,
-  messageLeft: string,
-  messageRight: string
-}
-
-export interface GameState {
-  deck: Card[],
-  communityGarden: Card[],
-  privateGarden: Card[],
-  discardPile: Card[],
-  pots: Pot[],
-  currentAction: CurrentAction,
-  cookieAwarded: boolean,
-  score: GameScore,
-  error: string
-}
-
-export interface Statistics {
-  topScore: number,
-  gamesPlayed: number,
-  herbsLost: number,
-  perfectScores: number
-}
+import { CurrentAction } from './models/current-action';
+import { GameConstants } from './models/game-constants';
+import { GameScore } from './models/game-score';
+import { GameState } from './models/game-state';
+import { PlaceIn } from './models/place-in';
+import { Ranks } from './models/ranks';
+import { Statistics } from './models/statistics';
 
 @Injectable()
 export class GameManagerService {

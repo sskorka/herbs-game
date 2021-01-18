@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Toaster } from 'ngx-toast-notifications';
-import { User } from 'src/app/auth/user.model';
+import { User } from 'src/app/auth/models/user';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
