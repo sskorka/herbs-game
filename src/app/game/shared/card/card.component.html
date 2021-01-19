@@ -1,13 +1,17 @@
 <div class="card-container"
   [ngClass]="{'card-container-in-pot': isInPot, 'selected': card.isSelected}">
+
   <img
-    *ngIf="isDeck"
+    *ngIf="isDeck; else isCard"
     class="card"
     [style.background-image]="'url(' + deckPath + ')'"
   >
-  <img
+  <ng-template #isCard>
+    <img
     *ngIf="!isDeck"
     [style.background-image]="'url(' + card.graphicsUrl + ')'"
     class="card"
-  >
+    >
+  </ng-template>
+
 </div>
