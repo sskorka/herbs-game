@@ -12,7 +12,12 @@
     "CreateAccountSwitch": "...lub załóż nowe konto.",
     "SignInSwitch": "Zaloguj się",
     "LoginButton": "Zaloguj",
-    "RegisterButton": "Załóż konto"
+    "RegisterButton": "Załóż konto",
+    "Recovery": {
+      "ReturnButtonLabel": "Powrót",
+      "Title": "Ta funkcja jest niedostępna!",
+      "Description": "Spokojnie, twoje hasło jest bezpiecznie<br>przechowywane na platformie Google Firebase.<br>Jeśli chcesz zresetować hasło,<br>skontaktuj się ze mną pod<br>"
+    }
   },
   "Header": {
     "SignIn": "Logowanie / Rejestracja",
