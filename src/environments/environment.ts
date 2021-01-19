@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  dev_mail: 'szymonskorka@outlook.com',
   API_KEY: 'AIzaSyBMEkW7zQd6dUCTv23jpmpxPcOWe4Zf6Eo',   // firebase public api key
   endpoints: {
     signin: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
@@ -13,7 +14,8 @@ export const environment = {
     default: 'https://herbs-game.firebaseio.com',
     names: 'https://herbs-game.firebaseio.com/names/',
     extraData: 'https://herbs-game.firebaseio.com/extradata/'
-  }
+  },
+  APP_NAME: 'Herbs Up!'
 };
 
 /*
