@@ -30,13 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
-    this.authService.playNowEvent.subscribe(() => {
-      if(this.isAuthenticated) {
-        this.router.navigate(['/hub']);
-      } else {
-        this.openLogin();
-      }
-    });
+    this.authService.playNowEvent.subscribe(() => this.handleAuthentication());
   }
 
   ngOnDestroy(): void {
@@ -53,5 +47,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   changeLang(lang: string) {
     this.translate.use(lang);
+  }
+
+  private handleAuthentication(): void {
+    if(this.isAuthenticated) {
+      this.router.navigate(['/hub']);
+    } else {
+      this.openLogin();
+    }
   }
 }
