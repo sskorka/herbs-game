@@ -93,6 +93,7 @@ table {
   width: 40px;
 }
 
+/* 3rd <td> is score and rank name */
 table td:nth-child(3) {
   color: #27524A;
   font-family: 'Montserrat-ExtraBold';
