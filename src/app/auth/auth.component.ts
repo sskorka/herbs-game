@@ -63,10 +63,6 @@ export class AuthComponent {
     this.isInRegisterMode = !this.isInRegisterMode;
   }
 
-  onHandleError(): void {
-    this.error = null;
-  }
-
   onClose(): void {
     this.onCloseEvent.emit();
   }

@@ -14,7 +14,6 @@ export class AppComponent implements OnInit, OnDestroy {
   isAuthOn: boolean = false;
   /** user login status */
   isAuthenticated: boolean = false;
-  private userSub: Subscription;
 
   constructor(
     private router: Router,
@@ -27,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authService.autoLogin();
-    this.userSub = this.authService.user.subscribe(user => {
+    this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
     this.authService.playNowEvent.subscribe(() => this.handleAuthentication());
