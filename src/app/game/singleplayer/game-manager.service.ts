@@ -66,65 +66,13 @@ export class GameManagerService {
     this.currentAction = CurrentAction.NewTurn;
     return this.getGameState();
   }
-
-  private clearAllData(): void {
-    this.deck = [];
-    this.discardedHalf = [];
-    this.communityGarden = [];
-    this.privateGarden = [];
-    this.discardPile = [];
-    this.pots = [];
-    this.cookieAwarded = false;
-  }
-
-  private generateDeck(): void {
-    // A deck consists of 72 cards: 63 herbs and 9 special herbs
-    // There are 7 different herbs (9 of each) and 3 special herbs (3 of each)
-
-    for(let i = 0; i < 9; i++) {
-      this.deck.push(Card.generateBay());
-      this.deck.push(Card.generateDill());
-      this.deck.push(Card.generateTarragon());
-      this.deck.push(Card.generateSaffron());
-      this.deck.push(Card.generateLavender());
-      this.deck.push(Card.generateRosemary());
-      this.deck.push(Card.generateSage());
-
-      if (!(i % 3)) {
-        this.deck.push(Card.generateMint());
-        this.deck.push(Card.generateChive());
-        this.deck.push(Card.generateThyme());
-      }
-    }
-  }
-
-  private generatePots(): void {
-    this.pots.push(Pot.generateLarge());
-    this.pots.push(Pot.generateWooden());
-    this.pots.push(Pot.generateSmall());
-    this.pots.push(Pot.generateGlass());
-  }
-
-  private discardHalf(): void {
-    // in this variant of the game we need to remove 36 cards from the deck at random
-    // we can store those cards for later, if the player wants to continue
-
-    this.discardedHalf = this.deck.splice(0, Math.trunc(this.deck.length / 2));
-  }
-
-  private shuffleDeck(): void {
-    // shuffle the deck using Durstenfeld's algorithm
-    for (let i = this.deck.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
-    }
-  }
-
-  // returns true if there's no pot overflow
+  /**
+   * Returns true if there's no pot overflow
+   */
   plant(pot: PotName, herbs: Card[]): boolean {
-    let matchingPot: Pot = this.pots.find(p => p.potName == pot)
-
-    if ((matchingPot.herbs.length + herbs.length) > matchingPot.maxHerbs) {
+    const matchingPot: Pot = this.pots.find(p => p.potName == pot)
+    const willExceedPotLimit = (matchingPot.herbs.length + herbs.length) > matchingPot.maxHerbs;
+    if (willExceedPotLimit) {
       return false;
     }
 
@@ -132,8 +80,10 @@ export class GameManagerService {
     return true;
   }
 
-  // returns true if there's no garden overflow
-  // 'in' is taken by JavaScript, thus '_in'
+  /**
+   * Returns true if there's no garden overflow
+   * 'in' is taken by JavaScript, thus '_in'
+   */
   place(_in: PlaceIn, herbs: Card[]): boolean {
     switch(_in) {
       case PlaceIn.CommunityGarden:
@@ -150,7 +100,9 @@ export class GameManagerService {
     return !(this.communityGarden.length >= GameConstants.COMMUNITY_GARDEN_MAX_HERBS);
   }
 
-  // sorts herbs in the provided pot (by name, alphabetically; in GlassJar, by points)
+  /**
+   * Sorts herbs in the provided pot (by name, alphabetically; in GlassJar, by points)
+   */
   sortHerbs(pot: Pot): void {
     if (pot.potName === PotName.GlassJar) {
       pot.herbs.sort((a, b) => a.points > b.points ? 1 : -1);
@@ -159,7 +111,7 @@ export class GameManagerService {
     }
   }
 
-  /*
+  /**
    * Finishing the action might go three ways:
    * 1. If switching from NEW TURN, pass CurrentAction depending which action you want to switch to
    * 2. If ENDING a POT TURN, pass the object containing the selected collection of herbs and the target pot
@@ -188,7 +140,11 @@ export class GameManagerService {
       return this.getGameState();
     } // if PLANT
     else if(typeof arg === "string") {
-      if(arg.length != 3) {
+      // arg as string must be 3 characters long for SP, as it provides the exact order of the actions made by the player.
+      // The string contains letters 'c', 'p' and 'd', that stand for community, private and discard respectively.
+      // This way of handling the order will be practical for the game-manager for multiplayer, when the data
+      // is sent over the network.
+      if(arg.length != GameConstants.FINISH_ACTION_SP_ORDER_LENGTH) {
         return this.getGameState(`finishAction(arg): arg is string and is not 3 characters long!\narg: ${arg}`);
       }
 
@@ -296,7 +252,9 @@ export class GameManagerService {
     return this.deck.slice();
   }
 
-  // returns true if there are no more possible actions
+  /**
+   * Returns true if there are no more possible actions
+   */
   noMoreMoves(): boolean {
     /* there are no more possible actions for the player if the following conditions are true:
      * 1. If there's at least one herb in the Large Pot, there must be no other herbs of the same kind in any garden
@@ -315,7 +273,7 @@ export class GameManagerService {
     // ---1---
     const largePot = this.pots.find(p => p.potName === PotName.LargePot);
 
-    if (largePot.herbs.length) {  // don't want no undefined errors >:[
+    if (largePot.herbs.length) {  // don't want no undefined errors
       if (gardens.find(h => h.herbName === largePot.herbs[0].herbName) !== undefined) {
         return false;
       }
@@ -390,7 +348,7 @@ export class GameManagerService {
     total += this.privateGarden.length;
 
     // add 5 points if the cookie has been awarded
-    total += (this.cookieAwarded) ? 5 : 0;
+    total += (this.cookieAwarded) ? GameConstants.COOKIE_POINTS : 0;
 
     return total;
   }
@@ -472,4 +430,63 @@ export class GameManagerService {
       error: error
     };
   }
+
+  private clearAllData(): void {
+    this.deck = [];
+    this.discardedHalf = [];
+    this.communityGarden = [];
+    this.privateGarden = [];
+    this.discardPile = [];
+    this.pots = [];
+    this.cookieAwarded = false;
+  }
+
+  /**
+   * A deck consists of 72 cards: 63 herbs and 9 special herbs
+   * There are 7 different herbs (9 of each) and 3 special herbs (3 of each)
+   */
+  private generateDeck(): void {
+    for(let i = 0; i < GameConstants.NORMAL_HERBS_COUNT; i++) {
+      this.deck.push(Card.generateBay());
+      this.deck.push(Card.generateDill());
+      this.deck.push(Card.generateTarragon());
+      this.deck.push(Card.generateSaffron());
+      this.deck.push(Card.generateLavender());
+      this.deck.push(Card.generateRosemary());
+      this.deck.push(Card.generateSage());
+    }
+
+    for(let i = 0; i < GameConstants.SPECIAL_HERBS_COUNT; i++) {
+      this.deck.push(Card.generateMint());
+      this.deck.push(Card.generateChive());
+      this.deck.push(Card.generateThyme());
+    }
+  }
+
+  private generatePots(): void {
+    this.pots.push(Pot.generateLarge());
+    this.pots.push(Pot.generateWooden());
+    this.pots.push(Pot.generateSmall());
+    this.pots.push(Pot.generateGlass());
+  }
+
+  /**
+   * In this variant of the game we need to remove 36 cards from the deck at random
+   * we can store those cards for later, if the player wants to continue
+   */
+  private discardHalf(): void {
+    this.discardedHalf = this.deck.splice(0, Math.trunc(this.deck.length / 2));
+  }
+
+  /**
+   * Shuffle the deck using Durstenfeld's algorithm
+   */
+  private shuffleDeck(): void {
+    for (let i = this.deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
+    }
+  }
+
+
 }
