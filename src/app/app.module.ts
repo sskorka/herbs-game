@@ -30,7 +30,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoadingDotsComponent } from './shared/loading-dots/loading-dots.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ModeComponent } from './hub/game-mode/mode/mode.component';
-import { ComingsoonToastComponent } from './shared/comingsoon-toast/comingsoon-toast.component';
+import { ComingSoonToastComponent } from './shared/coming-soon-toast/coming-soon-toast.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,7 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingDotsComponent,
     ForgotPasswordComponent,
     ModeComponent,
-    ComingsoonToastComponent,
+    ComingSoonToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FontAwesomeModule,
     BrowserAnimationsModule,
     ToastNotificationsModule.forRoot({
-      component: ComingsoonToastComponent,
+      component: ComingSoonToastComponent,
       duration: 3000,
       type: 'info',
       position: 'bottom-center',

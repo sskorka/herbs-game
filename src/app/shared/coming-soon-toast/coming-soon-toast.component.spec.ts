@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComingsoonToastComponent } from './comingsoon-toast.component';
+import { ComingSoonToastComponent } from './coming-soon-toast.component';
 
 describe('ComingsoonToastComponent', () => {
-  let component: ComingsoonToastComponent;
-  let fixture: ComponentFixture<ComingsoonToastComponent>;
+  let component: ComingSoonToastComponent;
+  let fixture: ComponentFixture<ComingSoonToastComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComingsoonToastComponent ]
+      declarations: [ ComingSoonToastComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComingsoonToastComponent);
+    fixture = TestBed.createComponent(ComingSoonToastComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
