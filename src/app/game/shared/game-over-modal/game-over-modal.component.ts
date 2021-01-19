@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { GameScore } from '../../singleplayer/models/game-score';
 import { Ranks } from '../../singleplayer/models/ranks';
@@ -8,13 +8,10 @@ import { Ranks } from '../../singleplayer/models/ranks';
   templateUrl: './game-over-modal.component.html',
   styleUrls: ['./game-over-modal.component.css']
 })
-export class GameOverModalComponent implements OnInit {
+export class GameOverModalComponent {
   @Input() score: GameScore;
 
   constructor(private translate: TranslateService) { }
-
-  ngOnInit(): void {
-  }
 
   getTranslation(rank: Ranks): string {
     switch(rank) {
