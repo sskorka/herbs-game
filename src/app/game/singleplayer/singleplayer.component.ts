@@ -18,11 +18,10 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
   gameState: GameState;
   gameActions = CurrentAction;
 
-  // used to show a warning when community garden reaches its limit
   communityGardenInDanger: boolean = false;
   communityGardenAboutToDie: boolean = false;
 
-  anyGardenChoosable: boolean = false; // helper property
+  anyGardenChoosable: boolean = false;
   gardensChoosable: { community : boolean, private : boolean, discard : boolean } = {
     community : false,
     private : false,
@@ -31,7 +30,9 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
 
   plantSequence = new Set();
 
-  // inject the gameManager for communication with the game logic
+  /**
+   * Inject the gameManager for communication with the game logic
+   */
   constructor(private gameMgr: GameManagerService, private translate: TranslateService) { }
 
   ngOnInit(): void {
@@ -57,14 +58,15 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     this.information.nativeElement.innerHTML = newInformation;
   }
 
-  // POT PHASE:
-  // only 1 pot can be selected at a time
-  // any combination of herbs from community and private gardens can be selected (no check req)
-  //
-  // PLANT PHASE:
-  // check onDeckClick()
+  /**
+   * POT PHASE:
+   * only 1 pot can be selected at a time
+   * any combination of herbs from community and private gardens can be selected (no check req)
+   *
+   * PLANT PHASE:
+   * check onDeckClick()
+   */
   onCardClick(card: Card | Pot): void {
-
     // don't select if not in pot phase
     if (this.gameState.currentAction != this.gameActions.PotAction) {
       return;
@@ -80,10 +82,11 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     card.isSelected = !card.isSelected;
   }
 
-  // if plantSequence is empty, show the card and wait for player's choice of garden
-  // if plantSequence is 2 characters long, the sequence can autofinish and then endAction()
+  /**
+   * If plantSequence is empty, show the card and wait for player's choice of garden
+   * If plantSequence is 2 characters long, the sequence can autofinish and then endAction()
+   */
   onDeckClick(): void {
-
     // unclickable if not plant action or garden selection
     if (this.gameState.currentAction != this.gameActions.PlantAction || this.anyGardenChoosable) {
       return;
@@ -102,9 +105,7 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     }
   }
 
-  // when player chooses one of the three gardens to plant the herb
   onGardenClick(event: Event): void {
-
     // react only if necessary
     if(!this.anyGardenChoosable) {
       return;
@@ -116,7 +117,7 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     switch(id) {
       case "community-garden":
         if(this.plantSequence.has("c")) {
-          return; // no repeats sir
+          return; // no repeats
         }
         this.plantSequence.add("c");
         this.gameState.communityGarden.push(this.gameState.deck.shift());
@@ -140,7 +141,9 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
         return;
     }
 
-    if(this.plantSequence.size >= 2) {
+    // There are PLANTABLES_COUNT = 3 for the player to choose, after choosing PLANTABLES_COUNT-1,
+    // we can deduce the last garden to use
+    if(this.plantSequence.size >= GameConstants.PLANTABLES_COUNT - 1) {
       // union the plantSequence so that the third choice is made automatically
       this.plantSequence = new Set([...this.plantSequence, ..."cpd"]);
 
@@ -182,8 +185,10 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     this.gameState = this.gameMgr.finishAction(this.gameActions.PlantAction)
   }
 
-  // this gets called only on user click, so only due to the pot phase being finished or skipped
-  // NOT after plant phase
+  /**
+   * This gets called only on user click, so only due to the pot phase being finished or skipped
+   * NOT after plant phase
+   */
   onEndAction(): void {
     let comm: Card[] = this.gameState.communityGarden.filter(h => h.isSelected);
     let priv: Card[] = this.gameState.privateGarden.filter(h => h.isSelected);
@@ -201,21 +206,19 @@ export class SingleplayerComponent implements OnInit, DoCheck, AfterViewChecked 
     this.gameState = this.gameMgr.finishAction( {comm: comm, priv: priv, pot: potName} );
 
     // if community garden is no longer in danger, revert the flag
-    if (this.gameState.communityGarden.length < GameConstants.COMMUNITY_GARDEN_MAX_HERBS - 1) {
+    const isCommunityGardenNoLongerInDanger = this.gameState.communityGarden.length < GameConstants.COMMUNITY_GARDEN_MAX_HERBS - 1;
+    if (isCommunityGardenNoLongerInDanger) {
       this.communityGardenInDanger = false;
     }
 
     // if community garden died, revert the flag
-    if (this.gameState.communityGarden.length < GameConstants.COMMUNITY_GARDEN_MAX_HERBS) {
+    const isCommunityGardenDead = this.gameState.communityGarden.length < GameConstants.COMMUNITY_GARDEN_MAX_HERBS;
+    if (isCommunityGardenDead) {
       this.communityGardenAboutToDie = false;
     }
   }
 
   onHandleError(): void {
     this.gameState.error = null;
-  }
-
-  onConfirmGameOver(): void {
-    this.gameState.score = null;
   }
 }
