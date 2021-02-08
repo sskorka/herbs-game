@@ -205,9 +205,12 @@ button:disabled {
 }
 
 .bg-credit {
+  position: absolute;
+  bottom: 0;
   display: flex;
   justify-content: flex-start;
   width: 100vw;
+  margin-bottom: 20px;
   margin-left: 60px;
   color: rgb(120 120 120);
 }
