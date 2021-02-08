@@ -6,12 +6,10 @@ import { HubComponent } from './hub/hub.component';
 import { SingleplayerComponent } from './game/singleplayer/singleplayer.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
-import { AppComponent } from './app.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home'},
   { path: 'home', component: HomeComponent },
-  // { path: 'hub', component: HubComponent },
   { path: 'hub', canActivate: [ AuthGuard ], component: HubComponent },
   { path: 'solitaire', canActivate: [ AuthGuard ], component: SingleplayerComponent },
   { path: 'recovery', component: ForgotPasswordComponent}

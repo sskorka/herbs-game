@@ -44,12 +44,6 @@
   width: 60%;
 }
 
-/* .right-col {
-  width: 400px;
-  height: 300px;
-  background-color: sandybrown;
-} */
-
 .actions {
   display: flex;
   align-items: center;
@@ -99,6 +93,7 @@ table {
   width: 40px;
 }
 
+/* 3rd <td> is score and rank name */
 table td:nth-child(3) {
   color: #27524A;
   font-family: 'Montserrat-ExtraBold';

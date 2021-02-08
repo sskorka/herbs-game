@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from './auth/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  // true if login modal should be opened
+  /** true if login modal should be opened */
   isAuthOn: boolean = false;
-  // user login status
+  /** user login status */
   isAuthenticated: boolean = false;
-  private userSub: Subscription;
 
   constructor(
     private router: Router,
@@ -27,16 +26,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authService.autoLogin();
-    this.userSub = this.authService.user.subscribe(user => {
+    this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
-    this.authService.playNowEvent.subscribe(() => {
-      if(this.isAuthenticated) {
-        this.router.navigate(['/hub']);
-      } else {
-        this.openLogin();
-      }
-    });
+    this.authService.playNowEvent.subscribe(() => this.handleAuthentication());
   }
 
   ngOnDestroy(): void {
@@ -53,5 +46,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   changeLang(lang: string) {
     this.translate.use(lang);
+  }
+
+  private handleAuthentication(): void {
+    if(this.isAuthenticated) {
+      this.router.navigate(['/hub']);
+    } else {
+      this.openLogin();
+    }
   }
 }

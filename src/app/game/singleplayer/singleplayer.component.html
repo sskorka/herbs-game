@@ -22,7 +22,6 @@
         <button class="draw-btn" [disabled]="gameState.currentAction != gameActions.NewTurn || !gameState.deck.length" (click)="onPlant()">{{ 'Game.SP.Buttons.DrawCard' | translate }}</button>
         <button class="end-turn-btn" [disabled]="gameState.currentAction != gameActions.PotAction" (click)="onEndAction()">{{ 'Game.SP.Buttons.EndTurn' | translate }}</button>
       </div>
-      <!-- TODO: question mark sign here -->
     </div>
 
     <!-- BOARD -->
@@ -65,7 +64,6 @@
     </div>
     <div class="garden pots">
       <app-pot
-      class=""
       *ngFor="let pot of gameState.pots; let i = index"
       [pot]="pot"
       [i]="i"
@@ -86,6 +84,6 @@
       (click)="onCardClick(card)"
       ></app-card>
     </div>
-    <!-- <span>Photo by <a href="https://unsplash.com/@scottwebb?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Scott Webb</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
   </div>
+  <span class="bg-credit">Photo by <a href="https://unsplash.com/@scottwebb?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Scott Webb</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 </div>

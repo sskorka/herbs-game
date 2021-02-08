@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { Toaster } from 'ngx-toast-notifications';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent{
+  email = environment.dev_mail;
   faEnvelope = faEnvelope;
 
   constructor(private toaster: Toaster, private translate: TranslateService) { }
-
-  ngOnInit(): void {
-  }
 
   onContactFormSubmit(form: NgForm): void {
     form.resetForm();

@@ -1,4 +1,4 @@
-import { Statistics } from '../game/singleplayer/game-manager.service';
+import { Statistics } from "src/app/game/singleplayer/models/statistics";
 
 export class User {
   public name: string;
@@ -12,10 +12,7 @@ export class User {
   ) {}
 
   get token() {
-    if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-      return null;
-    }
-
-    return this._token;
+    const isTokenExpired = !this._tokenExpirationDate || new Date() > this._tokenExpirationDate;
+    return isTokenExpired ? null : this._token;
   }
 }

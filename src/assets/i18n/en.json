@@ -12,7 +12,12 @@
     "CreateAccountSwitch": "...or create a new account now!",
     "SignInSwitch": "Sign in instead",
     "LoginButton": "Login",
-    "RegisterButton": "Register"
+    "RegisterButton": "Register",
+    "Recovery": {
+      "Title": "This feature is not available yet!",
+      "Description": "Don't worry, your password is safely stored<br>on the Google's Firebase platform.<br>If you wish to reset your password, please<br>contact the administrator at<br>",
+      "ReturnButtonLabel": "Return"
+    }
   },
   "Header": {
     "SignIn": "Sign in / Sign up",

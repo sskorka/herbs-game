@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { User } from 'src/app/auth/user.model';
-import { AuthService } from 'src/app/auth/auth.service';
-import { Toaster } from 'ngx-toast-notifications';
 import { TranslateService } from '@ngx-translate/core';
+import { Toaster } from 'ngx-toast-notifications';
+import { User } from 'src/app/auth/models/user';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,15 +12,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class ProfileComponent implements OnInit {
   user: User = null;
 
-  constructor(private authService: AuthService,
-    private toaster: Toaster,
-    private translate: TranslateService) { }
+  constructor(private toaster: Toaster, private translate: TranslateService) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('userData'))
-    // this.user = this.authService.user.next(null);
-    console.log("LOADED PROFILE:");
-    console.log(this.user);
+    this.user = JSON.parse(localStorage.getItem('userData'));
   }
 
   onViewChart(): void {

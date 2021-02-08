@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faCheck, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,7 +6,7 @@ import { faCheck, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './mode.component.html',
   styleUrls: ['./mode.component.css']
 })
-export class ModeComponent implements OnInit {
+export class ModeComponent {
   faCheck = faCheck;
   faUser = faUser;
   faUsers = faUsers;
@@ -16,10 +16,4 @@ export class ModeComponent implements OnInit {
   @Input() isSelected: boolean;
   @Input() isSingleplayer: boolean;
   @Input() estimatedGameTime: number;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

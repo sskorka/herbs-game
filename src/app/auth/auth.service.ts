@@ -1,27 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { catchError, tap, concatMap, mergeMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-
-import { User } from './user.model';
-import { Router } from '@angular/router';
-import { Statistics } from '../game/singleplayer/game-manager.service';
-
-export interface ExtraData {
-  name: string,
-  stats: Statistics
-}
-
-export interface AuthResponseData {
-  idToken: string,
-  email: string,
-  refreshToken: string,
-  expiresIn: string,
-  localId: string,
-  registered?: boolean
-}
+import { User } from './models/user';
+import { AuthResponseData } from './models/auth-response-data';
+import { ExtraData } from './models/extra-data';
+import { Statistics } from '../game/singleplayer/models/statistics';
 
 @Injectable()
 export class AuthService {
@@ -34,99 +20,81 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  signup(_email: string, _name: string, _password: string) {
-    return this.http.post<AuthResponseData>(
-      environment.endpoints.signup + environment.API_KEY,
-      {
-        email: _email,
-        password: _password,
-        returnSecureToken: true
-      }
-    ).pipe(
-      catchError(this.handleError),
-      tap(res => {
-        this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
-      }),
+  signup(email: string, name: string, password: string): Observable<any> {
+    const user = { email, password, returnRescureToken: true };
+    const url = environment.endpoints.signup + environment.API_KEY;
+
+    return this.http.post<AuthResponseData>(url, user).pipe(
+      catchError(err => this.handleError(err)),
+      tap(res => this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn)),
       concatMap((res: AuthResponseData) => {
-        console.log("res in concatMap:", res);
-        return this.registerExtraData(res.localId, _name);
+        return this.registerExtraData(res.localId, name);
       }),
       tap((extraDataRes: ExtraData) => this.assignExtraDataToUser(extraDataRes))
     );
   }
 
-  registerExtraData(_uid: string, _name: string): Observable<any> {
-    return this.http.put<ExtraData>(
-      environment.db.extraData + _uid + '.json',
+  registerExtraData(uid: string, name: string): Observable<any> {
+    const extraData = {
+      name,
+      stats:
       {
-        name: _name,
-        stats:
-        {
-          topScore: 0,
-          gamesPlayed: 0,
-          herbsLost: 0,
-          perfectScores: 0
-        }
+        topScore: 0,
+        gamesPlayed: 0,
+        herbsLost: 0,
+        perfectScores: 0
       }
-      ).pipe(
-        catchError(this.handleError)
+    };
+    const url = environment.db.extraData + uid + '.json';
+
+    return this.http.put<ExtraData>(url, extraData).pipe(
+        catchError(err => this.handleError(err))
       );
   }
 
-  updateExtraData(_uid: string, _name: string, _stats: Statistics): Observable<any> {
-    return this.http.put<ExtraData>(
-      environment.db.extraData + _uid + '.json',
-      {
-        name: _name,
-        stats: _stats
-      }
-    ).pipe(
-      catchError(this.handleError),
+  updateExtraData(uid: string, name: string, stats: Statistics): Observable<any> {
+    const extraData = { name, stats };
+    const url = environment.db.extraData + uid + '.json';
+
+    return this.http.put<ExtraData>(url, extraData).pipe(
+      catchError(err => this.handleError(err)),
       mergeMap(() => {
-        return this.fetchExtraData(_uid);
+        return this.fetchExtraData(uid);
       }),
       tap((extraData: ExtraData) => this.assignExtraDataToUser(extraData))
     );
   }
 
-  login(_email: string, _password: string) {
-    let returnedName: string = "";
+  login(email: string, password: string): Observable<any> {
+    const user = { email, password, returnSecureToken: true };
+    const url = environment.endpoints.signin + environment.API_KEY;
 
-    return this.http.post<AuthResponseData>(
-      environment.endpoints.signin + environment.API_KEY,
-      {
-        email: _email,
-        password: _password,
-        returnSecureToken: true
-      }
-      ).pipe(
-      catchError(this.handleError),
+    return this.http.post<AuthResponseData>(url, user).pipe(
+      catchError(err => this.handleError(err)),
       tap((res: AuthResponseData) => {
           this.handleAuthentication(res.localId, res.email, res.idToken, +res.expiresIn);
       }),
-      mergeMap((res: AuthResponseData) => {
-        return this.fetchExtraData(res.localId);
-      }),
+      mergeMap((res: AuthResponseData) => this.fetchExtraData(res.localId)),
       tap((extraDataRes: ExtraData) => this.assignExtraDataToUser(extraDataRes))
       );
   }
 
-  assignExtraDataToUser(extraData: ExtraData): void {
+  private assignExtraDataToUser(extraData: ExtraData): void {
     const userData: User = JSON.parse(localStorage.getItem('userData'));
     userData.name = extraData.name;
     userData.stats = extraData.stats;
     localStorage.setItem('userData', JSON.stringify(userData));
   }
 
-  fetchExtraData(_uid: string): Observable<ExtraData> {
-    return this.http.get<ExtraData>(
-      environment.db.extraData + _uid + '.json'
-      ).pipe(
-        catchError(this.handleError)
+  private fetchExtraData(uid: string): Observable<ExtraData> {
+    const url = environment.db.extraData + uid + '.json';
+
+    return this.http.get<ExtraData>(url).pipe(
+        catchError(err => this.handleError(err))
       );
   }
 
-  logout() {
+  logout(): void {
     this.user.next(null);
     this.router.navigate(['/home']);
     localStorage.removeItem('userData');
@@ -136,8 +104,10 @@ export class AuthService {
     this.tokenExpirationTimer = null;
   }
 
-  autoLogin() {
-    // If data in localstorage exist, convert to object
+  /**
+   * Auto login user by using localStorage data and set a new auto logout date.
+   */
+  autoLogin(): void {
     const userData: {
       id: string,
       email: string,
@@ -149,7 +119,7 @@ export class AuthService {
     if (!userData) return;
 
     // Create a User object, so that it can validate the token
-    const userObject = new User(
+    const user = new User(
       userData.id,
       userData.email,
       userData._token,
@@ -157,21 +127,21 @@ export class AuthService {
     );
 
     // And if the token is still valid, emit this user and calculate the new autoLogout time
-    if(userObject.token) {
-      this.user.next(userObject);
+    if(user.token) {
+      this.user.next(user);
       const newTokenExpirationTime = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
 
       this.autoLogout(newTokenExpirationTime);
     }
   }
 
-  autoLogout(expirationTime: number) {
+  private autoLogout(expirationTime: number): void {
     this.tokenExpirationTimer = setTimeout(
       () => this.logout(),
       expirationTime);
   }
 
-  private handleAuthentication(uid: string, email: string, token: string, expiresIn: number) {
+  private handleAuthentication(uid: string, email: string, token: string, expiresIn: number): void {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(uid, email, token, expirationDate);
     this.user.next(user);
@@ -179,7 +149,7 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
-  private handleError(err: HttpErrorResponse) {
+  private handleError(err: HttpErrorResponse): Observable<any> {
     // TODO: log the error object on the server
     let errMessage = 'A mysterious error occurred! Try again and please remind the developer to implement a better error handling system. Thanks.';
 

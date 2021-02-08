@@ -1,10 +1,5 @@
 import { Card } from '../card/card.model';
 
-interface ScoreTable {
-  numberOfCards: number,
-  score: number
-}
-
 // names must be consistent in both gameManager and model, thus the use of enum
 export enum PotName {
   LargePot = "Large Pot",
@@ -19,6 +14,7 @@ type HerbVerificationFunction = (selection: Card[], currentlyPlacedHerbs: Card[]
 
 export class Pot {
   public isSelected: boolean = false;
+  private static _graphicsPath = '/../../../../assets/images/cards/faces/pots/';
 
   constructor(
     public potName: string,
@@ -40,23 +36,14 @@ export class Pot {
       case PotName.LargePot:
         return this.scoreTable[this.herbs.length];
       case PotName.WoodenPlanter:
-        if (this.herbs.length <= 1) {
-          return 0;
-        } else {
-          return this.scoreTable[this.herbs.length];
-        }
+        return this.herbs.length <= 1 ? 0 : this.scoreTable[this.herbs.length];
       case PotName.SmallPots:
         return this.scoreTable[this.herbs.length / 2];
       case PotName.GlassJar:
-        total += this.scoreTable[this.herbs.length];
-        this.herbs.forEach(h => {
-          total += h.points;
-        })
-        return total;
+        const glassJarPoints = this.herbs.reduce((sum, herb) => sum + herb.points, 0);
+        return this.scoreTable[this.herbs.length] + glassJarPoints;
     }
   }
-
-  private static _graphicsPath = '/../../../../assets/images/cards/faces/pots/';
 
   public static generateLarge() {
     return new Pot(
@@ -76,10 +63,8 @@ export class Pot {
       },
       // this pot may only store herbs of the same kind. Provide selected herbs and currently planted herbs to run checks.
       (sel: Card[], currHerbs: Card[]): boolean => {
-        if(!currHerbs.length) {
-          return (sel.every(h => h.herbName === sel[0].herbName));
-        }
-        return sel.every(h => h.herbName === sel[0].herbName) && sel[0].herbName === currHerbs[0].herbName
+        const areSelectedEqual: boolean = sel.every(h => h.herbName === sel[0].herbName);
+        return !currHerbs.length ? areSelectedEqual : (areSelectedEqual && sel[0].herbName === currHerbs[0].herbName);
       }
     )
   }
@@ -102,8 +87,8 @@ export class Pot {
       // this pot may only store herbs that are distinct from each other
       (sel: Card[], currHerbs: Card[]): boolean => {
         // create a Set so that only unique herbs are stored
-        // a Set of strings, as seemingly same Card objects might not actually be the same
-        let setFromSelection: Set<string> = new Set<string>(sel.map((h => h.herbName)));
+        // it's a Set of herb names, since some Card objects - seemingly the same - might actually differ from each other
+        const setFromSelection = new Set<string>(sel.map((h => h.herbName)));
 
         // if the pot is empty, check if selection is made of unique herbs
         if(currHerbs.length == 0 && sel.length === setFromSelection.size) {
@@ -112,11 +97,7 @@ export class Pot {
 
         // if the pot isn't empty, check if the pot and the selection combined result in an unchanged Set
         let combinedSet = new Set<string>([...sel.map(h=>h.herbName), ...currHerbs.map(h=>h.herbName)]);
-        if(currHerbs.length > 0 && sel.length + currHerbs.length === combinedSet.size) {
-          return true;
-        }
-
-        return false;
+        return currHerbs.length > 0 && sel.length + currHerbs.length === combinedSet.size;
       }
     )
   }
@@ -138,7 +119,6 @@ export class Pot {
       },
       // this pot may only store unique pairs of herbs
       (sel: Card[], currHerbs: Card[]): boolean => {
-        // if the selection's length is odd, return false
         if (sel.length % 2 !== 0) {
           return false;
         }
@@ -151,16 +131,10 @@ export class Pot {
           const currentName: string = h.herbName;
           // if there's exactly 2 herbs of a given herb, delete them from herbsToDiscard
           // repeat until herbsToDiscard is empty
-          let occurrences: number = allHerbs.reduce((occurrences, herb) => {
-            if (herb.herbName == currentName) {
-              return occurrences + 1;
-            } else {
-              return occurrences;
-            }
-          }, 0);
+          const occurrences: number = allHerbs.reduce((occurrences, herb) => herb.herbName === currentName ? occurrences + 1 : occurrences, 0);
 
           if (occurrences === 2) {
-            herbsToDiscard = herbsToDiscard.filter(h => { return h.herbName !== currentName })
+            herbsToDiscard = herbsToDiscard.filter(h => h.herbName !== currentName);
           } else {
             return false;  // return early as there is no point in further checking
           }

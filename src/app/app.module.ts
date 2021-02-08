@@ -19,7 +19,6 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { SingleplayerComponent } from './game/singleplayer/singleplayer.component';
 import { CardComponent } from './game/shared/card/card.component';
-import { GardenComponent } from './game/shared/garden/garden.component';
 import { DeckComponent } from './game/shared/deck/deck.component';
 import { PotComponent } from './game/shared/pot/pot.component';
 import { GameManagerService } from './game/singleplayer/game-manager.service';
@@ -31,7 +30,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoadingDotsComponent } from './shared/loading-dots/loading-dots.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ModeComponent } from './hub/game-mode/mode/mode.component';
-import { ComingsoonToastComponent } from './shared/comingsoon-toast/comingsoon-toast.component';
+import { ComingSoonToastComponent } from './shared/coming-soon-toast/coming-soon-toast.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,7 +47,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ModalComponent,
     SingleplayerComponent,
     CardComponent,
-    GardenComponent,
     DeckComponent,
     PotComponent,
     GameOverModalComponent,
@@ -58,7 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingDotsComponent,
     ForgotPasswordComponent,
     ModeComponent,
-    ComingsoonToastComponent,
+    ComingSoonToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FontAwesomeModule,
     BrowserAnimationsModule,
     ToastNotificationsModule.forRoot({
-      component: ComingsoonToastComponent,
+      component: ComingSoonToastComponent,
       duration: 3000,
       type: 'info',
       position: 'bottom-center',

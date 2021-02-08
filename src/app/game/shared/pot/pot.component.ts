@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Card } from '../card/card.model';
 import { Pot, PotName } from './pot.model';
 
 @Component({
@@ -21,16 +20,19 @@ export class PotComponent implements OnInit {
     switch(src)
     {
       case PotName.LargePot.toUpperCase():
-        return this.translate.instant('Game.Shared.Models.Pots.LargePot').toUpperCase();
+        return this.prepareTranslation('LargePot');
       case PotName.SmallPots.toUpperCase():
-        return this.translate.instant('Game.Shared.Models.Pots.SmallPots').toUpperCase();
+        return this.prepareTranslation('SmallPots');
       case PotName.WoodenPlanter.toUpperCase():
-        return this.translate.instant('Game.Shared.Models.Pots.WoodenPlanter').toUpperCase();
+        return this.prepareTranslation('WoodenPlanter');
       case PotName.GlassJar.toUpperCase():
-        return this.translate.instant('Game.Shared.Models.Pots.GlassJar').toUpperCase();
+        return this.prepareTranslation('GlassJar');
       default:
         return src;
     }
   }
 
+  private prepareTranslation(src: string): string {
+    return this.translate.instant(`Game.Shared.Models.Pots.${src}`).toUpperCase();
+  }
 }

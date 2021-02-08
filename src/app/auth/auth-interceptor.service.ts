@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpParams } from '@angular/common/http';
 import { exhaustMap, take } from 'rxjs/operators';
-import { GameModeComponent } from '../hub/game-mode/game-mode.component';
+import { AuthService } from './auth.service';
+import { User } from './models/user';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor{
@@ -11,18 +11,20 @@ export class AuthInterceptorService implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return this.authService.user.pipe(
       take(1),
-      exhaustMap(user => {
-        if (!user) {
-          return next.handle(req);
-        }
-
-        const authReq = req.clone(
-          {
-            params: new HttpParams().set('auth', user.token)
-          }
-        );
-        return next.handle(authReq);
-      })
+      exhaustMap(user => this.authenticate(user, req, next))
     );
+  }
+
+  private authenticate(user: User, req: HttpRequest<any>, next: HttpHandler) {
+    if (!user) {
+      return next.handle(req);
+    }
+
+    const authReq = req.clone(
+      {
+        params: new HttpParams().set('auth', user.token)
+      }
+    );
+    return next.handle(authReq);
   }
 }
