@@ -33,6 +33,11 @@ h1 {
   mix-blend-mode: normal;
 }
 
+.description .title {
+  color: #BFDA69;
+  font-weight: bold;
+}
+
 .play-btn {
   display: flex;
   z-index: 20;
