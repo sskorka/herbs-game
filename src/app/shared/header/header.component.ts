@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/cor
 import { faSignInAlt, faSignOutAlt, faCaretDown, faGamepad } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faSignOutAlt = faSignOutAlt;
   faCaretDown = faCaretDown;
   faGamepad = faGamepad;
+
+  appTitle = environment.APP_NAME;
 
   isAuthenticated = false;
   private userSub: Subscription;
