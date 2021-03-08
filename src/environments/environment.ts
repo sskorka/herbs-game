@@ -15,7 +15,8 @@ export const environment = {
     names: 'https://herbs-game.firebaseio.com/names/',
     extraData: 'https://herbs-game.firebaseio.com/extradata/'
   },
-  APP_NAME: 'Herbs Up!'
+  APP_NAME: 'Herbs Up!',
+  DEFAULT_LANGUAGE: 'en'
 };
 
 /*
