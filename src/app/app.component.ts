@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from './../environments/environment';
 import { AuthService } from './auth/auth.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private translate: TranslateService) {
       translate.addLangs(['en', 'pl']);
-      translate.setDefaultLang('en');
+      translate.setDefaultLang(environment.DEFAULT_LANGUAGE);
       translate.use('en');
     }
 
