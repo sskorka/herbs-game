@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Card } from '../shared/card/card.model';
+import { Card } from '../shared/card/card';
 import { GameManagerService } from './game-manager.service';
 import { Pot, PotName } from '../shared/pot/pot.model';
 import { GameState } from './models/game-state';

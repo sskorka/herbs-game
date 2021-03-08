@@ -1,4 +1,4 @@
-import { Card } from "../../shared/card/card.model";
+import { Card } from "../../shared/card/card";
 import { Pot } from "../../shared/pot/pot.model";
 import { CurrentAction } from "./current-action";
 import { GameScore } from "./game-score";

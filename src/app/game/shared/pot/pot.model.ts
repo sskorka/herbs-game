@@ -1,4 +1,4 @@
-import { Card } from '../card/card.model';
+import { Card } from '../card/card';
 
 // names must be consistent in both gameManager and model, thus the use of enum
 export enum PotName {
