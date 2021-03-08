@@ -31,6 +31,7 @@ import { LoadingDotsComponent } from './shared/loading-dots/loading-dots.compone
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ModeComponent } from './hub/game-mode/mode/mode.component';
 import { ComingSoonToastComponent } from './shared/coming-soon-toast/coming-soon-toast.component';
+import { CardFactory } from './game/shared/card/card-factory';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingDotsComponent,
     ForgotPasswordComponent,
     ModeComponent,
-    ComingSoonToastComponent,
+    ComingSoonToastComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +86,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthService,
     AuthGuard,
     GameManagerService,
+    CardFactory,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
