@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ExtraData } from 'src/app/auth/models/extra-data';
 import { User } from 'src/app/auth/models/user';
-import { Card } from '../shared/card/card.model';
+import { CardType } from '../models/card-type';
+import { SpecialCardType } from '../models/special-card-type';
+import { CardFactory } from '../shared/card/card-factory';
+import { Card } from '../shared/card/card';
 import { Pot, PotName } from '../shared/pot/pot.model';
 import { CurrentAction } from './models/current-action';
 import { GameConstants } from './models/game-constants';
@@ -42,7 +45,7 @@ export class GameManagerService {
     messageRight: null
   }
 
-  constructor(private authService: AuthService, private translate: TranslateService) {}
+  constructor(private authService: AuthService, private translate: TranslateService, private cardFactory: CardFactory) {}
 
   startGame(): GameState {
     // Angular keeps the structures' state after auto-logout,
@@ -447,19 +450,19 @@ export class GameManagerService {
    */
   private generateDeck(): void {
     for(let i = 0; i < GameConstants.NORMAL_HERBS_COUNT; i++) {
-      this.deck.push(Card.generateBay());
-      this.deck.push(Card.generateDill());
-      this.deck.push(Card.generateTarragon());
-      this.deck.push(Card.generateSaffron());
-      this.deck.push(Card.generateLavender());
-      this.deck.push(Card.generateRosemary());
-      this.deck.push(Card.generateSage());
+      this.deck.push(this.cardFactory.getCard(CardType.Bay));
+      this.deck.push(this.cardFactory.getCard(CardType.Dill));
+      this.deck.push(this.cardFactory.getCard(CardType.Tarragon));
+      this.deck.push(this.cardFactory.getCard(CardType.Saffron));
+      this.deck.push(this.cardFactory.getCard(CardType.Lavender));
+      this.deck.push(this.cardFactory.getCard(CardType.Rosemary));
+      this.deck.push(this.cardFactory.getCard(CardType.Sage));
     }
 
     for(let i = 0; i < GameConstants.SPECIAL_HERBS_COUNT; i++) {
-      this.deck.push(Card.generateMint());
-      this.deck.push(Card.generateChive());
-      this.deck.push(Card.generateThyme());
+      this.deck.push(this.cardFactory.getSpecialCard(SpecialCardType.Mint));
+      this.deck.push(this.cardFactory.getSpecialCard(SpecialCardType.Chive));
+      this.deck.push(this.cardFactory.getSpecialCard(SpecialCardType.Thyme));
     }
   }
 
