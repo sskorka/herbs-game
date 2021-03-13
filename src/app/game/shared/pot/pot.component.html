@@ -1,8 +1,8 @@
 <div class="pot-container">
-  <img
+  <div
     class="pot-img"
     [style.background-image]="'url(' + pot.graphicsUrl + ')'"
-    [ngClass]="{'selected': pot.isSelected}">
+    [ngClass]="{'selected': pot.isSelected}"></div>
   <span class="herbs" [ngClass]="{'herbs-empty': !pot.herbs.length}">
     <app-card
       class="herb"
