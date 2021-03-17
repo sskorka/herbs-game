@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private translate: TranslateService) {
       translate.addLangs(['en', 'pl']);
-      translate.setDefaultLang(environment.DEFAULT_LANGUAGE);
+      translate.setDefaultLang(environment.defaultLanguage);
       translate.use('en');
     }
 

@@ -15,7 +15,7 @@ export class CardComponent {
   readonly placeholderCard: Card = new Card(CARDS.PLACEHOLDER);
 
   private _card: Card;
-  private language: string = environment.DEFAULT_LANGUAGE;
+  private language: string = environment.defaultLanguage;
 
   @Input() set card(card: Card) {
     if(!card) {

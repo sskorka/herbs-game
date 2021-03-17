@@ -22,7 +22,7 @@ export class AuthService {
 
   signup(email: string, name: string, password: string): Observable<any> {
     const user = { email, password, returnRescureToken: true };
-    const url = environment.endpoints.signup + environment.API_KEY;
+    const url = environment.firebase.endpoints.signup + environment.firebase.apiKey;
 
     return this.http.post<AuthResponseData>(url, user).pipe(
       catchError(err => this.handleError(err)),
@@ -45,7 +45,7 @@ export class AuthService {
         perfectScores: 0
       }
     };
-    const url = environment.db.extraData + uid + '.json';
+    const url = environment.firebase.db.extraData + uid + '.json';
 
     return this.http.put<ExtraData>(url, extraData).pipe(
         catchError(err => this.handleError(err))
@@ -54,7 +54,7 @@ export class AuthService {
 
   updateExtraData(uid: string, name: string, stats: Statistics): Observable<any> {
     const extraData = { name, stats };
-    const url = environment.db.extraData + uid + '.json';
+    const url = environment.firebase.db.extraData + uid + '.json';
 
     return this.http.put<ExtraData>(url, extraData).pipe(
       catchError(err => this.handleError(err)),
@@ -67,7 +67,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     const user = { email, password, returnSecureToken: true };
-    const url = environment.endpoints.signin + environment.API_KEY;
+    const url = environment.firebase.endpoints.signin + environment.firebase.apiKey;
 
     return this.http.post<AuthResponseData>(url, user).pipe(
       catchError(err => this.handleError(err)),
@@ -87,7 +87,7 @@ export class AuthService {
   }
 
   private fetchExtraData(uid: string): Observable<ExtraData> {
-    const url = environment.db.extraData + uid + '.json';
+    const url = environment.firebase.db.extraData + uid + '.json';
 
     return this.http.get<ExtraData>(url).pipe(
         catchError(err => this.handleError(err))

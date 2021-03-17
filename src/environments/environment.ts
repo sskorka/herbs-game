@@ -4,19 +4,21 @@
 
 export const environment = {
   production: false,
-  dev_mail: 'szymonskorka@outlook.com',
-  API_KEY: 'AIzaSyBMEkW7zQd6dUCTv23jpmpxPcOWe4Zf6Eo',   // firebase public api key
-  endpoints: {
-    signin: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
-    signup: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
-  },
-  db: {
-    default: 'https://herbs-game.firebaseio.com',
-    names: 'https://herbs-game.firebaseio.com/names/',
-    extraData: 'https://herbs-game.firebaseio.com/extradata/'
-  },
-  APP_NAME: 'Herbs Up!',
-  DEFAULT_LANGUAGE: 'en'
+  appName: 'Herbs Up!',
+  defaultLanguage: 'en',
+  devMail: 'szymonskorka@outlook.com',
+  firebase: { // replace these with your own before building/serving
+    apiKey: 'AIzaSyBMEkW7zQd6dUCTv23jpmpxPcOWe4Zf6Eo',
+    endpoints: {
+      signin: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
+      signup: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
+    },
+    db: {
+      default: 'https://herbs-game.firebaseio.com',
+      names: 'https://herbs-game.firebaseio.com/names/',
+      extraData: 'https://herbs-game.firebaseio.com/extradata/'
+    }
+  }
 };
 
 /*

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faCaretDown = faCaretDown;
   faGamepad = faGamepad;
 
-  appTitle = environment.APP_NAME;
+  appTitle = environment.appName;
 
   isAuthenticated = false;
   private userSub: Subscription;

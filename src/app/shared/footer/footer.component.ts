@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent{
-  email = environment.dev_mail;
+  email = environment.devMail;
   faEnvelope = faEnvelope;
 
   constructor(private toaster: Toaster, private translate: TranslateService) { }

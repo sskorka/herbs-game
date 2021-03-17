@@ -7,5 +7,5 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent {
-  email: string = environment.dev_mail;
+  email: string = environment.devMail;
 }

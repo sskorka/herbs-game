@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  appTitle = environment.APP_NAME;
+  appTitle = environment.appName;
 
   constructor(private authService: AuthService) { }
 
