@@ -6,6 +6,7 @@
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [Unit tests](#unit-tests)
+- [Known issues](#known-issues)
 - [Project status](#project-status)
 - [Acknowledgements](#acknowledgements)
 
@@ -15,7 +16,7 @@
 
 <b>Herbs Up!</b> is an implementation of a kickstarter card game _Herbaceous_ and it's playable through a web browser.
 
-[Live demo available HERE](https://herbs-game.web.app/home)
+[Live version available HERE](https://herbs-game.web.app/home)
 
 Herbs Up! was created using Angular as a learning opportunity. As of now, it features singleplayer mode only.<br/>
 You need to create a free account to start.
@@ -26,8 +27,10 @@ There is no tutorial available in-game **yet**, so I strongly suggest familiariz
 
 * Angular 9.1.0
 * Firebase for authentication and data storage
-* i18n for internalization
+* ngx-translate for internalization
 * TypeScript, HTML, CSS
+
+The game flow is controlled by a game manager service, as it communicates with the board component and sends its current game state.
 
 ## Setup
 
@@ -54,6 +57,13 @@ The build artifacts will be stored in the `dist/` directory.
 
 ## Unit tests
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Known issues
+The current biggest issue is RWD, despite the wonders of a flexbox. The project's goal was to implement game mechanics, and as such RWD was not a priority.<br />
+If you're experiencing layout-related problems, these can be applied for a temporary solution:
+- Play on a 1080p or 1440p resolution
+- Disable system interface scaling (set to 100%)
+- Use F11 to enter fullscreen mode
 
 ## Project status
 The project is considered finished, with the future possibility of adding multiplayer, as well as broader unit test coverage.
