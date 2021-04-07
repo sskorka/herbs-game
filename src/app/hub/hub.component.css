@@ -3,4 +3,5 @@
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 200px;
+  min-height: calc(100vh - 520px);
 }
