@@ -17,7 +17,15 @@
       "Title": "This feature is not available yet!",
       "Description": "Don't worry, your password is safely stored<br>on the Google's Firebase platform.<br>If you wish to reset your password, please<br>contact the administrator at<br>",
       "ReturnButtonLabel": "Return"
-    }
+    },
+	"Errors": {
+	  "EmailExists": "This e-mail address has already been taken!",
+	  "EmailNotFound": "E-mail address not found!",
+	  "InvalidPassword": "Incorrect password!",
+	  "OperationNotAllowed": "Password sign-in is disabled for this project.",
+	  "TooManyAttemptsTryLater": "We have blocked all requests from this device due to unusual activity. Try again later.",
+	  "UserDisabled": "The user account has been disabled by an administrator."
+	}
   },
   "Header": {
     "SignIn": "Sign in / Sign up",

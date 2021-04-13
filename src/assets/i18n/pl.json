@@ -17,7 +17,15 @@
       "ReturnButtonLabel": "Powrót",
       "Title": "Ta funkcja jest niedostępna!",
       "Description": "Spokojnie, twoje hasło jest bezpiecznie<br>przechowywane na platformie Google Firebase.<br>Jeśli chcesz zresetować hasło,<br>skontaktuj się ze mną pod<br>"
-    }
+    },
+	"Errors": {
+	  "EmailExists": "Podany adres e-mail jest zajęty!",
+	  "EmailNotFound": "Podany adres e-mail nie został znaleziony!",
+	  "InvalidPassword": "Nieprawidłowe hasło!",
+	  "OperationNotAllowed": "Logowanie za pomocą hasła zostało wyłączone dla tego projektu.",
+	  "TooManyAttemptsTryLater": "Zablokowaliśmy wszystkie żądania z tego urządzenia z powodu nietypowej aktywności. Spróbuj ponownie później.",
+	  "UserDisabled": "Ten użytkownik został zablokowany przez administratora."
+	}
   },
   "Header": {
     "SignIn": "Logowanie / Rejestracja",
