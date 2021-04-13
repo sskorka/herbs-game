@@ -56,6 +56,9 @@
             <a class="login-link" *ngIf="!isInRegisterMode" (click)="onToggleRegistration()">{{ 'Auth.CreateAccountSwitch' | translate }}</a>
             <a class="login-link" *ngIf="isInRegisterMode" (click)="onToggleRegistration()">{{ 'Auth.SignInSwitch' | translate }}</a>
           </div>
+          <div *ngIf="error" class="error">
+            <p>{{ getTranslation(error) }}</p>
+          </div>
         </form>
           </div>
     </div>

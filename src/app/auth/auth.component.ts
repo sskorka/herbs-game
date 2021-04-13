@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, HostListener } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { AuthResponseData } from './models/auth-response-data';
@@ -24,7 +25,9 @@ export class AuthComponent {
     event.preventDefault();
   }
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService,
+              private router: Router,
+              private translate: TranslateService) { }
 
   onSubmit(form: NgForm): void {
     if(!form.valid) {
@@ -36,6 +39,7 @@ export class AuthComponent {
     let authObservable: Observable<AuthResponseData|ExtraData>;
 
     this.isLoading = true;
+    this.error = null;
 
     if(!this.isInRegisterMode) {
       authObservable = this.authService.login(email, password);
@@ -59,9 +63,36 @@ export class AuthComponent {
 
   onToggleRegistration(): void {
     this.isInRegisterMode = !this.isInRegisterMode;
+    this.error = null;
   }
 
   onClose(): void {
     this.onCloseEvent.emit();
+  }
+
+  /**
+    * For some reason, Firebase returns a buggy "too many attempts" response from its API.
+    * As a temporary solution, check if the response simply contains the error code.
+   */
+  getTranslation(err: string): string {
+    if (err.includes('TOO_MANY_ATTEMPTS_TRY_LATER'))
+      return this.translate.instant('Auth.Errors.TooManyAttemptsTryLater');
+
+    switch(err) {
+      case 'EMAIL_EXISTS':
+        return this.translate.instant('Auth.Errors.EmailExists');
+      case 'EMAIL_NOT_FOUND':
+        return this.translate.instant('Auth.Errors.EmailNotFound');
+      case 'INVALID_PASSWORD':
+        return this.translate.instant('Auth.Errors.InvalidPassword');
+      case 'OPERATION_NOT_ALLOWED':
+        return this.translate.instant('Auth.Errors.OperationNotAllowed');
+      case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+        return this.translate.instant('Auth.Errors.TooManyAttemptsTryLater');
+      case 'USER_DISABLED':
+        return this.translate.instant('Auth.Errors.UserDisabled');
+      default:
+        return err;
+    }
   }
 }

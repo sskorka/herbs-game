@@ -157,28 +157,9 @@ export class AuthService {
       return throwError(errMessage);
     }
 
-    switch (err.error.error.message) {
-      case 'EMAIL_EXISTS':
-        errMessage = 'This e-mail address has already been taken!';
-        break;
-      case 'EMAIL_NOT_FOUND':
-        errMessage = 'E-mail address not found!';
-        break;
-      case 'INVALID_PASSWORD':
-        errMessage = "Incorrect password!";
-        break;
-      case 'OPERATION_NOT_ALLOWED':
-        errMessage = "Password sign-in is disabled for this project.";
-        break;
-      case 'TOO_MANY_ATTEMPTS_TRY_LATER':
-        errMessage = "We have blocked all requests from this device due to unusual activity. Try again later.";
-        break;
-      case 'USER_DISABLED':
-        errMessage = "The user account has been disabled by an administrator.";
-        break;
-    }
+    const errorCode = err.error.error.message;
 
-    return throwError(errMessage);
+    return throwError(errorCode);
   }
 
 }

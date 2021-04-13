@@ -184,3 +184,9 @@ button {
   font-size: 15px;
 }
 
+.error {
+  color: #c31919;  /* red-ish */
+  position: fixed;
+  margin-left: 3px;
+  bottom: 20px;
+}
